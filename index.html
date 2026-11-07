@@ -4,375 +4,585 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Demandas · MapBiomas Água e Risco Climático</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
 <style>
+/* Régua linimétrica: cada frente é uma régua de nível de rio; a água sobe com o avanço. */
 :root {
-  --bg: #f4f7f6; --surface: #fff; --fg: #17302c; --muted: #55706a; --line: #d3dedb;
-  --accent: #0f6b5c; --on-accent: #fff; --agua: #1b5fa8; --risco: #b4541e;
-  --late: #a8342a; --soon: #9a6a00; --done: #2f7d4f;
-  --display: "IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
-  --body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --papel: #f2f5f4; --folha: #ffffff; --tinta: #0e2a33; --tinta2: #4b6670; --linha: #d5dfdd;
+  --agua: #1e6fb8; --agua-claro: #cfe2f4; --risco: #c8471e; --risco-claro: #f6d9cc;
+  --atraso: #b3261e; --breve: #9a6b00; --feito: #2e7d4f;
+  --sombra: 0 1px 0 rgba(14, 42, 51, .06), 0 8px 24px -12px rgba(14, 42, 51, .18);
+  --fonte: "Archivo", "Segoe UI", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) { :root {
-  --bg: #101a18; --surface: #182623; --fg: #e4eeeb; --muted: #9db3ad; --line: #2e4440;
-  --accent: #5cc4b0; --on-accent: #0c1f1b; --agua: #7db6f0; --risco: #f0a274;
-  --late: #f0968c; --soon: #f0c35a; --done: #7fd4a3; color-scheme: dark } }
+  --papel: #0c1c22; --folha: #13282f; --tinta: #e3eef0; --tinta2: #92adb5; --linha: #24414a;
+  --agua: #6aaef0; --agua-claro: #173a5c; --risco: #f08a5d; --risco-claro: #4a2516;
+  --atraso: #f2877e; --breve: #e8be55; --feito: #78cf9b;
+  --sombra: 0 1px 0 rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6); color-scheme: dark } }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 var(--body); }
-.wrap { max-width: 1280px; margin-inline: auto; padding: 0 20px; }
-header { padding: 26px 0 10px; display: flex; flex-wrap: wrap; gap: 14px; align-items: end; justify-content: space-between; }
-h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0; line-height: 1.15; }
-h1 { font-size: 1.9rem; } h2 { font-size: 1.35rem; } h3 { font-size: 1.05rem; }
-.muted { color: var(--muted); font-size: .88rem; }
-a { color: var(--accent); }
-.btn { display: inline-block; font: inherit; font-weight: 500; text-decoration: none; cursor: pointer; border-radius: 5px; padding: 8px 14px; border: 1px solid var(--accent); background: var(--accent); color: var(--on-accent); }
-.btn.sec { background: none; color: var(--accent); }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--papel); color: var(--tinta); font: 400 15px/1.5 var(--fonte); font-variation-settings: "wdth" 100; }
+.wrap { max-width: 1320px; margin-inline: auto; padding-inline: clamp(16px, 3vw, 36px); }
+h1, h2, h3 { margin: 0; font-weight: 700; line-height: 1.1; }
+h1 { font-size: clamp(1.7rem, 3.2vw, 2.6rem); font-variation-settings: "wdth" 72; font-weight: 800; letter-spacing: -.01em; }
+h2 { font-size: 1.35rem; font-variation-settings: "wdth" 80; }
+h3 { font-size: 1rem; font-variation-settings: "wdth" 90; }
+p { margin: 0; }
+a { color: var(--agua); }
+.sutil { color: var(--tinta2); font-size: .86rem; }
+:focus-visible { outline: 2px solid var(--agua); outline-offset: 2px; border-radius: 3px; }
+button { font: inherit; color: inherit; cursor: pointer; }
+
+/* ---------- topo ---------- */
+.topo { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: flex-end; justify-content: space-between; padding-block: 28px 18px; }
+.topo .marca { display: grid; gap: 6px; }
+.sync { display: inline-flex; align-items: center; gap: 8px; }
+.sync i { width: 8px; height: 8px; border-radius: 50%; background: var(--feito); box-shadow: 0 0 0 3px color-mix(in srgb, var(--feito) 25%, transparent); }
 .acoes { display: flex; gap: 8px; flex-wrap: wrap; }
-.barra { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 10px 0 16px; border-bottom: 1px solid var(--line); }
-.chips button, nav button { font: inherit; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; padding: 5px 13px; }
-.chips button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-select, input[type=search] { font: inherit; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: 6px 10px; }
-input[type=search] { min-width: 240px; flex: 1; max-width: 360px; }
-nav { display: flex; gap: 4px; padding: 16px 0 6px; flex-wrap: wrap; }
-nav button { border-radius: 5px 5px 0 0; border-bottom: none; padding: 8px 16px; font-weight: 500; }
-nav button[aria-selected="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-nav button span { opacity: .7; font-size: .85em; margin-left: 4px; }
-main { padding: 14px 0 50px; display: grid; gap: 28px; }
-section { display: grid; gap: 12px; min-width: 0; }
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-.kpi { background: var(--surface); border-radius: 6px; padding: 14px 16px; border-left: 4px solid var(--c, var(--line)); }
-.kpi b { display: block; font-family: var(--display); font-size: 2rem; line-height: 1.1; }
-.frentes { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-.frente { background: var(--surface); border-radius: 6px; padding: 12px 14px; display: grid; gap: 6px; border-top: 3px solid var(--c); }
-.prog { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
-.prog i { display: block; height: 100%; background: var(--c, var(--accent)); }
-.kanban { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
-.col { background: color-mix(in srgb, var(--surface) 55%, var(--bg)); border-radius: 6px; padding: 10px; display: grid; gap: 8px; align-content: start; min-height: 120px; }
-.col h3 { display: flex; justify-content: space-between; font-size: .95rem; }
-.card { background: var(--surface); border-radius: 5px; padding: 10px 11px; display: grid; gap: 5px; border-left: 3px solid var(--c, var(--line)); text-decoration: none; color: inherit; }
-.card:hover { outline: 1px solid var(--accent); }
-.card .t { font-weight: 500; }
-.tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.tag { font-size: .75rem; padding: 1px 7px; border-radius: 999px; background: var(--bg); color: var(--muted); border: 1px solid var(--line); white-space: nowrap; }
-.tag.alta { color: var(--late); border-color: currentColor; }
-.prazo.late { color: var(--late); font-weight: 600; }
-.prazo.soon { color: var(--soon); font-weight: 600; }
-.tabela { overflow-x: auto; background: var(--surface); border-radius: 6px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; border-radius: 8px; padding: 9px 15px; border: 1.5px solid var(--tinta); background: var(--tinta); color: var(--papel); }
+.btn.sec { background: transparent; color: var(--tinta); border-color: var(--linha); }
+.btn.sec:hover { border-color: var(--tinta); }
+
+/* ---------- réguas ---------- */
+.reguas { display: grid; grid-template-columns: auto 1fr; gap: 20px 28px; background: var(--folha); border-radius: 14px; padding: 22px 24px 18px; box-shadow: var(--sombra); }
+.grupo { display: contents; }
+.grupo > h2 { writing-mode: vertical-rl; transform: rotate(180deg); align-self: end; font-size: .95rem; color: var(--c); font-variation-settings: "wdth" 100; padding-bottom: 46px; }
+.fila { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 4px; }
+.regua { flex: 0 0 132px; display: grid; gap: 8px; background: none; border: 0; padding: 6px; border-radius: 10px; text-align: left; }
+.regua:hover { background: var(--papel); }
+.regua[aria-pressed="true"] { background: color-mix(in srgb, var(--c) 12%, transparent); }
+.tubo { position: relative; height: 150px; border-radius: 6px; background: var(--papel); overflow: hidden; border: 1.5px solid var(--linha); }
+.regua[aria-pressed="true"] .tubo { border-color: var(--c); }
+/* marcas da régua a cada 10%, maiores a cada 50% */
+.tubo::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 22px; z-index: 2;
+  background: repeating-linear-gradient(to top, var(--tinta2) 0 1px, transparent 1px 10%) left / 8px 100% no-repeat,
+              repeating-linear-gradient(to top, var(--tinta) 0 1.5px, transparent 1.5px 50%) left / 16px 100% no-repeat; opacity: .55; }
+.nivel { position: absolute; inset: auto 0 0 0; height: 0; background: var(--c); transition: height 1.1s cubic-bezier(.2, .7, .2, 1); }
+.nivel::before { content: ""; position: absolute; left: 0; right: 0; top: -7px; height: 8px;
+  background: radial-gradient(circle at 10px -3px, transparent 8px, var(--c) 8.5px) 0 0 / 20px 8px repeat-x; }
+.leitura { position: absolute; right: 8px; top: 8px; z-index: 3; font-weight: 800; font-size: 1.5rem; font-variation-settings: "wdth" 70; font-variant-numeric: tabular-nums; }
+.regua .nome { font-weight: 650; line-height: 1.2; font-variation-settings: "wdth" 85; }
+.regua .conta { font-size: .8rem; color: var(--tinta2); }
+.conta b.atr { color: var(--atraso); }
+
+/* ---------- filtros ---------- */
+.filtros { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--papel) 92%, transparent); backdrop-filter: blur(8px); margin-top: 22px; }
+.filtros .wrap { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--linha); }
+.abas { display: flex; gap: 2px; background: var(--folha); border-radius: 10px; padding: 3px; border: 1px solid var(--linha); }
+.abas button { white-space: nowrap; border: 0; background: none; padding: 7px 14px; border-radius: 7px; font-weight: 600; color: var(--tinta2); }
+.abas button[aria-selected="true"] { background: var(--tinta); color: var(--papel); }
+.abas small { font-weight: 500; opacity: .7; margin-left: 4px; font-variant-numeric: tabular-nums; }
+.times { display: flex; gap: 6px; }
+.times button { border: 1.5px solid var(--linha); background: var(--folha); padding: 6px 12px; border-radius: 999px; font-weight: 500; }
+.times button[aria-pressed="true"] { border-color: var(--c, var(--tinta)); color: var(--c, var(--tinta)); background: color-mix(in srgb, var(--c, var(--tinta)) 10%, var(--folha)); }
+.busca { flex: 1; min-width: 220px; max-width: 380px; position: relative; margin-left: auto; }
+.busca input { width: 100%; font: inherit; color: var(--tinta); background: var(--folha); border: 1.5px solid var(--linha); border-radius: 8px; padding: 8px 34px 8px 12px; }
+.busca kbd { position: absolute; right: 9px; top: 50%; translate: 0 -50%; font: 600 .75rem var(--fonte); color: var(--tinta2); border: 1px solid var(--linha); border-radius: 4px; padding: 0 5px; }
+.chipfiltro { display: inline-flex; align-items: center; gap: 6px; border: 0; background: var(--tinta); color: var(--papel); border-radius: 999px; padding: 5px 8px 5px 12px; font-size: .85rem; }
+
+main { padding-block: 26px 70px; display: grid; gap: 34px; }
+section { display: grid; gap: 14px; min-width: 0; }
+.cab { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+/* ---------- agenda ---------- */
+.agenda { background: var(--folha); border-radius: 14px; box-shadow: var(--sombra); padding: 18px 22px 14px; overflow-x: auto; }
+.agenda svg { display: block; min-width: 760px; width: 100%; height: auto; }
+.agenda .marco { cursor: pointer; }
+.agenda .marco:hover circle, .agenda .marco:focus circle { stroke-width: 4; }
+
+/* ---------- quadro ---------- */
+.quadro { display: grid; grid-template-columns: repeat(6, minmax(210px, 1fr)); gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+.coluna { min-width: 0; display: grid; gap: 8px; align-content: start; min-height: 140px; padding: 10px; border-radius: 12px; background: color-mix(in srgb, var(--folha) 45%, var(--papel)); border-top: 3px solid var(--cs); }
+.coluna h3 { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 2px 4px; }
+.coluna h3 span:last-child { color: var(--tinta2); font-weight: 500; font-variant-numeric: tabular-nums; }
+.vazio { color: var(--tinta2); font-size: .85rem; padding: 6px 2px; }
+.cartao { min-width: 0; overflow: hidden; display: grid; gap: 7px; text-align: left; width: 100%; background: var(--folha); border: 1px solid var(--linha); border-left: 4px solid var(--c, var(--linha)); border-radius: 9px; padding: 11px 12px; box-shadow: var(--sombra); }
+.cartao:hover { border-color: var(--c); }
+.cartao .t { font-weight: 600; line-height: 1.3; }
+.cartao .rodape { display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: .8rem; color: var(--tinta2); }
+.etiquetas { display: flex; flex-wrap: wrap; gap: 4px; }
+.et { font-size: .74rem; font-weight: 600; padding: 2px 8px; border-radius: 10px; background: color-mix(in srgb, var(--c, var(--tinta2)) 12%, transparent); color: var(--c, var(--tinta2)); max-width: 100%; }
+.prio-Alta { --c: var(--atraso); } .prio-Média { --c: var(--breve); } .prio-Baixa { --c: var(--tinta2); }
+.barra { height: 5px; border-radius: 3px; background: var(--linha); overflow: hidden; }
+.barra i { display: block; height: 100%; background: var(--c, var(--agua)); }
+.late { color: var(--atraso); font-weight: 700; } .soon { color: var(--breve); font-weight: 700; }
+
+/* ---------- mapa de dados ---------- */
+.mapa { position: relative; background: var(--folha); border-radius: 14px; box-shadow: var(--sombra); padding: 18px; overflow-x: auto; }
+.mapa-grade { position: relative; display: grid; grid-template-columns: repeat(3, minmax(240px, 1fr)); gap: 0 120px; min-width: 900px; }
+.mapa svg.fios { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.mapa-col { display: grid; gap: 6px; align-content: start; position: relative; z-index: 1; }
+.mapa-col h3 { padding-bottom: 6px; display: flex; justify-content: space-between; }
+.no { text-align: left; width: 100%; border: 1px solid var(--linha); background: var(--folha); border-radius: 7px; padding: 6px 10px; font-size: .84rem; line-height: 1.25; display: grid; gap: 1px; transition: opacity .2s; }
+.no small { color: var(--tinta2); font-size: .74rem; }
+.no.script { border-left: 4px solid var(--c, var(--linha)); }
+.mapa.foco .no { opacity: .28; }
+.mapa.foco .no.aceso { opacity: 1; border-color: var(--tinta); }
+.fios path { fill: none; stroke: var(--linha); stroke-width: 1.2; transition: stroke .2s, opacity .2s; }
+.mapa.foco .fios path { opacity: .12; }
+.mapa.foco .fios path.aceso { opacity: 1; stroke: var(--c, var(--agua)); stroke-width: 2; }
+
+/* ---------- catálogo ---------- */
+.subabas { display: flex; gap: 6px; flex-wrap: wrap; }
+.subabas button { border: 1.5px solid var(--linha); background: var(--folha); padding: 6px 12px; border-radius: 8px; font-weight: 600; }
+.subabas button[aria-pressed="true"] { border-color: var(--tinta); }
+.tabela { background: var(--folha); border-radius: 14px; box-shadow: var(--sombra); overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; font-size: .9rem; }
-th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { font-size: .78rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .03em; position: sticky; top: 0; background: var(--surface); }
-tr.linha { cursor: pointer; } tr.linha:hover td { background: var(--bg); }
-tr.aberta td { background: var(--bg); }
-code, .mono { font-family: var(--mono); font-size: .82rem; word-break: break-all; }
-.copiar { font: inherit; font-size: .75rem; cursor: pointer; border: 1px solid var(--line); background: none; color: var(--accent); border-radius: 4px; padding: 1px 6px; margin-left: 6px; }
-.fluxo { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 10px; align-items: start; padding: 6px 0; }
-.fluxo > div { display: grid; gap: 4px; }
-.fluxo .seta { align-self: center; color: var(--muted); font-size: 1.3rem; }
-.fluxo .no { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 4px 8px; font-size: .82rem; }
-.fluxo .centro { border-color: var(--accent); font-weight: 600; }
-.vazio { color: var(--muted); font-style: italic; padding: 8px 0; }
-#aviso { background: #fdf0c8; color: #5c4300; padding: 12px 16px; border-radius: 6px; }
-.lista { display: grid; gap: 6px; }
-.lista a { display: flex; justify-content: space-between; gap: 12px; background: var(--surface); padding: 8px 12px; border-radius: 5px; text-decoration: none; color: inherit; }
-@media (max-width: 700px) { .fluxo { grid-template-columns: 1fr; } .fluxo .seta { transform: rotate(90deg); justify-self: center; } }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--linha); vertical-align: top; }
+th { font-size: .8rem; color: var(--tinta2); font-weight: 600; background: var(--folha); position: sticky; top: 0; }
+tbody tr { cursor: pointer; } tbody tr:hover td { background: color-mix(in srgb, var(--agua) 5%, var(--folha)); }
+code { font: .8rem/1.4 ui-monospace, "Cascadia Mono", Consolas, monospace; word-break: break-all; }
+.copiar { border: 1px solid var(--linha); background: none; color: var(--agua); border-radius: 5px; padding: 1px 7px; font-size: .75rem; margin-left: 6px; }
+
+/* ---------- gaveta ---------- */
+.veu { position: fixed; inset: 0; background: rgba(8, 24, 30, .35); z-index: 40; opacity: 0; transition: opacity .2s; }
+.veu.on { opacity: 1; }
+.gaveta { position: fixed; inset: 0 0 0 auto; width: min(480px, 100vw); background: var(--folha); z-index: 41; box-shadow: -20px 0 40px -20px rgba(0,0,0,.35); transform: translateX(100%); transition: transform .25s cubic-bezier(.2,.7,.2,1); display: grid; grid-template-rows: auto 1fr; }
+.gaveta.on { transform: none; }
+.gaveta header { display: flex; justify-content: space-between; gap: 12px; align-items: start; padding: 22px 22px 14px; border-bottom: 1px solid var(--linha); border-top: 5px solid var(--c, var(--tinta)); }
+.gaveta header h2 { font-size: 1.4rem; }
+.fechar { border: 0; background: var(--papel); border-radius: 8px; width: 34px; height: 34px; font-size: 1.2rem; flex: none; }
+.gaveta .corpo { overflow-y: auto; padding: 18px 22px 30px; display: grid; gap: 18px; align-content: start; }
+.campos { display: grid; grid-template-columns: 120px 1fr; gap: 8px 14px; font-size: .9rem; }
+.campos dt { color: var(--tinta2); }
+.campos dd { margin: 0; }
+.rel h3 { font-size: .9rem; color: var(--tinta2); margin-bottom: 6px; font-weight: 600; }
+.rel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+.rel button { border: 1px solid var(--linha); background: var(--papel); border-radius: 7px; padding: 6px 10px; width: 100%; text-align: left; font-size: .87rem; }
+.rel button:hover { border-color: var(--tinta); }
+
+#aviso { background: var(--risco-claro); color: var(--tinta); padding: 14px 18px; border-radius: 10px; }
+#dica { position: fixed; z-index: 30; pointer-events: none; background: var(--tinta); color: var(--papel); font-size: .82rem; padding: 6px 10px; border-radius: 6px; max-width: 280px; }
+@media (max-width: 700px) {
+  .reguas { grid-template-columns: 1fr; padding: 16px; }
+  .grupo > h2 { writing-mode: initial; transform: none; padding: 0; }
+  .busca { margin-left: 0; max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-<header>
-  <div>
-    <h1>Demandas · MapBiomas Água e Risco Climático</h1>
-    <p class="muted" id="atualizado">Carregando…</p>
-  </div>
-  <div class="acoes">
-    <a class="btn" id="novaDemanda" target="_blank" rel="noopener">+ Nova demanda</a>
-    <a class="btn sec" id="abrirNotion" target="_blank" rel="noopener">Abrir no Notion</a>
-  </div>
-</header>
+  <header class="topo">
+    <div class="marca">
+      <h1>Demandas MapBiomas Água e Risco Climático</h1>
+      <p class="sutil sync" id="sync"><i></i><span>Carregando dados do Notion…</span></p>
+    </div>
+    <div class="acoes">
+      <a class="btn" id="novaDemanda" target="_blank" rel="noopener">+ Nova demanda</a>
+      <a class="btn sec" id="abrirNotion" target="_blank" rel="noopener">Abrir no Notion</a>
+    </div>
+  </header>
 
-<div class="barra">
-  <div class="chips" id="times" role="group" aria-label="Teamspace"></div>
-  <select id="fFrente" aria-label="Frente"><option value="">Todas as frentes</option></select>
-  <input type="search" id="fBusca" placeholder="Buscar demanda, script, asset ou arquivo…" aria-label="Buscar">
+  <p id="aviso" hidden></p>
+  <div class="reguas" id="reguas" aria-label="Avanço por frente"></div>
 </div>
 
-<nav role="tablist" id="abas"></nav>
+<div class="filtros">
+  <div class="wrap">
+    <div class="abas" role="tablist" id="abas"></div>
+    <div class="times" id="times" role="group" aria-label="Teamspace"></div>
+    <span id="chipFrente"></span>
+    <label class="busca"><span hidden>Buscar</span>
+      <input id="fBusca" type="search" placeholder="Buscar demanda, script, asset, arquivo…" autocomplete="off"><kbd>/</kbd>
+    </label>
+  </div>
+</div>
 
-<main>
-  <p id="aviso" hidden></p>
-
+<main class="wrap">
   <div data-aba="demandas">
     <section>
-      <div class="kpis" id="kpis"></div>
+      <div class="cab"><h2>Prazos das próximas 8 semanas</h2><span class="sutil" id="resumoPrazos"></span></div>
+      <div class="agenda" id="agenda"></div>
     </section>
-    <section>
-      <h2>Avanço por frente</h2>
-      <div class="frentes" id="frentes"></div>
-    </section>
-    <section>
-      <h2>Quadro</h2>
-      <div class="kanban" id="kanban"></div>
-    </section>
-    <section>
-      <h2>Próximos prazos</h2>
-      <div class="lista" id="prazos"></div>
+    <section style="margin-top:30px">
+      <div class="cab"><h2>Quadro</h2><span class="sutil">Clique num cartão para ver detalhes. Para mudar o status, edite no Notion.</span></div>
+      <div class="quadro" id="quadro"></div>
     </section>
   </div>
 
-  <div data-aba="scripts" hidden>
+  <div data-aba="mapa" hidden>
     <section>
-      <div class="barra" style="border:0;padding:0">
-        <select id="fTipo" aria-label="Tipo"><option value="">Todos os tipos</option></select>
-        <select id="fStatus" aria-label="Status"><option value="">Todos os status</option></select>
-        <span class="muted">Clique numa linha para ver de onde vêm e para onde vão os dados.</span>
+      <div class="cab"><h2>De onde vêm e para onde vão os dados</h2><span class="sutil">Passe o mouse ou clique num item para seguir o caminho.</span></div>
+      <div class="mapa" id="mapa"></div>
+    </section>
+  </div>
+
+  <div data-aba="catalogo" hidden>
+    <section>
+      <div class="cab">
+        <div class="subabas" id="subabas"></div>
+        <span class="sutil" id="contaCat"></span>
       </div>
-      <div class="tabela"><table id="tScripts"></table></div>
-    </section>
-  </div>
-
-  <div data-aba="assets" hidden>
-    <section>
-      <div class="barra" style="border:0;padding:0">
-        <select id="fOrigem" aria-label="Origem"><option value="">Todas as origens</option></select>
-        <select id="fTema" aria-label="Tema"><option value="">Todos os temas</option></select>
-      </div>
-      <div class="tabela"><table id="tAssets"></table></div>
-    </section>
-  </div>
-
-  <div data-aba="dados" hidden>
-    <section>
-      <div class="tabela"><table id="tDados"></table></div>
+      <div class="tabela"><table id="tabela"></table></div>
     </section>
   </div>
 </main>
-</div>
+
+<div class="veu" id="veu" hidden></div>
+<aside class="gaveta" id="gaveta" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="gTitulo">
+  <header><div><p class="sutil" id="gTipo"></p><h2 id="gTitulo"></h2></div><button class="fechar" id="gFechar" aria-label="Fechar">×</button></header>
+  <div class="corpo" id="gCorpo"></div>
+</aside>
+<div id="dica" hidden></div>
 
 <script>
 const $ = id => document.getElementById(id);
-const ORDEM_STATUS = ["Backlog", "A fazer", "Em andamento", "Revisão", "Bloqueada", "Concluída"];
-const COR_STATUS = { "Backlog": "var(--line)", "A fazer": "var(--muted)", "Em andamento": "var(--agua)", "Revisão": "var(--soon)", "Bloqueada": "var(--late)", "Concluída": "var(--done)" };
+const STATUS = ["Backlog", "A fazer", "Em andamento", "Revisão", "Bloqueada", "Concluída"];
+const COR_STATUS = { "Backlog": "var(--linha)", "A fazer": "var(--tinta2)", "Em andamento": "var(--agua)", "Revisão": "var(--breve)", "Bloqueada": "var(--atraso)", "Concluída": "var(--feito)" };
 const COR_TIME = { "Água": "var(--agua)", "Risco Climático": "var(--risco)" };
-const ABAS = [["demandas", "Demandas"], ["scripts", "Scripts e Colabs"], ["assets", "Assets GEE"], ["dados", "Planilhas e dados"]];
-let D, IDX = {}, time = "", aba = "demandas", aberto = null;
+const ABAS = [["demandas", "Demandas"], ["mapa", "Mapa de dados"], ["catalogo", "Catálogo"]];
+const CATS = [["scripts", "Scripts e Colabs"], ["assets", "Assets GEE"], ["dados", "Planilhas e dados"]];
+const TIPO = { demandas: "Demanda", scripts: "Script ou Colab", assets: "Asset GEE", dados: "Planilha ou dado", frentes: "Frente" };
 
-const el = (tag, attrs = {}, ...filhos) => {
+let D, IDX = {}, KIND = {};
+const S = { aba: "demandas", time: "", frente: "", busca: "", cat: "scripts", foco: null };
+
+// ---------- utilidades ----------
+const el = (tag, at = {}, ...filhos) => {
   const e = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
+  for (const [k, v] of Object.entries(at)) {
     if (v == null || v === false) continue;
-    if (k === "style") e.style.cssText = v; else if (k.startsWith("on")) e[k] = v; else e.setAttribute(k, v);
+    if (k === "style") e.style.cssText = v; else if (k.startsWith("on")) e[k] = v; else e.setAttribute(k, v === true ? "" : v);
   }
-  for (const f of filhos.flat()) if (f != null && f !== "") e.append(f instanceof Node ? f : String(f));
+  for (const f of filhos.flat(Infinity)) if (f != null && f !== "") e.append(f instanceof Node ? f : String(f));
   return e;
 };
-const hoje = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
+const svg = (tag, at = {}, ...filhos) => {
+  const e = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (const [k, v] of Object.entries(at)) if (v != null) { if (k.startsWith("on")) e[k] = v; else e.setAttribute(k, v); }
+  for (const f of filhos.flat()) if (f != null) e.append(f instanceof Node ? f : document.createTextNode(f));
+  return e;
+};
+const hoje = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
 const data = s => s ? new Date(s.length === 10 ? s + "T00:00:00" : s) : null;
-const fmtData = s => s ? data(s).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" }) : "";
-const dias = s => Math.round((data(s) - hoje()) / 864e5);
+const dias = s => Math.round((data(s) - hoje) / 864e5);
+const fmt = (s, op = { day: "2-digit", month: "short" }) => s ? data(s).toLocaleDateString("pt-BR", op).replace(".", "") : "";
 const norm = s => (s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-const nomes = ids => (ids || []).map(i => IDX[i]).filter(Boolean);
-const concluida = d => d.status === "Concluída";
-const avanco = d => concluida(d) ? 1 : (d.avanco || 0);
-
-function situacaoPrazo(d) {
-  if (!d.prazo || concluida(d)) return "";
+const objs = ids => (ids || []).map(i => IDX[i]).filter(Boolean);
+const feita = d => d.status === "Concluída";
+const avanco = d => feita(d) ? 1 : (d.avanco || 0);
+const corFrente = f => COR_TIME[f?.teamspace] || "var(--tinta2)";
+const corDe = o => corFrente(objs(o.frentes)[0]);
+function situacao(d) { if (!d.prazo || feita(d)) return ""; const n = dias(d.prazo); return n < 0 ? "late" : n <= 7 ? "soon" : ""; }
+function quando(d) {
+  if (!d.prazo) return "sem prazo";
+  if (feita(d)) return fmt(d.prazo);
   const n = dias(d.prazo);
-  return n < 0 ? "late" : n <= 7 ? "soon" : "";
-}
-function textoPrazo(d) {
-  if (!d.prazo) return "";
-  const n = dias(d.prazo);
-  if (concluida(d)) return fmtData(d.prazo);
-  return fmtData(d.prazo) + (n < 0 ? ` · ${-n} d de atraso` : n === 0 ? " · hoje" : n <= 7 ? ` · em ${n} d` : "");
+  return n < 0 ? `${-n} d de atraso` : n === 0 ? "vence hoje" : n === 1 ? "vence amanhã" : n <= 7 ? `vence em ${n} d` : fmt(d.prazo);
 }
 
 // ---------- filtros ----------
-function frentesDoTime() {
-  return D.frentes.filter(f => !time || f.teamspace === time);
-}
+const frentesVisiveis = () => D.frentes.filter(f => !S.time || f.teamspace === S.time);
 function passaFrente(ids) {
-  const sel = $("fFrente").value;
-  const ok = new Set(frentesDoTime().map(f => f.id));
-  const fr = ids || [];
-  if (sel) return fr.includes(sel);
-  if (!time) return true;
-  return fr.some(i => ok.has(i));
+  ids = ids || [];
+  if (S.frente) return ids.includes(S.frente);
+  if (!S.time) return true;
+  const ok = new Set(frentesVisiveis().map(f => f.id));
+  return ids.some(i => ok.has(i));
 }
-const busca = () => norm($("fBusca").value.trim());
-const casa = (obj, campos) => { const b = busca(); return !b || campos.some(c => norm([].concat(obj[c] ?? []).join(" ")).includes(b)); };
+const casa = (o, campos) => !S.busca || campos.some(c => norm([].concat(o[c] ?? []).join(" ")).includes(S.busca));
+const usaAsset = id => D.scripts.filter(s => (s.assets || []).includes(id));
+const geraDado = id => D.scripts.filter(s => (s.gera || []).includes(id));
+const leDado = id => D.scripts.filter(s => (s.le || []).includes(id));
+const filtrando = () => S.time || S.frente;
+const visivelPorScripts = ss => !filtrando() || ss.some(s => passaFrente(s.frentes));
 
-const demandasFiltradas = () => D.demandas.filter(d => passaFrente(d.frentes) && casa(d, ["titulo", "codigo", "notas", "entregavel", "solicitante"]));
-const scriptsFiltrados = () => D.scripts.filter(s => passaFrente(s.frentes)
-  && (!$("fTipo").value || s.tipo === $("fTipo").value) && (!$("fStatus").value || s.status === $("fStatus").value)
-  && casa(s, ["nome", "descricao", "arquivo"]));
+const demandas = () => D.demandas.filter(d => passaFrente(d.frentes) && casa(d, ["titulo", "codigo", "notas", "entregavel", "solicitante"]));
+const scripts = () => D.scripts.filter(s => passaFrente(s.frentes) && casa(s, ["nome", "descricao", "arquivo", "tipo"]));
+const assets = () => D.assets.filter(a => visivelPorScripts(usaAsset(a.id)) && casa(a, ["nome", "path", "notas", "tema", "origem"]));
+const dados = () => D.dados.filter(x => visivelPorScripts([...geraDado(x.id), ...leDado(x.id)]) && casa(x, ["nome", "pasta", "notas", "formato"]));
 
-// assets e dados herdam a frente dos scripts que os usam
-function usosAsset(id) { return D.scripts.filter(s => (s.assets || []).includes(id)); }
-function usosDado(id) { return { gera: D.scripts.filter(s => (s.gera || []).includes(id)), le: D.scripts.filter(s => (s.le || []).includes(id)) }; }
-const visivelPorScripts = ss => (!time && !$("fFrente").value) || ss.some(s => passaFrente(s.frentes));
-
-// ---------- desenho ----------
-function corFrente(f) { return COR_TIME[f?.teamspace] || "var(--accent)"; }
-function tagsFrentes(ids) { return nomes(ids).map(f => el("span", { class: "tag", style: `border-color:${corFrente(f)};color:${corFrente(f)}` }, f.nome)); }
-
-function desenharDemandas() {
-  const ds = demandasFiltradas();
-  const abertas = ds.filter(d => !concluida(d));
-  const k = [
-    ["Abertas", abertas.length, "var(--accent)"],
-    ["Em andamento", ds.filter(d => d.status === "Em andamento").length, "var(--agua)"],
-    ["Atrasadas", abertas.filter(d => situacaoPrazo(d) === "late").length, "var(--late)"],
-    ["Vencem em 7 dias", abertas.filter(d => situacaoPrazo(d) === "soon").length, "var(--soon)"],
-    ["Concluídas", ds.filter(concluida).length, "var(--done)"],
-  ];
-  $("kpis").replaceChildren(...k.map(([r, v, c]) => el("div", { class: "kpi", style: `--c:${c}` }, el("b", {}, v), el("span", { class: "muted" }, r))));
-
-  const fs = frentesDoTime().filter(f => !$("fFrente").value || f.id === $("fFrente").value);
-  $("frentes").replaceChildren(...fs.map(f => {
-    const df = ds.filter(d => (d.frentes || []).includes(f.id));
-    const p = df.length ? df.reduce((s, d) => s + avanco(d), 0) / df.length : 0;
-    const atr = df.filter(d => situacaoPrazo(d) === "late").length;
-    return el("div", { class: "frente", style: `--c:${corFrente(f)}` },
-      el("div", { style: "display:flex;justify-content:space-between;gap:8px" }, el("h3", {}, f.nome), el("b", {}, Math.round(100 * p) + "%")),
-      el("div", { class: "prog" }, el("i", { style: `width:${100 * p}%` })),
-      el("span", { class: "muted" }, `${df.filter(d => !concluida(d)).length} abertas · ${df.filter(concluida).length} concluídas` + (atr ? ` · ${atr} atrasada(s)` : "")));
+// ---------- réguas (avanço por frente) ----------
+function desenharReguas(animar) {
+  const grupos = [...new Set(D.frentes.map(f => f.teamspace || "Outras"))];
+  const caixa = $("reguas");
+  caixa.replaceChildren(...grupos.map(g => {
+    const fs = D.frentes.filter(f => (f.teamspace || "Outras") === g);
+    return el("div", { class: "grupo", style: `--c:${COR_TIME[g] || "var(--tinta2)"}` },
+      el("h2", {}, g),
+      el("div", { class: "fila" }, fs.map(f => {
+        const ds = D.demandas.filter(d => (d.frentes || []).includes(f.id));
+        const p = ds.length ? ds.reduce((s, d) => s + avanco(d), 0) / ds.length : 0;
+        const abertas = ds.filter(d => !feita(d)).length, atr = ds.filter(d => situacao(d) === "late").length;
+        const nivel = el("div", { class: "nivel", "data-p": (100 * p).toFixed(1) });
+        return el("button", { class: "regua", style: `--c:${corFrente(f)}`, "aria-pressed": S.frente === f.id,
+          title: f.descricao || "", onclick: () => { S.frente = S.frente === f.id ? "" : f.id; S.time = ""; tudo(); } },
+          el("div", { class: "tubo" }, nivel, el("span", { class: "leitura" }, ds.length ? Math.round(100 * p) + "%" : "–")),
+          el("span", { class: "nome" }, f.nome),
+          el("span", { class: "conta" }, ds.length ? `${abertas} aberta${abertas === 1 ? "" : "s"}` : "sem demandas",
+            atr ? [", ", el("b", { class: "atr" }, `${atr} atrasada${atr === 1 ? "" : "s"}`)] : null));
+      })));
   }));
-
-  $("kanban").replaceChildren(...ORDEM_STATUS.map(st => {
-    const cs = ds.filter(d => d.status === st).sort((a, b) => (a.prazo || "9") < (b.prazo || "9") ? -1 : 1);
-    return el("div", { class: "col" }, el("h3", {}, el("span", {}, st), el("span", { class: "muted" }, cs.length)),
-      cs.length ? cs.map(cartao) : el("span", { class: "vazio" }, "—"));
-  }));
-
-  const prox = ds.filter(d => d.prazo && !concluida(d)).sort((a, b) => a.prazo < b.prazo ? -1 : 1).slice(0, 12);
-  $("prazos").replaceChildren(...(prox.length ? prox.map(d => el("a", { href: d.url, target: "_blank", rel: "noopener" },
-    el("span", {}, d.titulo), el("span", { class: "prazo " + situacaoPrazo(d) }, textoPrazo(d))))
-    : [el("p", { class: "vazio" }, "Nenhuma demanda aberta com prazo. Defina o Prazo no Notion para aparecer aqui.")]));
+  const encher = () => caixa.querySelectorAll(".nivel").forEach(n => n.style.height = n.dataset.p + "%");
+  animar ? requestAnimationFrame(() => requestAnimationFrame(encher)) : encher();
 }
 
+// ---------- agenda ----------
+function desenharAgenda() {
+  const ds = demandas().filter(d => d.prazo && !feita(d));
+  const W = 1000, H = 150, x0 = 120, x1 = W - 20, semanas = 8, fim = semanas * 7;
+  const x = n => x0 + (Math.max(0, Math.min(n, fim)) / fim) * (x1 - x0);
+  const atrasadas = ds.filter(d => dias(d.prazo) < 0), futuras = ds.filter(d => dias(d.prazo) >= 0 && dias(d.prazo) <= fim);
+  const depois = ds.filter(d => dias(d.prazo) > fim).length;
+  $("resumoPrazos").textContent = ds.length ? `${atrasadas.length} atrasada(s), ${futuras.length} no período` + (depois ? `, ${depois} depois` : "") : "";
+  const g = svg("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Linha do tempo de prazos" });
+  // eixo e semanas
+  g.append(svg("line", { x1: x0, x2: x1, y1: 90, y2: 90, stroke: "var(--linha)", "stroke-width": 2 }));
+  for (let s = 0; s <= semanas; s++) {
+    const d = new Date(hoje); d.setDate(d.getDate() + 7 * s);
+    g.append(svg("line", { x1: x(7 * s), x2: x(7 * s), y1: 84, y2: 96, stroke: "var(--linha)" }),
+      svg("text", { x: x(7 * s), y: 116, "text-anchor": "middle", fill: "var(--tinta2)", "font-size": 12 }, s === 0 ? "hoje" : d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" }).replace(".", "")));
+  }
+  // faixa de atrasadas
+  g.append(svg("rect", { x: 0, y: 30, width: 96, height: 90, rx: 10, fill: "color-mix(in srgb, var(--atraso) 10%, transparent)" }),
+    svg("text", { x: 48, y: 52, "text-anchor": "middle", fill: "var(--atraso)", "font-size": 13, "font-weight": 700 }, "atrasadas"),
+    svg("text", { x: 48, y: 98, "text-anchor": "middle", fill: "var(--atraso)", "font-size": 34, "font-weight": 800 }, atrasadas.length));
+  // marcos: empilha os que caem no mesmo dia
+  const pilha = {}, faixas = [];
+  for (const d of futuras.sort((a, b) => a.prazo < b.prazo ? -1 : 1)) {
+    const n = dias(d.prazo), k = pilha[n] = (pilha[n] || 0) + 1, cy = 90 - (k - 1) * 22, c = corDe(d);
+    const m = svg("g", { class: "marco", tabindex: 0, role: "button", "aria-label": `${d.titulo}, ${quando(d)}`,
+      onclick: () => abrir(d.id), onkeydown: e => e.key === "Enter" && abrir(d.id),
+      onmousemove: e => dica(e, `${d.titulo} — ${quando(d)}`), onmouseleave: () => dica() },
+      svg("circle", { cx: x(n), cy, r: 8, fill: "var(--folha)", stroke: c, "stroke-width": 3 }));
+    if (k === 1) {
+      const faixa = faixas.findIndex(ult => x(n) - ult > 210), f = faixa < 0 ? faixas.length : faixa;
+      faixas[f] = x(n);
+      const ty = 16 + 16 * Math.min(f, 2);
+      m.append(svg("line", { x1: x(n), x2: x(n), y1: cy - 8, y2: ty + 4, stroke: c, "stroke-dasharray": "2 3" }),
+        svg("text", { x: x(n) + 4, y: ty, fill: "var(--tinta)", "font-size": 12, "font-weight": 600 }, d.titulo.length > 30 ? d.titulo.slice(0, 29) + "…" : d.titulo));
+    }
+    g.append(m);
+  }
+  const caixa = $("agenda");
+  caixa.replaceChildren(g);
+  if (!ds.length) caixa.append(el("p", { class: "vazio", style: "text-align:center" }, "Nenhuma demanda aberta tem prazo. Preencha o campo Prazo no Notion e ela aparece aqui."));
+}
+function dica(e, txt) {
+  const t = $("dica");
+  if (!e) { t.hidden = true; return; }
+  t.textContent = txt; t.hidden = false;
+  t.style.left = Math.min(e.clientX + 14, innerWidth - 290) + "px"; t.style.top = e.clientY + 14 + "px";
+}
+
+// ---------- quadro ----------
 function cartao(d) {
-  const f = nomes(d.frentes)[0];
-  return el("a", { class: "card", href: d.url, target: "_blank", rel: "noopener", style: `--c:${corFrente(f)}` },
+  const c = corDe(d), sit = situacao(d);
+  return el("button", { class: "cartao", style: `--c:${c}`, onclick: () => abrir(d.id) },
     el("span", { class: "t" }, d.titulo),
-    el("div", { class: "tags" }, d.prioridade ? el("span", { class: "tag " + (d.prioridade === "Alta" ? "alta" : "") }, d.prioridade) : null, tagsFrentes(d.frentes)),
-    d.avanco && !concluida(d) ? el("div", { class: "prog", style: `--c:${corFrente(f)}` }, el("i", { style: `width:${100 * d.avanco}%` })) : null,
-    d.prazo ? el("span", { class: "muted prazo " + situacaoPrazo(d) }, "Prazo: " + textoPrazo(d)) : null,
-    (d.responsavel || []).length ? el("span", { class: "muted" }, d.responsavel.join(", ")) : null);
+    el("div", { class: "etiquetas" },
+      d.prioridade ? el("span", { class: "et prio-" + d.prioridade }, d.prioridade) : null,
+      objs(d.frentes).map(f => el("span", { class: "et", style: `--c:${corFrente(f)}` }, f.nome))),
+    d.avanco && !feita(d) ? el("div", { class: "barra" }, el("i", { style: `width:${100 * d.avanco}%` })) : null,
+    el("div", { class: "rodape" }, el("span", { class: sit }, quando(d)),
+      el("span", {}, (d.responsavel || []).join(", ") || (d.avanco && !feita(d) ? Math.round(100 * d.avanco) + "%" : ""))));
+}
+function desenharQuadro() {
+  const ds = demandas();
+  $("quadro").replaceChildren(...STATUS.map(st => {
+    const cs = ds.filter(d => d.status === st).sort((a, b) => (a.prazo || "9") < (b.prazo || "9") ? -1 : 1);
+    return el("div", { class: "coluna", style: `--cs:${COR_STATUS[st]}` },
+      el("h3", {}, el("span", {}, st), el("span", {}, cs.length)),
+      cs.length ? cs.map(cartao) : el("p", { class: "vazio" }, "Nada aqui."));
+  }));
 }
 
-function linkNotion(o, txt) { return el("a", { href: o.url, target: "_blank", rel: "noopener" }, txt || o.nome); }
+// ---------- mapa de dados ----------
+function desenharMapa() {
+  const ordemF = new Map(D.frentes.map((f, i) => [f.id, i]));
+  const ss = scripts().sort((a, b) => (ordemF.get((a.frentes || [])[0]) ?? 99) - (ordemF.get((b.frentes || [])[0]) ?? 99) || (a.tipo || '').localeCompare(b.tipo || ''));
+  const ids = new Set(ss.map(s => s.id));
+  const as = D.assets.filter(a => usaAsset(a.id).some(s => ids.has(s.id)));
+  const ls = D.dados.filter(x => [...geraDado(x.id), ...leDado(x.id)].some(s => ids.has(s.id)));
+  // ordena para cruzar menos fios: cada item pela posição média dos scripts ligados
+  const ordemS = new Map(ss.map((s, i) => [s.id, i]));
+  const media = l => l.length ? l.reduce((a, s) => a + (ordemS.get(s.id) ?? 0), 0) / l.length : 1e9;
+  as.sort((a, b) => media(usaAsset(a.id)) - media(usaAsset(b.id)));
+  ls.sort((a, b) => media([...geraDado(a.id), ...leDado(a.id)]) - media([...geraDado(b.id), ...leDado(b.id)]));
+
+  const no = (o, cls, sub) => el("button", { class: "no " + cls, "data-id": o.id, style: cls === "script" ? `--c:${corDe(o)}` : null,
+    onmouseenter: () => focar(o.id), onmouseleave: () => focar(S.foco), onclick: () => { S.foco = S.foco === o.id ? null : o.id; focar(S.foco); abrir(o.id); } },
+    el("span", {}, o.nome), sub ? el("small", {}, sub) : null);
+  const grade = el("div", { class: "mapa-grade" },
+    el("div", { class: "mapa-col" }, el("h3", {}, el("span", {}, "Assets GEE"), el("span", { class: "sutil" }, as.length)), as.map(a => no(a, "asset", a.origem))),
+    el("div", { class: "mapa-col" }, el("h3", {}, el("span", {}, "Scripts e Colabs"), el("span", { class: "sutil" }, ss.length)), ss.map(s => no(s, "script", [s.tipo, s.status].filter(Boolean).join(", ")))),
+    el("div", { class: "mapa-col" }, el("h3", {}, el("span", {}, "Planilhas e dados"), el("span", { class: "sutil" }, ls.length)), ls.map(x => no(x, "dado", x.pasta))));
+  const fios = svg("svg", { class: "fios" });
+  grade.prepend(fios);
+  $("mapa").replaceChildren(grade);
+  if (!ss.length) { $("mapa").append(el("p", { class: "vazio" }, "Nenhum script com esses filtros.")); return; }
+
+  // fios: asset → script (gera/usa), script → dado (gera), dado → script (lê) desenhado da coluna 3 para a 2
+  const ponto = (id, lado) => {
+    const b = grade.querySelector(`[data-id="${id}"]`); if (!b) return null;
+    const r = b.getBoundingClientRect(), g = grade.getBoundingClientRect();
+    return { x: (lado === "d" ? r.right : r.left) - g.left, y: r.top + r.height / 2 - g.top };
+  };
+  const curva = (a, b) => { const m = (a.x + b.x) / 2; return `M${a.x},${a.y} C${m},${a.y} ${m},${b.y} ${b.x},${b.y}`; };
+  for (const s of ss) {
+    const c = corDe(s);
+    for (const a of objs(s.assets)) { const p = ponto(a.id, "d"), q = ponto(s.id, "e"); if (p && q) fios.append(svg("path", { d: curva(p, q), "data-a": a.id, "data-b": s.id, style: `--c:${c}` })); }
+    for (const x of objs(s.gera)) { const p = ponto(s.id, "d"), q = ponto(x.id, "e"); if (p && q) fios.append(svg("path", { d: curva(p, q), "data-a": s.id, "data-b": x.id, style: `--c:${c}` })); }
+    for (const x of objs(s.le)) { const p = ponto(s.id, "d"), q = ponto(x.id, "e"); if (p && q) fios.append(svg("path", { d: curva(p, q), "data-a": x.id, "data-b": s.id, "stroke-dasharray": "4 4", style: `--c:${c}` })); }
+  }
+  focar(S.foco);
+}
+// acende o caminho do item: de onde ele vem e para onde vai, sem espalhar pelo resto do grafo
+function vizinhos(id) {
+  const k = KIND[id], o = IDX[id], v = new Set([id]);
+  const addScript = s => { v.add(s.id); (s.assets || []).forEach(a => v.add(a)); (s.le || []).forEach(x => v.add(x)); (s.gera || []).forEach(x => v.add(x)); };
+  if (k === "scripts") {
+    addScript(o);
+    (o.gera || []).forEach(x => leDado(x).forEach(s => v.add(s.id)));   // quem usa o que este script gera
+    (o.le || []).forEach(x => geraDado(x).forEach(s => v.add(s.id)));   // quem gerou o que este script lê
+  } else if (k === "assets") {
+    usaAsset(id).forEach(s => { v.add(s.id); (s.gera || []).forEach(x => v.add(x)); });
+  } else if (k === "dados") {
+    geraDado(id).forEach(s => { v.add(s.id); (s.assets || []).forEach(a => v.add(a)); });
+    leDado(id).forEach(s => v.add(s.id));
+  }
+  return v;
+}
+function focar(id) {
+  const mapa = $("mapa");
+  mapa.classList.toggle("foco", !!id);
+  if (!id) { mapa.querySelectorAll(".aceso").forEach(e => e.classList.remove("aceso")); return; }
+  const v = vizinhos(id);
+  mapa.querySelectorAll(".fios path").forEach(p => p.classList.toggle("aceso", v.has(p.dataset.a) && v.has(p.dataset.b) && (p.dataset.a === id || p.dataset.b === id || KIND[p.dataset.a] === "scripts" || KIND[p.dataset.b] === "scripts")));
+  mapa.querySelectorAll(".no").forEach(n => n.classList.toggle("aceso", v.has(n.dataset.id)));
+}
+
+// ---------- catálogo ----------
 function botaoCopiar(t) {
   return el("button", { class: "copiar", onclick: e => { e.stopPropagation(); navigator.clipboard.writeText(t).then(() => { e.target.textContent = "copiado"; setTimeout(() => e.target.textContent = "copiar", 1200); }); } }, "copiar");
 }
+const nomes = l => l.length ? l.map(o => o.nome).join(", ") : "—";
+function desenharCatalogo() {
+  const lista = { scripts, assets, dados }[S.cat]();
+  $("subabas").replaceChildren(...CATS.map(([k, t]) => el("button", { "aria-pressed": S.cat === k, onclick: () => { S.cat = k; desenharCatalogo(); } }, t)));
+  $("contaCat").textContent = `${lista.length} ite${lista.length === 1 ? "m" : "ns"}`;
+  const linhas = {
+    scripts: [["Script", "Tipo", "Status", "Frente", "Usa", "Lê", "Gera"], s => [
+      el("td", {}, el("b", {}, s.nome), s.versao ? el("span", { class: "sutil" }, " " + s.versao) : null, el("br"), el("span", { class: "sutil" }, s.descricao || "")),
+      el("td", {}, s.tipo || ""), el("td", {}, s.status || ""),
+      el("td", {}, el("div", { class: "etiquetas" }, objs(s.frentes).map(f => el("span", { class: "et", style: `--c:${corFrente(f)}` }, f.nome)))),
+      el("td", {}, (s.assets || []).length), el("td", {}, (s.le || []).length), el("td", {}, (s.gera || []).length)]],
+    assets: [["Asset", "Caminho", "Origem", "Tema", "Versão", "Usado por"], a => [
+      el("td", {}, el("b", {}, a.nome), a.notas ? [el("br"), el("span", { class: "sutil" }, a.notas)] : null),
+      el("td", {}, el("code", {}, a.path || ""), a.path ? botaoCopiar(a.path) : null),
+      el("td", {}, a.origem || ""), el("td", {}, a.tema || ""), el("td", {}, a.versao || ""), el("td", {}, nomes(usaAsset(a.id)))]],
+    dados: [["Arquivo", "Formato", "Pasta no Drive", "Recorte", "Período", "Gerado por", "Lido por"], x => [
+      el("td", {}, el("b", {}, x.nome), x.notas ? [el("br"), el("span", { class: "sutil" }, x.notas)] : null),
+      el("td", {}, x.formato || ""), el("td", {}, el("code", {}, x.pasta || "")), el("td", {}, (x.unidades || []).join(", ")),
+      el("td", {}, x.periodo || ""), el("td", {}, nomes(geraDado(x.id))), el("td", {}, nomes(leDado(x.id)))]],
+  }[S.cat];
+  $("tabela").replaceChildren(
+    el("thead", {}, el("tr", {}, linhas[0].map(h => el("th", {}, h)))),
+    el("tbody", {}, lista.length ? lista.map(o => el("tr", { onclick: () => abrir(o.id) }, linhas[1](o)))
+      : el("tr", {}, el("td", { colspan: linhas[0].length, class: "vazio" }, "Nada encontrado. Limpe a busca ou troque o filtro de frente."))));
+}
 
-function desenharScripts() {
-  const ss = scriptsFiltrados();
-  const cab = el("tr", {}, ...["Script", "Tipo", "Status", "Frente", "Assets", "Lê", "Gera", "Demandas"].map(h => el("th", {}, h)));
-  const linhas = [];
-  for (const s of ss) {
-    const dem = D.demandas.filter(d => (d.scripts || []).includes(s.id));
-    const tr = el("tr", { class: "linha" + (aberto === s.id ? " aberta" : ""), onclick: () => { aberto = aberto === s.id ? null : s.id; desenharScripts(); } },
-      el("td", {}, el("b", {}, s.nome), s.versao ? el("span", { class: "muted" }, " · " + s.versao) : null, el("br"), el("span", { class: "muted" }, s.descricao || "")),
-      el("td", {}, s.tipo || ""), el("td", {}, s.status || ""), el("td", {}, el("div", { class: "tags" }, tagsFrentes(s.frentes))),
-      el("td", {}, (s.assets || []).length), el("td", {}, (s.le || []).length), el("td", {}, (s.gera || []).length), el("td", {}, dem.length));
-    linhas.push(tr);
-    if (aberto === s.id) linhas.push(el("tr", {}, el("td", { colspan: 8 }, fluxo(s, dem))));
+// ---------- gaveta de detalhes ----------
+function abrir(id) {
+  const o = IDX[id], k = KIND[id];
+  if (!o) return;
+  const g = $("gaveta");
+  g.style.setProperty("--c", k === "frentes" ? corFrente(o) : corDe(o));
+  $("gTipo").textContent = TIPO[k] + (o.codigo ? " " + o.codigo : "");
+  $("gTitulo").textContent = o.nome;
+  const campo = (r, v) => v == null || v === "" || (Array.isArray(v) && !v.length) ? [] : [el("dt", {}, r), el("dd", {}, v)];
+  const rel = (titulo, lista) => lista.length ? el("div", { class: "rel" }, el("h3", {}, titulo),
+    el("ul", {}, lista.map(x => el("li", {}, el("button", { onclick: () => abrir(x.id) }, x.nome))))) : null;
+  let campos = [], rels = [];
+  if (k === "demandas") {
+    campos = [...campo("Status", o.status), ...campo("Prioridade", o.prioridade), ...campo("Prazo", o.prazo ? `${fmt(o.prazo, { day: "2-digit", month: "long", year: "numeric" })} (${quando(o)})` : null),
+      ...campo("Início", o.inicio ? fmt(o.inicio, { day: "2-digit", month: "long", year: "numeric" }) : null), ...campo("Avanço", o.avanco != null ? Math.round(100 * avanco(o)) + "%" : null),
+      ...campo("Responsável", (o.responsavel || []).join(", ")), ...campo("Solicitante", o.solicitante), ...campo("Entregável", o.entregavel), ...campo("Notas", o.notas)];
+    rels = [rel("Frente", objs(o.frentes)), rel("Scripts envolvidos", objs(o.scripts))];
+  } else if (k === "scripts") {
+    campos = [...campo("Tipo", o.tipo), ...campo("Status", o.status), ...campo("Versão", o.versao), ...campo("Descrição", o.descricao),
+      ...campo("Arquivo", o.arquivo ? el("code", {}, o.arquivo) : null), ...campo("Link", o.link ? el("a", { href: o.link, target: "_blank", rel: "noopener" }, "abrir") : null)];
+    rels = [rel("Frente", objs(o.frentes)), rel("Usa os assets", objs(o.assets)), rel("Lê", objs(o.le)), rel("Gera", objs(o.gera)),
+      rel("Demandas", D.demandas.filter(d => (d.scripts || []).includes(o.id)))];
+  } else if (k === "assets") {
+    campos = [...campo("Caminho", o.path ? [el("code", {}, o.path), botaoCopiar(o.path)] : null), ...campo("Origem", o.origem), ...campo("Tema", o.tema), ...campo("Versão", o.versao), ...campo("Notas", o.notas)];
+    rels = [rel("Usado por", usaAsset(o.id))];
+  } else if (k === "dados") {
+    campos = [...campo("Formato", o.formato), ...campo("Pasta", o.pasta ? el("code", {}, o.pasta) : null), ...campo("Recorte", (o.unidades || []).join(", ")),
+      ...campo("Período", o.periodo), ...campo("Link", o.link ? el("a", { href: o.link, target: "_blank", rel: "noopener" }, "abrir") : null), ...campo("Notas", o.notas)];
+    rels = [rel("Gerado por", geraDado(o.id)), rel("Lido por", leDado(o.id))];
+  } else if (k === "frentes") {
+    campos = [...campo("Teamspace", o.teamspace), ...campo("Descrição", o.descricao), ...campo("Colaboradores", o.colaboradores)];
+    rels = [rel("Demandas", D.demandas.filter(d => (d.frentes || []).includes(o.id))), rel("Scripts", D.scripts.filter(s => (s.frentes || []).includes(o.id)))];
   }
-  $("tScripts").replaceChildren(el("thead", {}, cab), el("tbody", {}, linhas.length ? linhas : el("tr", {}, el("td", { colspan: 8, class: "vazio" }, "Nada encontrado com esses filtros."))));
+  $("gCorpo").replaceChildren(el("dl", { class: "campos" }, campos), ...rels,
+    el("a", { class: "btn sec", href: o.url, target: "_blank", rel: "noopener", style: "justify-self:start" }, "Editar no Notion"));
+  $("veu").hidden = false; g.setAttribute("aria-hidden", "false");
+  requestAnimationFrame(() => { $("veu").classList.add("on"); g.classList.add("on"); });
+  if (!g.contains(document.activeElement)) { g._volta = document.activeElement; }
+  $("gFechar").focus();
+}
+function fechar() {
+  const g = $("gaveta");
+  if (!g.classList.contains("on")) return;
+  g.classList.remove("on"); $("veu").classList.remove("on"); g.setAttribute("aria-hidden", "true");
+  setTimeout(() => $("veu").hidden = true, 200);
+  g._volta?.focus?.();
 }
 
-function fluxo(s, dem) {
-  const nos = (ids, vazio) => { const n = nomes(ids); return n.length ? n.map(o => el("div", { class: "no" }, linkNotion(o), o.path ? el("div", { class: "mono muted" }, o.path) : null)) : [el("span", { class: "vazio" }, vazio)]; };
-  return el("div", {},
-    el("div", { class: "fluxo" },
-      el("div", {}, el("span", { class: "muted" }, "Assets GEE"), nos(s.assets, "nenhum"), el("span", { class: "muted", style: "margin-top:6px" }, "Planilhas lidas"), nos(s.le, "nenhuma")),
-      el("span", { class: "seta" }, "→"),
-      el("div", {}, el("div", { class: "no centro" }, linkNotion(s)), s.arquivo ? el("span", { class: "mono muted" }, s.arquivo) : null, s.link ? el("a", { href: s.link, target: "_blank", rel: "noopener" }, "abrir link") : null),
-      el("span", { class: "seta" }, "→"),
-      el("div", {}, el("span", { class: "muted" }, "Gera"), nos(s.gera, "nenhum arquivo registrado"))),
-    dem.length ? el("p", { class: "muted" }, "Demandas: ", ...dem.flatMap((d, i) => [i ? ", " : "", el("a", { href: d.url, target: "_blank", rel: "noopener" }, d.titulo)])) : null);
+// ---------- montagem ----------
+function desenharFiltros() {
+  const cont = { demandas: demandas().filter(d => !feita(d)).length, mapa: scripts().length, catalogo: { scripts, assets, dados }[S.cat]().length };
+  $("abas").replaceChildren(...ABAS.map(([a, t]) => el("button", { role: "tab", "aria-selected": S.aba === a,
+    onclick: () => { S.aba = a; history.replaceState(null, "", "#" + a); tudo(); } }, t, el("small", {}, cont[a]))));
+  const times = ["", ...new Set(D.frentes.map(f => f.teamspace).filter(Boolean))];
+  $("times").replaceChildren(...times.map(t => el("button", { "aria-pressed": S.time === t && !S.frente, style: t ? `--c:${COR_TIME[t]}` : null,
+    onclick: () => { S.time = t; S.frente = ""; tudo(); } }, t || "Todas")));
+  const f = IDX[S.frente];
+  $("chipFrente").replaceChildren(f ? el("button", { class: "chipfiltro", onclick: () => { S.frente = ""; tudo(); }, "aria-label": `Remover filtro ${f.nome}` }, f.nome, " ×") : "");
 }
-
-function desenharAssets() {
-  const as = D.assets.filter(a => {
-    const us = usosAsset(a.id);
-    return visivelPorScripts(us) && (!$("fOrigem").value || a.origem === $("fOrigem").value)
-      && (!$("fTema").value || a.tema === $("fTema").value) && casa(a, ["nome", "path", "notas", "versao"]);
-  });
-  $("tAssets").replaceChildren(
-    el("thead", {}, el("tr", {}, ...["Asset", "Caminho", "Origem", "Tema", "Coleção/versão", "Usado por", "Notas"].map(h => el("th", {}, h)))),
-    el("tbody", {}, as.map(a => {
-      const us = usosAsset(a.id);
-      return el("tr", {}, el("td", {}, linkNotion(a)), el("td", {}, el("code", {}, a.path || ""), a.path ? botaoCopiar(a.path) : null),
-        el("td", {}, a.origem || ""), el("td", {}, a.tema || ""), el("td", {}, a.versao || ""),
-        el("td", {}, us.length ? us.map((s, i) => [i ? ", " : "", s.nome]).flat() : el("span", { class: "muted" }, "—")),
-        el("td", { class: "muted" }, a.notas || ""));
-    })));
-}
-
-function desenharDados() {
-  const ds = D.dados.filter(x => { const u = usosDado(x.id); return visivelPorScripts([...u.gera, ...u.le]) && casa(x, ["nome", "pasta", "notas"]); });
-  $("tDados").replaceChildren(
-    el("thead", {}, el("tr", {}, ...["Arquivo", "Formato", "Pasta no Drive", "Recorte", "Período", "Gerado por", "Lido por", "Notas"].map(h => el("th", {}, h)))),
-    el("tbody", {}, ds.map(x => {
-      const u = usosDado(x.id), lst = l => l.length ? l.map(s => s.nome).join(", ") : "—";
-      return el("tr", {}, el("td", {}, linkNotion(x), x.link ? [" ", el("a", { href: x.link, target: "_blank", rel: "noopener" }, "↗")] : null),
-        el("td", {}, x.formato || ""), el("td", {}, el("code", {}, x.pasta || "")), el("td", {}, (x.unidades || []).join(", ")),
-        el("td", {}, x.periodo || ""), el("td", {}, lst(u.gera)), el("td", {}, lst(u.le)), el("td", { class: "muted" }, x.notas || ""));
-    })));
-}
-
-function desenhar() {
-  document.querySelectorAll("[data-aba]").forEach(s => s.hidden = s.dataset.aba !== aba);
-  document.querySelectorAll("#abas button").forEach(b => b.setAttribute("aria-selected", b.dataset.a === aba));
-  document.querySelectorAll("#times button").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === time));
-  ({ demandas: desenharDemandas, scripts: desenharScripts, assets: desenharAssets, dados: desenharDados })[aba]();
-}
-
-function opcoes(sel, valores) { [...new Set(valores.filter(Boolean))].sort().forEach(v => sel.append(new Option(v, v))); }
-
-function preencherFrentes() {
-  const sel = $("fFrente"), atual = sel.value;
-  sel.replaceChildren(new Option("Todas as frentes", ""));
-  frentesDoTime().forEach(f => sel.append(new Option(f.nome, f.id)));
-  sel.value = frentesDoTime().some(f => f.id === atual) ? atual : "";
+function tudo(animar) {
+  desenharReguas(animar);
+  desenharFiltros();
+  document.querySelectorAll("[data-aba]").forEach(s => s.hidden = s.dataset.aba !== S.aba);
+  if (S.aba === "demandas") { desenharAgenda(); desenharQuadro(); }
+  if (S.aba === "mapa") desenharMapa();
+  if (S.aba === "catalogo") desenharCatalogo();
 }
 
 async function iniciar() {
   try {
     const r = await fetch("data/dados.json", { cache: "no-cache" });
-    if (!r.ok) throw new Error(r.status);
+    if (!r.ok) throw 0;
     D = await r.json();
   } catch {
-    $("atualizado").textContent = "";
-    $("aviso").textContent = "Ainda não há dados. Rode o workflow \"Sincronizar Notion\" na aba Actions do repositório (veja o README).";
+    $("sync").querySelector("span").textContent = "Sem dados ainda.";
+    $("aviso").textContent = "Rode o workflow Sincronizar Notion na aba Actions do repositório para carregar os dados.";
     $("aviso").hidden = false;
     return;
   }
-  for (const k of ["frentes", "scripts", "assets", "dados", "demandas"]) for (const o of D[k]) { if (k === "demandas") o.nome = o.titulo; IDX[o.id] = o; }
-
-  $("atualizado").textContent = `Sincronizado com o Notion em ${new Date(D.atualizado).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" })} · atualiza a cada 30 min`;
+  for (const k of ["frentes", "scripts", "assets", "dados", "demandas"]) for (const o of D[k]) {
+    if (k === "demandas") o.nome = o.titulo;
+    IDX[o.id] = o; KIND[o.id] = k;
+  }
+  const ultima = new Date(D.atualizado);
+  $("sync").querySelector("span").textContent = `Sincronizado com o Notion ${ultima.toLocaleDateString("pt-BR")} às ${ultima.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}. Atualiza a cada 30 min.`;
   $("abrirNotion").href = D.notion;
   $("novaDemanda").href = "https://www.notion.so/17be4eb5e6f541929c80e9d63e792eba";
 
-  const times = ["", ...new Set(D.frentes.map(f => f.teamspace).filter(Boolean))];
-  $("times").replaceChildren(...times.map(t => el("button", { "data-t": t, onclick: () => { time = t; preencherFrentes(); desenhar(); } }, t || "Todos")));
-  const cont = { demandas: D.demandas.filter(d => !concluida(d)).length, scripts: D.scripts.length, assets: D.assets.length, dados: D.dados.length };
-  $("abas").replaceChildren(...ABAS.map(([a, t]) => el("button", { role: "tab", "data-a": a, onclick: () => { aba = a; location.hash = a; desenhar(); } }, t, el("span", {}, cont[a]))));
-
-  opcoes($("fTipo"), D.scripts.map(s => s.tipo));
-  opcoes($("fStatus"), D.scripts.map(s => s.status));
-  opcoes($("fOrigem"), D.assets.map(a => a.origem));
-  opcoes($("fTema"), D.assets.map(a => a.tema));
-  preencherFrentes();
-  for (const id of ["fFrente", "fTipo", "fStatus", "fOrigem", "fTema"]) $(id).onchange = desenhar;
-  $("fBusca").oninput = desenhar;
-
+  $("fBusca").oninput = e => { S.busca = norm(e.target.value.trim()); tudo(); };
+  $("veu").onclick = fechar; $("gFechar").onclick = fechar;
+  addEventListener("keydown", e => {
+    if (e.key === "Escape") fechar();
+    if (e.key === "/" && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); $("fBusca").focus(); }
+  });
+  let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(() => S.aba === "mapa" && desenharMapa(), 150); });
   const h = location.hash.slice(1);
-  if (ABAS.some(([a]) => a === h)) aba = h;
-  desenhar();
+  if (ABAS.some(([a]) => a === h)) S.aba = h;
+  tudo(true);
 }
 iniciar();
 </script>
