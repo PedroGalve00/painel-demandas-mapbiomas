@@ -1,0 +1,1346 @@
+{
+ "atualizado": "2026-11-07T21:29:24+00:00",
+ "notion": "https://www.notion.so/4117219ef930815dac67eb445b03dce4",
+ "demandas": [
+  {
+   "id": "4117219ef9308133a596f9af82a05aa1",
+   "url": "https://app.notion.com/p/Escalar-ESAI-de-S-o-Paulo-para-o-Brasil-4117219ef9308133a596f9af82a05aa1",
+   "titulo": "Escalar ESAI de São Paulo para o Brasil",
+   "codigo": "DEM-5",
+   "status": "Em andamento",
+   "prioridade": "Média",
+   "inicio": null,
+   "prazo": null,
+   "avanco": 0.4,
+   "responsavel": [],
+   "solicitante": "",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "scripts": [
+    "4117219ef9308164916bf92ed94ea2ba"
+   ],
+   "entregavel": "",
+   "notas": "Na versão Brasil, ligar a máscara de terras secas (IA < 0,65)",
+   "editado": "2026-11-07T18:43:00.000Z"
+  },
+  {
+   "id": "4117219ef9308142b728c560087f97cc",
+   "url": "https://app.notion.com/p/Confirmar-invers-o-das-classes-inunda-o-deslizamento-no-c-digo-GEE-de-origem-4117219ef9308142b728c560087f97cc",
+   "titulo": "Confirmar inversão das classes inundação × deslizamento no código GEE de origem",
+   "codigo": "DEM-3",
+   "status": "A fazer",
+   "prioridade": "Alta",
+   "inicio": null,
+   "prazo": null,
+   "avanco": 0,
+   "responsavel": [],
+   "solicitante": "",
+   "frentes": [
+    "4117219ef9308186a7facaa6fdda583d"
+   ],
+   "scripts": [
+    "4117219ef930818e8543e3329309fdc7",
+    "4117219ef93081c89c0afd439f007525"
+   ],
+   "entregavel": "",
+   "notas": "",
+   "editado": "2026-11-07T18:43:00.000Z"
+  },
+  {
+   "id": "4117219ef93081449ebdeaa18ca9c804",
+   "url": "https://app.notion.com/p/Reexportar-assets-categ-ricos-do-Monitor-com-pir-mide-MODE-4117219ef93081449ebdeaa18ca9c804",
+   "titulo": "Reexportar assets categóricos do Monitor com pirâmide MODE",
+   "codigo": "DEM-4",
+   "status": "Backlog",
+   "prioridade": "Média",
+   "inicio": null,
+   "prazo": null,
+   "avanco": 0,
+   "responsavel": [],
+   "solicitante": "Juliano Schirmbeck",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "scripts": [
+    "4117219ef93081e6a2ffdf64eed51361"
+   ],
+   "entregavel": "",
+   "notas": "Política de pirâmide não muda depois; só reexportando",
+   "editado": "2026-11-07T18:43:00.000Z"
+  },
+  {
+   "id": "4117219ef9308147a21ce7c63accbe05",
+   "url": "https://app.notion.com/p/Levar-filtro-temporal-moda-espacial-do-Pampa-para-os-seis-biomas-4117219ef9308147a21ce7c63accbe05",
+   "titulo": "Levar filtro temporal + moda espacial do Pampa para os seis biomas",
+   "codigo": "DEM-6",
+   "status": "Backlog",
+   "prioridade": "Média",
+   "inicio": null,
+   "prazo": null,
+   "avanco": 0,
+   "responsavel": [],
+   "solicitante": "",
+   "frentes": [
+    "4117219ef93081c1bfeeeb46d61e58f7"
+   ],
+   "scripts": [],
+   "entregavel": "",
+   "notas": "",
+   "editado": "2026-11-07T18:43:00.000Z"
+  },
+  {
+   "id": "4117219ef930814ebf52c591619d1ff1",
+   "url": "https://app.notion.com/p/Exportar-exposi-o-popula-o-rea-urbana-e-favelas-sob-risco-4117219ef930814ebf52c591619d1ff1",
+   "titulo": "Exportar exposição: população, área urbana e favelas sob risco",
+   "codigo": "DEM-2",
+   "status": "Backlog",
+   "prioridade": "Média",
+   "inicio": null,
+   "prazo": null,
+   "avanco": 0,
+   "responsavel": [],
+   "solicitante": "",
+   "frentes": [
+    "4117219ef9308186a7facaa6fdda583d",
+    "4117219ef93081bdac84c875fdf1a7fc"
+   ],
+   "scripts": [
+    "4117219ef93081c89c0afd439f007525"
+   ],
+   "entregavel": "CSV em mapbiomas_exports_col11_mun_exposicao",
+   "notas": "",
+   "editado": "2026-11-07T18:43:00.000Z"
+  },
+  {
+   "id": "4117219ef9308198be79cb010a931793",
+   "url": "https://app.notion.com/p/Trocar-denominador-do-para-rea-urbana-4117219ef9308198be79cb010a931793",
+   "titulo": "Trocar denominador do % para área urbana",
+   "codigo": "DEM-1",
+   "status": "Backlog",
+   "prioridade": "Alta",
+   "inicio": null,
+   "prazo": null,
+   "avanco": 0,
+   "responsavel": [],
+   "solicitante": "",
+   "frentes": [
+    "4117219ef9308186a7facaa6fdda583d"
+   ],
+   "scripts": [
+    "4117219ef93081c89c0afd439f007525"
+   ],
+   "entregavel": "",
+   "notas": "Assets de risco são só urbanos; hoje o % usa o território inteiro",
+   "editado": "2026-11-07T18:43:00.000Z"
+  }
+ ],
+ "frentes": [
+  {
+   "id": "4117219ef9308114b1efeb6f2e4e3cd0",
+   "url": "https://app.notion.com/p/Desertifica-o-ESAI-4117219ef9308114b1efeb6f2e4e3cd0",
+   "nome": "Desertificação (ESAI)",
+   "teamspace": "Risco Climático",
+   "descricao": "Mapa de suscetibilidade à desertificação (ESAI) com dados MapBiomas — teste SP, escopo Brasil",
+   "colaboradores": "",
+   "ativa": true
+  },
+  {
+   "id": "4117219ef930811aa62efb1b4049fb7d",
+   "url": "https://app.notion.com/p/Botos-4117219ef930811aa62efb1b4049fb7d",
+   "nome": "Botos",
+   "teamspace": "Água",
+   "descricao": "Alerta precoce de temperatura da água para botos (WWF/MapBiomas Água): lagos amazônicos e Tocantins-Araguaia",
+   "colaboradores": "Wallace Silva",
+   "ativa": true
+  },
+  {
+   "id": "4117219ef9308186a7facaa6fdda583d",
+   "url": "https://app.notion.com/p/Risco-Clim-tico-Pr-release-Factsheet-4117219ef9308186a7facaa6fdda583d",
+   "nome": "Risco Climático – Pré-release / Factsheet",
+   "teamspace": "Risco Climático",
+   "descricao": "Factsheet de pré-release C11: inundação e deslizamento urbano, comparação 2025 × 2024 × média histórica",
+   "colaboradores": "",
+   "ativa": true
+  },
+  {
+   "id": "4117219ef93081bdac84c875fdf1a7fc",
+   "url": "https://app.notion.com/p/Risco-Clim-tico-Favelas-4117219ef93081bdac84c875fdf1a7fc",
+   "nome": "Risco Climático – Favelas",
+   "teamspace": "Risco Climático",
+   "descricao": "Estatísticas de risco (inundação/deslizamento) em favelas e comunidades urbanas, Coleção 11",
+   "colaboradores": "",
+   "ativa": true
+  },
+  {
+   "id": "4117219ef93081c1bfeeeb46d61e58f7",
+   "url": "https://app.notion.com/p/gua-Cole-o-5-4117219ef93081c1bfeeeb46d61e58f7",
+   "nome": "Água – Coleção 5",
+   "teamspace": "Água",
+   "descricao": "Corpos d'água C5: filtro temporal, moda espacial por segmento, escala do Pampa para os seis biomas",
+   "colaboradores": "Juliano Schirmbeck",
+   "ativa": true
+  },
+  {
+   "id": "4117219ef93081d4bcc6c954a1cf2640",
+   "url": "https://app.notion.com/p/gua-Monitor-4117219ef93081d4bcc6c954a1cf2640",
+   "nome": "Água – Monitor",
+   "teamspace": "Água",
+   "descricao": "Monitor de Água (BETA1): app GEE de validação Sentinel/HLS, combinações/cascata, estatísticas por ROI e território",
+   "colaboradores": "Juliano Schirmbeck",
+   "ativa": true
+  },
+  {
+   "id": "4117219ef93081d9aa94d490ce1acd21",
+   "url": "https://app.notion.com/p/Simulador-Lima-4117219ef93081d9aa94d490ce1acd21",
+   "nome": "Simulador Lima",
+   "teamspace": "Risco Climático",
+   "descricao": "Simulador de suscetibilidade a inundação em Lima (Peru): SCS-CN × HAND, calibração automática com JRC GLOFAS",
+   "colaboradores": "",
+   "ativa": true
+  }
+ ],
+ "scripts": [
+  {
+   "id": "4117219ef9308100bb35eeb1bef2a532",
+   "url": "https://app.notion.com/p/exportacao_combinacoes_asset-js-4117219ef9308100bb35eeb1bef2a532",
+   "nome": "exportacao_combinacoes_asset.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Exporta as combinações por carta como asset",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde"
+   ],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/exportacao_combinacoes_asset.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef930811e8fc6d5250856f79a",
+   "url": "https://app.notion.com/p/monitor_agua_v7_brasil_biomas-ipynb-4117219ef930811e8fc6d5250856f79a",
+   "nome": "monitor_agua_v7_brasil_biomas.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "v7",
+   "descricao": "Combination × interation2_v7, Brasil e biomas: séries, diferença %, não observado, datas suspeitas, cartas",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [],
+   "le": [
+    "4117219ef930810ea50fd7ae631ae6e9",
+    "4117219ef9308159a03ad53e6e5ac7c8"
+   ],
+   "gera": [
+    "4117219ef93081948ed8e0a54e1546dd"
+   ],
+   "arquivo": "claude/monitor_agua_v7_brasil_biomas.ipynb",
+   "link": null
+  },
+  {
+   "id": "4117219ef930813784ebd84d5fc4e8e3",
+   "url": "https://app.notion.com/p/exportacao_estatisticas_rois_int2-js-4117219ef930813784ebd84d5fc4e8e3",
+   "nome": "exportacao_estatisticas_rois_int2.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Estatísticas de combination e int2 por ROI, com painel de anos faltantes por carta",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef9308103ba7ef290df6d67c8",
+    "4117219ef93081e58a92d93ae8e3799c"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef930818eb847c950b34e1bf0"
+   ],
+   "arquivo": "claude/exportacao_estatisticas_rois_int2.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef930813aaaf6f3bfc29939ed",
+   "url": "https://app.notion.com/p/exportacao_estatisticas_rois_comb_monitor-js-4117219ef930813aaaf6f3bfc29939ed",
+   "nome": "exportacao_estatisticas_rois_comb_monitor.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Estatísticas do Combina do Juliano (version 6) nas ROIs",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef9308103ba7ef290df6d67c8"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef930818eb847c950b34e1bf0"
+   ],
+   "arquivo": "claude/exportacao_estatisticas_rois_comb_monitor.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081548ecec555fe76074f",
+   "url": "https://app.notion.com/p/esai_desertificacao_sp_v1-ipynb-4117219ef93081548ecec555fe76074f",
+   "nome": "esai_desertificacao_sp_v1.ipynb",
+   "tipo": "Colab",
+   "status": "Substituído",
+   "versao": "v1",
+   "descricao": "Versão Python do ESAI SP v1",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [
+    "4117219ef930814080f5d342855632c3",
+    "4117219ef930819c8b07df3191e348be",
+    "4117219ef93081ad812ede15d512bedf",
+    "4117219ef9308167992de904f63caa60",
+    "4117219ef9308111ac8ad14e4143e3cc"
+   ],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/esai_desertificacao_sp_v1.ipynb",
+   "link": null
+  },
+  {
+   "id": "4117219ef9308155aca1f32f0392767c",
+   "url": "https://app.notion.com/p/exportacao_estatisticas_raw_rois-js-4117219ef9308155aca1f32f0392767c",
+   "nome": "exportacao_estatisticas_raw_rois.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Área por classe do raw Sentinel/HLS nas 23 ROIs, por mês",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef93081c8ac9ad5231aab5cc3"
+   ],
+   "arquivo": "claude/exportacao_estatisticas_raw_rois.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef930815ea1f5feb5a555c371",
+   "url": "https://app.notion.com/p/exportacao_estatisticas_combina7_rois_pam_caa-js-4117219ef930815ea1f5feb5a555c371",
+   "nome": "exportacao_estatisticas_combina7_rois_pam_caa.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "combina7 direto das detecções nas 8 ROIs de Pampa e Caatinga (série Comb_Monitor)",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef930818eb847c950b34e1bf0"
+   ],
+   "arquivo": "claude/exportacao_estatisticas_combina7_rois_pam_caa.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef9308164916bf92ed94ea2ba",
+   "url": "https://app.notion.com/p/esai_desertificacao_v3-js-4117219ef9308164916bf92ed94ea2ba",
+   "nome": "esai_desertificacao_v3.js",
+   "tipo": "GEE JS",
+   "status": "Em desenvolvimento",
+   "versao": "v3",
+   "descricao": "ESAI com dados MapBiomas (solo C3, fogo, LULC), recorte configurável",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [
+    "4117219ef930814080f5d342855632c3",
+    "4117219ef930819c8b07df3191e348be",
+    "4117219ef9308122873afe10c39352cf",
+    "4117219ef9308167992de904f63caa60",
+    "4117219ef9308111ac8ad14e4143e3cc",
+    "4117219ef9308197a638eae334049419"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef93081ef9356ceac2316dcff"
+   ],
+   "arquivo": "claude/esai_desertificacao_v3.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef9308166af34ffa60dbff346",
+   "url": "https://app.notion.com/p/exportacao_estatisticas_combinacoes-js-4117219ef9308166af34ffa60dbff346",
+   "nome": "exportacao_estatisticas_combinacoes.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Água por carta e combinação, uma tarefa por combinação × ano",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef93081ab84c0fa9e068f787d"
+   ],
+   "arquivo": "claude/exportacao_estatisticas_combinacoes.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef9308189a86ff164bcfe445b",
+   "url": "https://app.notion.com/p/app_monitor_v5_revisado-js-4117219ef9308189a86ff164bcfe445b",
+   "nome": "app_monitor_v5_revisado.js",
+   "tipo": "App GEE",
+   "status": "Substituído",
+   "versao": "v5",
+   "descricao": "App do Monitor BETA1 (seletor de inclusão, cascata, Data A/B)",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde",
+    "4117219ef93081a69bf6e7bea11f19ef"
+   ],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/app_monitor_v5_revisado.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef930818e8543e3329309fdc7",
+   "url": "https://app.notion.com/p/painel_risco_climatico_dados-ipynb-4117219ef930818e8543e3329309fdc7",
+   "nome": "painel_risco_climatico_dados.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Gera os dados do painel de jornalistas (Risco Climático, Módulo Urbano, Luz Noturna) e o zip do site",
+   "frentes": [
+    "4117219ef9308186a7facaa6fdda583d",
+    "4117219ef93081bdac84c875fdf1a7fc"
+   ],
+   "assets": [],
+   "le": [
+    "4117219ef93081ed94a9d940cebbfa95",
+    "4117219ef93081059c29f47aa094901c",
+    "4117219ef930817a900ee18cf4121b13",
+    "4117219ef9308149b5f5dc0d38d48fd5",
+    "4117219ef9308188a803e3b715f59ce6",
+    "4117219ef9308151a80af1b414620b72",
+    "4117219ef9308137aed6cb3ebbd125c9",
+    "4117219ef9308118bd37f8f49dc852c0"
+   ],
+   "gera": [
+    "4117219ef93081f2b318cc7708b20f55"
+   ],
+   "arquivo": "claude/painel_risco_climatico_dados.ipynb",
+   "link": "https://github.com/PedroGalve00/painel-risco-climatico-urbano"
+  },
+  {
+   "id": "4117219ef9308190bf5cc0d917d589b8",
+   "url": "https://app.notion.com/p/graficos_combinacoes-ipynb-4117219ef9308190bf5cc0d917d589b8",
+   "nome": "graficos_combinacoes.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Série mensal de água, uma linha por combinação, um gráfico por carta",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [],
+   "le": [
+    "4117219ef93081ab84c0fa9e068f787d"
+   ],
+   "gera": [],
+   "arquivo": "claude/graficos_combinacoes.ipynb",
+   "link": null
+  },
+  {
+   "id": "4117219ef930819292dde84954838c88",
+   "url": "https://app.notion.com/p/app_visualizador_combination_int2-js-4117219ef930819292dde84954838c88",
+   "nome": "app_visualizador_combination_int2.js",
+   "tipo": "App GEE",
+   "status": "Substituído",
+   "versao": "",
+   "descricao": "Antecessor do app_monitor_comparacao.js",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef9308103ba7ef290df6d67c8",
+    "4117219ef93081e58a92d93ae8e3799c",
+    "4117219ef930817d88b3c05c7ae0f12d"
+   ],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/app_visualizador_combination_int2.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081999e60ee370cc1d563",
+   "url": "https://app.notion.com/p/monitor_agua_estatisticas_territorios-ipynb-4117219ef93081999e60ee370cc1d563",
+   "nome": "monitor_agua_estatisticas_territorios.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Estatísticas por território via Python EE (parte B exporta, parte A plota)",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef93081ab84c0fa9e068f787d"
+   ],
+   "arquivo": "claude/monitor_agua_estatisticas_territorios.ipynb",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081a9b1a2e8f957e90d01",
+   "url": "https://app.notion.com/p/graficos_rois_comparacao-ipynb-4117219ef93081a9b1a2e8f957e90d01",
+   "nome": "graficos_rois_comparacao.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Comparação das séries por ROI (combina7, Comb_Monitor, int2, C5)",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [],
+   "le": [
+    "4117219ef930818eb847c950b34e1bf0"
+   ],
+   "gera": [],
+   "arquivo": "claude/graficos_rois_comparacao.ipynb",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081c59e98f4596f91231e",
+   "url": "https://app.notion.com/p/assets_mapbiomas_gee-md-4117219ef93081c59e98f4596f91231e",
+   "nome": "assets_mapbiomas_gee.md",
+   "tipo": "Doc/Nota",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Lista dos assets públicos MapBiomas no GEE (C11, Água C5, Fogo, Solo, Atmosfera, Risco)",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0",
+    "4117219ef9308186a7facaa6fdda583d"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/assets_mapbiomas_gee.md",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081c798d1edbc99b99130",
+   "url": "https://app.notion.com/p/exportacao_estatisticas_rois-js-4117219ef93081c798d1edbc99b99130",
+   "nome": "exportacao_estatisticas_rois.js",
+   "tipo": "GEE JS",
+   "status": "Substituído",
+   "versao": "v1",
+   "descricao": "Primeira versão das estatísticas por ROI (substituída pela v2)",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde",
+    "4117219ef930817d88b3c05c7ae0f12d"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef930818eb847c950b34e1bf0"
+   ],
+   "arquivo": "claude/exportacao_estatisticas_rois.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081c89c0afd439f007525",
+   "url": "https://app.notion.com/p/mapbiomas_prerelease_riscos_col11-ipynb-4117219ef93081c89c0afd439f007525",
+   "nome": "mapbiomas_prerelease_riscos_col11.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "v1",
+   "descricao": "Pré-release C11: QA, estatísticas 2025 × 2024 × média, gráficos, mapas, tendências, 6 tabelas",
+   "frentes": [
+    "4117219ef9308186a7facaa6fdda583d"
+   ],
+   "assets": [
+    "4117219ef93081218efee0d0e53b8141",
+    "4117219ef930814080f5d342855632c3",
+    "4117219ef9308153a33dff0bfb60f95c"
+   ],
+   "le": [
+    "4117219ef93081ed94a9d940cebbfa95",
+    "4117219ef93081059c29f47aa094901c",
+    "4117219ef930817a900ee18cf4121b13",
+    "4117219ef9308149b5f5dc0d38d48fd5"
+   ],
+   "gera": [
+    "4117219ef930811ca310f31110a9e3e7"
+   ],
+   "arquivo": "claude/mapbiomas_prerelease_riscos_col11.ipynb",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081cf9dbafed9cf0fc994",
+   "url": "https://app.notion.com/p/mapbiomas_favelas_riscos_col11-ipynb-4117219ef93081cf9dbafed9cf0fc994",
+   "nome": "mapbiomas_favelas_riscos_col11.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Risco de inundação e deslizamento em favelas, 1985–2025",
+   "frentes": [
+    "4117219ef93081bdac84c875fdf1a7fc"
+   ],
+   "assets": [
+    "4117219ef9308198831cf436a7c00e8e"
+   ],
+   "le": [
+    "4117219ef9308188a803e3b715f59ce6",
+    "4117219ef9308151a80af1b414620b72"
+   ],
+   "gera": [
+    "4117219ef93081d7b4d3fea8c03d0c3a"
+   ],
+   "arquivo": "claude/mapbiomas_favelas_riscos_col11.ipynb",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081d1948bdc6aefa9b6cb",
+   "url": "https://app.notion.com/p/exportacao_estatisticas_rois_v2-js-4117219ef93081d1948bdc6aefa9b6cb",
+   "nome": "exportacao_estatisticas_rois_v2.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "v2",
+   "descricao": "Estatísticas combina7 + C5 nas 23 ROIs",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde",
+    "4117219ef930817d88b3c05c7ae0f12d"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef930818eb847c950b34e1bf0"
+   ],
+   "arquivo": "claude/exportacao_estatisticas_rois_v2.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081d4a140e81cfbde4a71",
+   "url": "https://app.notion.com/p/esai_desertificacao_sp_v2-js-4117219ef93081d4a140e81cfbde4a71",
+   "nome": "esai_desertificacao_sp_v2.js",
+   "tipo": "GEE JS",
+   "status": "Substituído",
+   "versao": "v2",
+   "descricao": "ESAI São Paulo (estado ou município)",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [
+    "4117219ef930814080f5d342855632c3",
+    "4117219ef930819c8b07df3191e348be",
+    "4117219ef93081ad812ede15d512bedf",
+    "4117219ef9308167992de904f63caa60",
+    "4117219ef9308111ac8ad14e4143e3cc",
+    "4117219ef9308197a638eae334049419"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef93081ef9356ceac2316dcff"
+   ],
+   "arquivo": "claude/esai_desertificacao_sp_v2.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081e1a255c0d585056af3",
+   "url": "https://app.notion.com/p/esai_desertificacao_sp_v1-js-4117219ef93081e1a255c0d585056af3",
+   "nome": "esai_desertificacao_sp_v1.js",
+   "tipo": "GEE JS",
+   "status": "Substituído",
+   "versao": "v1",
+   "descricao": "Primeiro teste ESAI em SP (SoilGrids provisório)",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [
+    "4117219ef930814080f5d342855632c3",
+    "4117219ef930819c8b07df3191e348be",
+    "4117219ef93081ad812ede15d512bedf",
+    "4117219ef9308167992de904f63caa60",
+    "4117219ef9308111ac8ad14e4143e3cc",
+    "4117219ef9308197a638eae334049419"
+   ],
+   "le": [],
+   "gera": [
+    "4117219ef93081ef9356ceac2316dcff"
+   ],
+   "arquivo": "claude/esai_desertificacao_sp_v1.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081e6a2ffdf64eed51361",
+   "url": "https://app.notion.com/p/app_monitor_comparacao-js-4117219ef93081e6a2ffdf64eed51361",
+   "nome": "app_monitor_comparacao.js",
+   "tipo": "App GEE",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "App de comparação Combination / int2_new / int2_ori / C5, modos Água e Origem (com Juliano)",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef9308103ba7ef290df6d67c8",
+    "4117219ef93081e58a92d93ae8e3799c",
+    "4117219ef930817d88b3c05c7ae0f12d",
+    "4117219ef930819d8339f065d09c9b11",
+    "4117219ef93081e8b1c0f24943680bde",
+    "4117219ef93081a69bf6e7bea11f19ef"
+   ],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/app_monitor_comparacao.js",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081eab033d5b1c4b799d7",
+   "url": "https://app.notion.com/p/monitor-v5-bug-classe6-md-4117219ef93081eab033d5b1c4b799d7",
+   "nome": "monitor-v5-bug-classe6.md",
+   "tipo": "Doc/Nota",
+   "status": "Arquivado",
+   "versao": "",
+   "descricao": "Nota do bug da classe 6 no app v5",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/monitor-v5-bug-classe6.md",
+   "link": null
+  },
+  {
+   "id": "4117219ef93081ef9f41febf21440280",
+   "url": "https://app.notion.com/p/graficos_raw_agua_nao_observado-ipynb-4117219ef93081ef9f41febf21440280",
+   "nome": "graficos_raw_agua_nao_observado.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "",
+   "descricao": "Gráficos do raw: água detectada e não observada por ROI",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [],
+   "le": [
+    "4117219ef93081c8ac9ad5231aab5cc3"
+   ],
+   "gera": [],
+   "arquivo": "claude/graficos_raw_agua_nao_observado.ipynb",
+   "link": null
+  }
+ ],
+ "assets": [
+  {
+   "id": "4117219ef9308103ba7ef290df6d67c8",
+   "url": "https://app.notion.com/p/Monitor-combination-4117219ef9308103ba7ef290df6d67c8",
+   "nome": "Monitor — combination",
+   "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/ (combination)",
+   "origem": "MapBiomas interno",
+   "tema": "Monitor Água",
+   "versao": "version 6 / v7",
+   "notas": "Combina do Juliano; v6 sem Pampa e Caatinga. Confirmar caminho exato"
+  },
+  {
+   "id": "4117219ef9308111ac8ad14e4143e3cc",
+   "url": "https://app.notion.com/p/NASADEM-4117219ef9308111ac8ad14e4143e3cc",
+   "nome": "NASADEM",
+   "path": "NASA/NASADEM_HGT/001",
+   "origem": "Externo",
+   "tema": "Relevo/Hidrologia",
+   "versao": "",
+   "notas": "Declividade (ESAI)"
+  },
+  {
+   "id": "4117219ef93081218efee0d0e53b8141",
+   "url": "https://app.notion.com/p/Bioma-UF-30-m-4117219ef93081218efee0d0e53b8141",
+   "nome": "Bioma × UF 30 m",
+   "path": "projects/mapbiomas-workspace/AUXILIAR/bioma25_uf24_30m",
+   "origem": "MapBiomas interno",
+   "tema": "Limites/Territórios",
+   "versao": "",
+   "notas": ""
+  },
+  {
+   "id": "4117219ef9308122873afe10c39352cf",
+   "url": "https://app.notion.com/p/Solo-fra-es-argila-areia-silte-e-carbono-4117219ef9308122873afe10c39352cf",
+   "nome": "Solo — frações (argila/areia/silte) e carbono",
+   "path": "projects/mapbiomas-public/assets/brazil/soil/collection3/ (clay/sand/silt_fraction, soil_carbon)",
+   "origem": "MapBiomas público",
+   "tema": "Solo",
+   "versao": "C3 beta",
+   "notas": "Substitui SoilGrids no ESAI"
+  },
+  {
+   "id": "4117219ef930814080f5d342855632c3",
+   "url": "https://app.notion.com/p/LULC-Cole-o-11-cobertura-4117219ef930814080f5d342855632c3",
+   "nome": "LULC Coleção 11 (cobertura)",
+   "path": "projects/mapbiomas-public/assets/brazil/lulc/collection11/mapbiomas_brazil_collection11_coverage_v3",
+   "origem": "MapBiomas público",
+   "tema": "Cobertura e uso",
+   "versao": "C11 v3 · 1985–2025",
+   "notas": "Bandas classification_1985…2025; classe 24 = infraestrutura urbana"
+  },
+  {
+   "id": "4117219ef9308144bdf5feb45ada7fa0",
+   "url": "https://app.notion.com/p/HAND-30-m-4117219ef9308144bdf5feb45ada7fa0",
+   "nome": "HAND 30 m",
+   "path": "users/gena/GlobalHAND/30m/hand-1000",
+   "origem": "Externo",
+   "tema": "Relevo/Hidrologia",
+   "versao": "",
+   "notas": "Simuladores de inundação (Brasil e Lima)"
+  },
+  {
+   "id": "4117219ef9308153a33dff0bfb60f95c",
+   "url": "https://app.notion.com/p/WorldPop-100-m-4117219ef9308153a33dff0bfb60f95c",
+   "nome": "WorldPop 100 m",
+   "path": "WorldPop/GP/100m/pop",
+   "origem": "Externo",
+   "tema": "Limites/Territórios",
+   "versao": "",
+   "notas": "Proposto para exposição da população ao risco (ainda não exportado)"
+  },
+  {
+   "id": "4117219ef9308160b560e2b089524d59",
+   "url": "https://app.notion.com/p/JRC-GLOFAS-Flood-Hazard-4117219ef9308160b560e2b089524d59",
+   "nome": "JRC GLOFAS Flood Hazard",
+   "path": "JRC/CEMS_GLOFAS/FloodHazard/v2_1",
+   "origem": "Externo",
+   "tema": "Relevo/Hidrologia",
+   "versao": "",
+   "notas": "Calibração automática de profundidade em Lima"
+  },
+  {
+   "id": "4117219ef9308167992de904f63caa60",
+   "url": "https://app.notion.com/p/TerraClimate-4117219ef9308167992de904f63caa60",
+   "nome": "TerraClimate",
+   "path": "IDAHO_EPSCOR/TERRACLIMATE",
+   "origem": "Externo",
+   "tema": "Clima externo",
+   "versao": "",
+   "notas": "Índice de aridez P/ETP (ESAI); pet em escala 0,1"
+  },
+  {
+   "id": "4117219ef930816f8bb9c65785347a6b",
+   "url": "https://app.notion.com/p/Risco-Clim-tico-C1-deslizamento-urbano-4117219ef930816f8bb9c65785347a6b",
+   "nome": "Risco Climático C1 — deslizamento urbano",
+   "path": "projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_urban_landslide_risk_v1",
+   "origem": "MapBiomas público",
+   "tema": "Risco Climático",
+   "versao": "C1 · até 2024",
+   "notas": "1=Médio, 3=Muito alto"
+  },
+  {
+   "id": "4117219ef9308176a8d8d1331d445d07",
+   "url": "https://app.notion.com/p/reas-suscet-veis-botos-4117219ef9308176a8d8d1331d445d07",
+   "nome": "Áreas suscetíveis — botos",
+   "path": "projects/pedrogalve/assets/Areas_Susceptiveis_Botos",
+   "origem": "Pessoal (pedrogalve)",
+   "tema": "Limites/Territórios",
+   "versao": "",
+   "notas": "Tocantins-Araguaia; buffer dinâmico"
+  },
+  {
+   "id": "4117219ef93081799477c52bfe7140a6",
+   "url": "https://app.notion.com/p/Sentinel-2-Landsat-8-9-C2-L2-4117219ef93081799477c52bfe7140a6",
+   "nome": "Sentinel-2 / Landsat 8-9 C2 L2",
+   "path": "COPERNICUS/S2_SR_HARMONIZED · LANDSAT/LC08|LC09/C02/T1_L2",
+   "origem": "Externo",
+   "tema": "Sensores",
+   "versao": "",
+   "notas": ""
+  },
+  {
+   "id": "4117219ef930817d88b3c05c7ae0f12d",
+   "url": "https://app.notion.com/p/gua-C5-mensal-4117219ef930817d88b3c05c7ae0f12d",
+   "nome": "Água C5 — mensal",
+   "path": "projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_monthly_v4",
+   "origem": "MapBiomas público",
+   "tema": "Água",
+   "versao": "C5 v4 · 1985–2025",
+   "notas": "492 imagens; filtrar year/month; banda water_monthly; sem filtro de versão"
+  },
+  {
+   "id": "4117219ef930817fa1e3c23612ebc285",
+   "url": "https://app.notion.com/p/Risco-Clim-tico-C2-deslizamento-c11-4117219ef930817fa1e3c23612ebc285",
+   "nome": "Risco Climático C2 — deslizamento (c11)",
+   "path": "projects/mapbiomas-brazil/assets/GT-CLIMATE-RISK/COLLECTION-2/landslide_step4_c11",
+   "origem": "MapBiomas interno",
+   "tema": "Risco Climático",
+   "versao": "C2 · até 2025",
+   "notas": ""
+  },
+  {
+   "id": "4117219ef93081808c23c25af30f6887",
+   "url": "https://app.notion.com/p/Risco-Clim-tico-C2-inunda-o-c11-4117219ef93081808c23c25af30f6887",
+   "nome": "Risco Climático C2 — inundação (c11)",
+   "path": "projects/mapbiomas-brazil/assets/GT-CLIMATE-RISK/COLLECTION-2/flood_step2_v3_c11",
+   "origem": "MapBiomas interno",
+   "tema": "Risco Climático",
+   "versao": "C2 · até 2025",
+   "notas": ""
+  },
+  {
+   "id": "4117219ef9308191974fd29ac59a0966",
+   "url": "https://app.notion.com/p/reas-protegidas-4117219ef9308191974fd29ac59a0966",
+   "nome": "Áreas protegidas",
+   "path": "projects/mapbiomas-workspace/AUXILIAR/areas-protegidas",
+   "origem": "MapBiomas interno",
+   "tema": "Limites/Territórios",
+   "versao": "",
+   "notas": "Campos TipoUso, NomeTI, NomeUC"
+  },
+  {
+   "id": "4117219ef9308197a638eae334049419",
+   "url": "https://app.notion.com/p/FAO-GAUL-n-vel-1-4117219ef9308197a638eae334049419",
+   "nome": "FAO GAUL nível 1",
+   "path": "FAO/GAUL/2015/level1",
+   "origem": "Externo",
+   "tema": "Limites/Territórios",
+   "versao": "",
+   "notas": "Nomes sem acento ('Sao Paulo')"
+  },
+  {
+   "id": "4117219ef9308198831cf436a7c00e8e",
+   "url": "https://app.notion.com/p/Favelas-e-Comunidades-Urbanas-4117219ef9308198831cf436a7c00e8e",
+   "nome": "Favelas e Comunidades Urbanas",
+   "path": "projects/ee-my-jpedrassoli/assets/RECORTES-GEOGRAFICOS/fcu_mb_v3_2025",
+   "origem": "Externo",
+   "tema": "Limites/Territórios",
+   "versao": "",
+   "notas": "Campos cd_fcu, nm_fcu, cd_mun, nm_mun, sigla_uf; polígonos 2022 fixos na série"
+  },
+  {
+   "id": "4117219ef930819c8b07df3191e348be",
+   "url": "https://app.notion.com/p/Fogo-frequ-ncia-4117219ef930819c8b07df3191e348be",
+   "nome": "Fogo — frequência",
+   "path": "projects/mapbiomas-public/assets/brazil/fire/collection5_1/mapbiomas_fire_collection51_fire_frequency_v1",
+   "origem": "MapBiomas público",
+   "tema": "Fogo",
+   "versao": "C5.1",
+   "notas": "Usado no ESAI (índice de manejo)"
+  },
+  {
+   "id": "4117219ef930819d8339f065d09c9b11",
+   "url": "https://app.notion.com/p/Monitor-detection-Sentinel-4117219ef930819d8339f065d09c9b11",
+   "nome": "Monitor — detection (Sentinel)",
+   "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/detection",
+   "origem": "MapBiomas interno",
+   "tema": "Monitor Água",
+   "versao": "BETA1 · version 5",
+   "notas": "Filtrar year + version; .mosaic(); bandas w_1…w_12; água = 1. Pirâmide MEAN (zoom afastado mostra classes falsas)"
+  },
+  {
+   "id": "4117219ef93081a5b9c2ed7121682164",
+   "url": "https://app.notion.com/p/MapBiomas-Peru-Cole-o-3-4117219ef93081a5b9c2ed7121682164",
+   "nome": "MapBiomas Peru Coleção 3",
+   "path": "projects/mapbiomas-public/assets/peru/collection3/mapbiomas_peru_collection3_integration_v1",
+   "origem": "MapBiomas público",
+   "tema": "Cobertura e uso",
+   "versao": "C3 · 1985–2024",
+   "notas": "Urbano = classe 24"
+  },
+  {
+   "id": "4117219ef93081a69bf6e7bea11f19ef",
+   "url": "https://app.notion.com/p/HLS-L30-S30-4117219ef93081a69bf6e7bea11f19ef",
+   "nome": "HLS L30 + S30",
+   "path": "NASA/HLS/HLSL30/v002 · NASA/HLS/HLSS30/v002",
+   "origem": "Externo",
+   "tema": "Sensores",
+   "versao": "",
+   "notas": "Máscara Fmask; mosaico RGB no app do Monitor"
+  },
+  {
+   "id": "4117219ef93081ad812ede15d512bedf",
+   "url": "https://app.notion.com/p/SoilGrids-2-0-areia-argila-COS-4117219ef93081ad812ede15d512bedf",
+   "nome": "SoilGrids 2.0 (areia, argila, COS)",
+   "path": "projects/soilgrids-isric/sand_mean · clay_mean · soc_mean",
+   "origem": "Externo",
+   "tema": "Solo",
+   "versao": "",
+   "notas": "Provisório no ESAI v1/v2"
+  },
+  {
+   "id": "4117219ef93081c3b01efbb086482b35",
+   "url": "https://app.notion.com/p/ESAI-sa-das-4117219ef93081c3b01efbb086482b35",
+   "nome": "ESAI — saídas",
+   "path": "projects/pedrogalve/assets/esai_sp_v1 (e v2, v3)",
+   "origem": "Pessoal (pedrogalve)",
+   "tema": "Risco Climático",
+   "versao": "",
+   "notas": "Pirâmide mean, CLASSE mode"
+  },
+  {
+   "id": "4117219ef93081c4aa79d669be993499",
+   "url": "https://app.notion.com/p/MODIS-LST-8-dias-4117219ef93081c4aa79d669be993499",
+   "nome": "MODIS LST 8 dias",
+   "path": "MODIS/061/MOD11A2",
+   "origem": "Externo",
+   "tema": "Sensores",
+   "versao": "",
+   "notas": "Temperatura da água para o alerta de botos"
+  },
+  {
+   "id": "4117219ef93081da8babc1cb7e56cf55",
+   "url": "https://app.notion.com/p/ERA5-Land-ERA5-HEAT-4117219ef93081da8babc1cb7e56cf55",
+   "nome": "ERA5-Land / ERA5-HEAT",
+   "path": "ECMWF/ERA5_LAND/DAILY_AGGR · projects/climate-engine-pro/assets/ce-era5-heat",
+   "origem": "Externo",
+   "tema": "Clima externo",
+   "versao": "",
+   "notas": "Juntar por data formatada 'YYYY-MM-dd'; mrt_mean para UTCI"
+  },
+  {
+   "id": "4117219ef93081e48594e14e782798e8",
+   "url": "https://app.notion.com/p/Risco-Clim-tico-C1-ndice-de-Seguran-a-H-drica-4117219ef93081e48594e14e782798e8",
+   "nome": "Risco Climático C1 — Índice de Segurança Hídrica",
+   "path": "projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_water_security_index_v1",
+   "origem": "MapBiomas público",
+   "tema": "Risco Climático",
+   "versao": "C1",
+   "notas": ""
+  },
+  {
+   "id": "4117219ef93081e58a92d93ae8e3799c",
+   "url": "https://app.notion.com/p/Monitor-interation2-interation2_orig-4117219ef93081e58a92d93ae8e3799c",
+   "nome": "Monitor — interation2 / interation2_orig",
+   "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/ (interation2)",
+   "origem": "MapBiomas interno",
+   "tema": "Monitor Água",
+   "versao": "version_combination 6 / v7",
+   "notas": "int2_new e int2_ori no app de comparação; só tem pixel onde há água. Confirmar caminho exato"
+  },
+  {
+   "id": "4117219ef93081e8b1c0f24943680bde",
+   "url": "https://app.notion.com/p/Monitor-detection_HLS-4117219ef93081e8b1c0f24943680bde",
+   "nome": "Monitor — detection_HLS",
+   "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/detection_HLS",
+   "origem": "MapBiomas interno",
+   "tema": "Monitor Água",
+   "versao": "BETA1 · version 5 (só 4 e 5)",
+   "notas": "Mesma estrutura do detection"
+  },
+  {
+   "id": "4117219ef93081efa112fc1d9c09d00e",
+   "url": "https://app.notion.com/p/gua-C5-corpos-d-gua-4117219ef93081efa112fc1d9c09d00e",
+   "nome": "Água C5 — corpos d'água",
+   "path": "projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_bodies_v4",
+   "origem": "MapBiomas público",
+   "tema": "Água",
+   "versao": "C5 v4",
+   "notas": "Versão filtrada/corrigida: ..._water_bodies_filtered_corr_v4 (Image multibanda classification_1985–2025)"
+  },
+  {
+   "id": "4117219ef93081efaec7d30838687449",
+   "url": "https://app.notion.com/p/Risco-Clim-tico-C1-inunda-o-urbana-4117219ef93081efaec7d30838687449",
+   "nome": "Risco Climático C1 — inundação urbana",
+   "path": "projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_urban_flood_risk_v1",
+   "origem": "MapBiomas público",
+   "tema": "Risco Climático",
+   "versao": "C1 · até 2024",
+   "notas": "Escala invertida: 1=Muito alto, 3=Médio"
+  },
+  {
+   "id": "4117219ef93081fbb405ff97bc658a06",
+   "url": "https://app.notion.com/p/gua-C5-anual-4117219ef93081fbb405ff97bc658a06",
+   "nome": "Água C5 — anual",
+   "path": "projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_annual_v4",
+   "origem": "MapBiomas público",
+   "tema": "Água",
+   "versao": "C5 v4",
+   "notas": ""
+  },
+  {
+   "id": "4117219ef93081fc826aceb3baec612d",
+   "url": "https://app.notion.com/p/Biomas-MapBiomas-gua-4117219ef93081fc826aceb3baec612d",
+   "nome": "Biomas (MapBiomas Água)",
+   "path": "projects/mapbiomas-agua/assets/territories/biome",
+   "origem": "MapBiomas interno",
+   "tema": "Limites/Territórios",
+   "versao": "",
+   "notas": "Campo Bioma, sem acento (ex.: 'Cerrado')"
+  }
+ ],
+ "dados": [
+  {
+   "id": "4117219ef93081059c29f47aa094901c",
+   "url": "https://app.notion.com/p/mapbiomas_exports_col11_mun_landslides-4117219ef93081059c29f47aa094901c",
+   "nome": "mapbiomas_exports_col11_mun_landslides",
+   "formato": "CSV",
+   "pasta": "mapbiomas_exports_col11_mun_landslides",
+   "unidades": [
+    "Município"
+   ],
+   "periodo": "1985–2025 · anual",
+   "link": null,
+   "notas": ""
+  },
+  {
+   "id": "4117219ef930810ea50fd7ae631ae6e9",
+   "url": "https://app.notion.com/p/stats_brasil-bioma_combination_v7-interation2_v7-csv-4117219ef930810ea50fd7ae631ae6e9",
+   "nome": "stats_brasil/bioma_combination_v7 + interation2_v7 .csv",
+   "formato": "CSV",
+   "pasta": "Dados Monitor Novo",
+   "unidades": [
+    "Brasil",
+    "Bioma"
+   ],
+   "periodo": "2019–2025 · mensal",
+   "link": null,
+   "notas": "4 arquivos; colunas ha_agua, ha_c10…ha_c40, ha_c13, ha_c14, ha_c5"
+  },
+  {
+   "id": "4117219ef9308118bd37f8f49dc852c0",
+   "url": "https://app.notion.com/p/Luz-Noturna-mun-bioma-xlsx-4117219ef9308118bd37f8f49dc852c0",
+   "nome": "Luz Noturna (mun, bioma).xlsx",
+   "formato": "XLSX",
+   "pasta": "Drive (qualquer pasta)",
+   "unidades": [
+    "Bioma",
+    "Município"
+   ],
+   "periodo": "2013–2025",
+   "link": null,
+   "notas": "nightlight_by_mun_mapbiomas_col11_v2.xlsx, nightlight_by_biome_mapbiomas_col11_2.xlsx"
+  },
+  {
+   "id": "4117219ef930811ca310f31110a9e3e7",
+   "url": "https://app.notion.com/p/mapbiomas_prerelease_riscos_2025-tabelas-figuras-4117219ef930811ca310f31110a9e3e7",
+   "nome": "mapbiomas_prerelease_riscos_2025 (tabelas + figuras)",
+   "formato": "XLSX",
+   "pasta": "mapbiomas_prerelease_riscos_2025",
+   "unidades": [
+    "Brasil",
+    "Bioma",
+    "UF",
+    "Município"
+   ],
+   "periodo": "1985–2025",
+   "link": null,
+   "notas": "Planilha multi-aba, 6 tabelas completas, PNG/PDF"
+  },
+  {
+   "id": "4117219ef9308137aed6cb3ebbd125c9",
+   "url": "https://app.notion.com/p/M-dulo-Urbano-vegurb-biomas-mun-slums-xlsx-4117219ef9308137aed6cb3ebbd125c9",
+   "nome": "Módulo Urbano vegurb (biomas, mun, slums).xlsx",
+   "formato": "XLSX",
+   "pasta": "Drive (qualquer pasta)",
+   "unidades": [
+    "Bioma",
+    "Município",
+    "Favela"
+   ],
+   "periodo": "1985–2025",
+   "link": null,
+   "notas": "urb_by_biomes_/urb_by_mun_/slums_mapbiomas_col11-vegurb.xlsx"
+  },
+  {
+   "id": "4117219ef9308149b5f5dc0d38d48fd5",
+   "url": "https://app.notion.com/p/mapbiomas_exports_col11_biome_landslides-4117219ef9308149b5f5dc0d38d48fd5",
+   "nome": "mapbiomas_exports_col11_biome_landslides",
+   "formato": "CSV",
+   "pasta": "mapbiomas_exports_col11_biome_landslides",
+   "unidades": [
+    "Bioma"
+   ],
+   "periodo": "1985–2025 · anual",
+   "link": null,
+   "notas": ""
+  },
+  {
+   "id": "4117219ef9308151a80af1b414620b72",
+   "url": "https://app.notion.com/p/mapbiomas_exports_col11_favelas_landslides-4117219ef9308151a80af1b414620b72",
+   "nome": "mapbiomas_exports_col11_favelas_landslides",
+   "formato": "CSV",
+   "pasta": "mapbiomas_exports_col11_favelas_landslides",
+   "unidades": [
+    "Favela"
+   ],
+   "periodo": "1985–2025 · anual",
+   "link": null,
+   "notas": ""
+  },
+  {
+   "id": "4117219ef9308159a03ad53e6e5ac7c8",
+   "url": "https://app.notion.com/p/stats_carta_-combination-interation2_v7-_todas_v7-csv-4117219ef9308159a03ad53e6e5ac7c8",
+   "nome": "stats_carta_<combination|interation2_v7>_todas_v7.csv",
+   "formato": "CSV",
+   "pasta": "Dados Monitor Novo",
+   "unidades": [
+    "Bioma"
+   ],
+   "periodo": "2019–2025 · mensal",
+   "link": null,
+   "notas": "Por carta × bioma"
+  },
+  {
+   "id": "4117219ef930817a900ee18cf4121b13",
+   "url": "https://app.notion.com/p/mapbiomas_exports_col11_biome_flood_risks-4117219ef930817a900ee18cf4121b13",
+   "nome": "mapbiomas_exports_col11_biome_flood_risks",
+   "formato": "CSV",
+   "pasta": "mapbiomas_exports_col11_biome_flood_risks",
+   "unidades": [
+    "Bioma"
+   ],
+   "periodo": "1985–2025 · anual",
+   "link": null,
+   "notas": ""
+  },
+  {
+   "id": "4117219ef9308188a803e3b715f59ce6",
+   "url": "https://app.notion.com/p/mapbiomas_exports_col11_favelas_flood_risks-4117219ef9308188a803e3b715f59ce6",
+   "nome": "mapbiomas_exports_col11_favelas_flood_risks",
+   "formato": "CSV",
+   "pasta": "mapbiomas_exports_col11_favelas_flood_risks",
+   "unidades": [
+    "Favela"
+   ],
+   "periodo": "1985–2025 · anual",
+   "link": null,
+   "notas": "Colunas cd_fcu, area_c1…c3; uma tarefa por ano"
+  },
+  {
+   "id": "4117219ef930818eb847c950b34e1bf0",
+   "url": "https://app.notion.com/p/monitor_stats_-s-rie-_-ano-csv-ROIs-4117219ef930818eb847c950b34e1bf0",
+   "nome": "monitor_stats_<série>_<ano>.csv (ROIs)",
+   "formato": "CSV",
+   "pasta": "monitor_agua_rois",
+   "unidades": [
+    "ROI"
+   ],
+   "periodo": "2019–2025 · mensal",
+   "link": null,
+   "notas": "Séries combina7, Comb_Monitor, int2, C5 por ROI; inclui _PAM_CAA"
+  },
+  {
+   "id": "4117219ef93081948ed8e0a54e1546dd",
+   "url": "https://app.notion.com/p/datas_suspeitas-resumo_brasil_biomas_v7-csv-figuras-4117219ef93081948ed8e0a54e1546dd",
+   "nome": "datas_suspeitas / resumo_brasil_biomas_v7.csv + figuras",
+   "formato": "CSV",
+   "pasta": "Dados Monitor Novo (/figuras)",
+   "unidades": [
+    "Brasil",
+    "Bioma"
+   ],
+   "periodo": "",
+   "link": null,
+   "notas": "Saída do Colab v7"
+  },
+  {
+   "id": "4117219ef93081ab84c0fa9e068f787d",
+   "url": "https://app.notion.com/p/monitor_stats_-combina-o-_-ano-csv-cartas-4117219ef93081ab84c0fa9e068f787d",
+   "nome": "monitor_stats_<combinação>_<ano>.csv (cartas)",
+   "formato": "CSV",
+   "pasta": "monitor_agua_estatisticas",
+   "unidades": [
+    "Bioma"
+   ],
+   "periodo": "mensal",
+   "link": null,
+   "notas": "Água por carta e combinação; códigos 1–4 detecção, 5–8 inclusão"
+  },
+  {
+   "id": "4117219ef93081c8ac9ad5231aab5cc3",
+   "url": "https://app.notion.com/p/monitor_stats_raw_-sensor-_-ano-csv-4117219ef93081c8ac9ad5231aab5cc3",
+   "nome": "monitor_stats_raw_<sensor>_<ano>.csv",
+   "formato": "CSV",
+   "pasta": "monitor_agua_rois",
+   "unidades": [
+    "ROI"
+   ],
+   "periodo": "anos do asset · mensal",
+   "link": null,
+   "notas": "Área por classe do raw (Sentinel/HLS) nas 23 ROIs; formato longo"
+  },
+  {
+   "id": "4117219ef93081d7b4d3fea8c03d0c3a",
+   "url": "https://app.notion.com/p/mapbiomas_favelas_riscos_col11_2025-xlsx-base-csv-gz-4117219ef93081d7b4d3fea8c03d0c3a",
+   "nome": "mapbiomas_favelas_riscos_col11_2025.xlsx + base csv.gz",
+   "formato": "XLSX",
+   "pasta": "saída do Colab de favelas",
+   "unidades": [
+    "Favela",
+    "Município"
+   ],
+   "periodo": "1985–2025",
+   "link": null,
+   "notas": ""
+  },
+  {
+   "id": "4117219ef93081ed94a9d940cebbfa95",
+   "url": "https://app.notion.com/p/mapbiomas_exports_col11_mun_flood_risks-4117219ef93081ed94a9d940cebbfa95",
+   "nome": "mapbiomas_exports_col11_mun_flood_risks",
+   "formato": "CSV",
+   "pasta": "mapbiomas_exports_col11_mun_flood_risks",
+   "unidades": [
+    "Município"
+   ],
+   "periodo": "1985–2025 · anual",
+   "link": null,
+   "notas": "Inundação por município × classe"
+  },
+  {
+   "id": "4117219ef93081ef9356ceac2316dcff",
+   "url": "https://app.notion.com/p/Asset-ESAI-esai_sp_v1-v2-v3-4117219ef93081ef9356ceac2316dcff",
+   "nome": "Asset ESAI (esai_sp_v1/v2/v3)",
+   "formato": "Asset GEE",
+   "pasta": "projects/pedrogalve/assets/",
+   "unidades": [
+    "UF",
+    "Brasil"
+   ],
+   "periodo": "",
+   "link": null,
+   "notas": "Export.image.toAsset"
+  },
+  {
+   "id": "4117219ef93081f2b318cc7708b20f55",
+   "url": "https://app.notion.com/p/painel_risco_climatico-zip-index-html-data-json-4117219ef93081f2b318cc7708b20f55",
+   "nome": "painel_risco_climatico.zip (index.html + data/*.json)",
+   "formato": "Outro",
+   "pasta": "download do Colab",
+   "unidades": [
+    "Brasil",
+    "Bioma",
+    "UF",
+    "Município",
+    "Favela"
+   ],
+   "periodo": "",
+   "link": "https://github.com/PedroGalve00/painel-risco-climatico-urbano",
+   "notas": "Site do painel para jornalistas (repo painel-risco-climatico-urbano)"
+  }
+ ]
+}
