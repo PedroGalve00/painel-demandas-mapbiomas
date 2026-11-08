@@ -161,6 +161,11 @@ code { font: .8rem/1.4 ui-monospace, "Cascadia Mono", Consolas, monospace; word-
   .busca { margin-left: 0; max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before { transition: none !important; scroll-behavior: auto !important; } }
+.doc{border-top:1px solid var(--linha,#ddd);padding-top:12px;font-size:14px;line-height:1.55}
+.doc h4{margin:14px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--c)}
+.doc p{margin:6px 0}.doc ul,.doc ol{margin:4px 0 8px;padding-left:20px}.doc li{margin:2px 0}
+.doc pre{background:rgba(0,0,0,.05);padding:8px 10px;border-radius:6px;overflow-x:auto;font-size:12px;white-space:pre-wrap;word-break:break-all}
+.doc code{font-size:12px;background:rgba(0,0,0,.05);padding:1px 4px;border-radius:3px;word-break:break-all}
 </style>
 </head>
 <body>
@@ -486,6 +491,26 @@ function desenharCatalogo() {
 }
 
 // ---------- gaveta de detalhes ----------
+function docHTML(txt) {
+  if (!txt) return null;
+  const out = []; let lista = null, cod = null;
+  const inline = t => { const f = document.createDocumentFragment();
+    t.split(/(`[^`]+`)/).forEach(p => f.append(p.startsWith("`") && p.endsWith("`") && p.length > 2 ? el("code", {}, p.slice(1, -1)) : p)); return f; };
+  for (const bruta of txt.split("\n")) {
+    const l = bruta.trimEnd();
+    if (l.trim().startsWith("```")) { if (cod) { out.push(el("pre", {}, cod.join("\n"))); cod = null; } else { lista = null; cod = []; } continue; }
+    if (cod) { cod.push(bruta); continue; }
+    const m = l.match(/^\s*(?:[-•*]|(\d+)[.)])\s+(.*)$/);
+    if (m) { const tag = m[1] ? "ol" : "ul"; if (!lista || lista.tagName.toLowerCase() !== tag) { lista = el(tag, {}); out.push(lista); }
+      lista.append(el("li", {}, inline(m[2]))); continue; }
+    lista = null;
+    if (!l.trim()) continue;
+    if (/:$/.test(l) && l.length < 60) out.push(el("h4", {}, l.slice(0, -1)));
+    else out.push(el("p", {}, inline(l)));
+  }
+  if (cod) out.push(el("pre", {}, cod.join("\n")));
+  return el("section", { class: "doc" }, el("h3", {}, "Documentação"), out);
+}
 function abrir(id) {
   const o = IDX[id], k = KIND[id];
   if (!o) return;
@@ -518,7 +543,7 @@ function abrir(id) {
     campos = [...campo("Teamspace", o.teamspace), ...campo("Descrição", o.descricao), ...campo("Colaboradores", o.colaboradores)];
     rels = [rel("Demandas", D.demandas.filter(d => (d.frentes || []).includes(o.id))), rel("Scripts", D.scripts.filter(s => (s.frentes || []).includes(o.id)))];
   }
-  $("gCorpo").replaceChildren(el("dl", { class: "campos" }, campos), ...rels,
+  $("gCorpo").replaceChildren(el("dl", { class: "campos" }, campos), ...[docHTML(o.doc)].filter(Boolean), ...rels,
     el("a", { class: "btn sec", href: o.url, target: "_blank", rel: "noopener", style: "justify-self:start" }, "Editar no Notion"));
   $("veu").hidden = false; g.setAttribute("aria-hidden", "false");
   requestAnimationFrame(() => { $("veu").classList.add("on"); g.classList.add("on"); });

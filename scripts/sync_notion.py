@@ -79,18 +79,18 @@ def linha(pg, mapa):
 
 
 MAPAS = {
-    "demandas": {"titulo": "Demanda", "codigo": "ID", "status": "Status", "prioridade": "Prioridade",
+    "demandas": {"doc": "Documentação", "titulo": "Demanda", "codigo": "ID", "status": "Status", "prioridade": "Prioridade",
                  "inicio": "Início", "prazo": "Prazo", "avanco": "Avanço (%)", "responsavel": "Responsável",
                  "solicitante": "Solicitante", "frentes": "Frente", "scripts": "Scripts",
                  "entregavel": "Entregável", "notas": "Notas", "editado": "Editado em"},
-    "frentes": {"nome": "Frente", "teamspace": "Teamspace", "descricao": "Descrição",
+    "frentes": {"doc": "Documentação", "nome": "Frente", "teamspace": "Teamspace", "descricao": "Descrição",
                 "colaboradores": "Colaboradores", "ativa": "Ativa"},
-    "scripts": {"nome": "Script", "tipo": "Tipo", "status": "Status", "versao": "Versão",
+    "scripts": {"doc": "Documentação", "nome": "Script", "tipo": "Tipo", "status": "Status", "versao": "Versão",
                 "descricao": "Descrição", "frentes": "Frente", "assets": "Assets usados",
                 "le": "Lê dados", "gera": "Gera dados", "arquivo": "Arquivo no projeto", "link": "Link"},
-    "assets": {"nome": "Asset", "path": "Path", "origem": "Origem", "tema": "Tema",
+    "assets": {"doc": "Documentação", "nome": "Asset", "path": "Path", "origem": "Origem", "tema": "Tema",
                "versao": "Coleção/versão", "notas": "Notas"},
-    "dados": {"nome": "Arquivo", "formato": "Formato", "pasta": "Pasta Drive",
+    "dados": {"doc": "Documentação", "nome": "Arquivo", "formato": "Formato", "pasta": "Pasta Drive",
               "unidades": "Unidade espacial", "periodo": "Período", "link": "Link", "notas": "Notas"},
 }
 
