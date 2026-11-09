@@ -1,10 +1,11 @@
 {
- "atualizado": "2026-11-07T21:29:24+00:00",
+ "atualizado": "2026-11-09T00:40:02+00:00",
  "notion": "https://www.notion.so/4117219ef930815dac67eb445b03dce4",
  "demandas": [
   {
    "id": "4117219ef9308133a596f9af82a05aa1",
    "url": "https://app.notion.com/p/Escalar-ESAI-de-S-o-Paulo-para-o-Brasil-4117219ef9308133a596f9af82a05aa1",
+   "doc": "Contexto:\nO ESAI v3 já roda por município (teste em Gilbués-PI) quase só com dados MapBiomas. Falta a versão Brasil.\n\nPassos:\n1. Validar a v3 em mais núcleos conhecidos (Irauçuba-CE, Caicó-RN, Cabrobó-PE).\n2. Ligar APLICAR_MASCARA_TERRAS_SECAS (IA ≤ 0,65, recorte UNCCD).\n3. Rodar o Brasil por tiles ou por estado, exportando direto para asset (sem visualização interativa).\n4. Estatísticas de área por classe, por estado e bioma.\n\nPronto quando:\nAsset esai_brasil_v3 exportado e tabela de área por classe conferida.",
    "titulo": "Escalar ESAI de São Paulo para o Brasil",
    "codigo": "DEM-5",
    "status": "Em andamento",
@@ -22,11 +23,12 @@
    ],
    "entregavel": "",
    "notas": "Na versão Brasil, ligar a máscara de terras secas (IA < 0,65)",
-   "editado": "2026-11-07T18:43:00.000Z"
+   "editado": "2026-11-08T21:49:00.000Z"
   },
   {
    "id": "4117219ef9308142b728c560087f97cc",
    "url": "https://app.notion.com/p/Confirmar-invers-o-das-classes-inunda-o-deslizamento-no-c-digo-GEE-de-origem-4117219ef9308142b728c560087f97cc",
+   "doc": "Contexto:\nAssumimos que a inundação tem escala invertida (1 = Muito alto) e o deslizamento não (3 = Muito alto). O painel de jornalistas usa CLASSES_ORDEM = [1, 2, 3], que reproduz o factsheet (Pampa com 59% em Muito alto). Falta confirmar na fonte.\n\nPassos:\n1. Abrir o código do GEE que gerou flood_step2_v3_c11 e landslide_step4_c11.\n2. Ver como cada classe é atribuída.\n3. Ajustar CLASSES no notebook e CLASSES_ORDEM no painel, se preciso.\n\nPronto quando:\nA legenda dos dois temas está confirmada e anotada nos assets e nas planilhas.",
    "titulo": "Confirmar inversão das classes inundação × deslizamento no código GEE de origem",
    "codigo": "DEM-3",
    "status": "A fazer",
@@ -45,11 +47,12 @@
    ],
    "entregavel": "",
    "notas": "",
-   "editado": "2026-11-07T18:43:00.000Z"
+   "editado": "2026-11-08T21:49:00.000Z"
   },
   {
    "id": "4117219ef93081449ebdeaa18ca9c804",
    "url": "https://app.notion.com/p/Reexportar-assets-categ-ricos-do-Monitor-com-pir-mide-MODE-4117219ef93081449ebdeaa18ca9c804",
+   "doc": "Contexto:\nOs assets categóricos do Monitor (detection, detection_HLS, combination, interation2) foram exportados com pirâmide MEAN. No zoom afastado aparecem médias (ex.: média de 1 e 13 = 7), ou seja, classes falsas. A política não pode ser trocada depois.\n\nPassos:\n1. Reexportar a partir do próprio asset (o nível 0 guarda os pixels originais), com pyramidingPolicy {'.default': 'mode'}.\n2. Usar crs e crsTransform da imagem original (mesma grade de 10 m) e copyProperties para manter year e version.\n3. Criar a ImageCollection de destino antes; com muitas cartas, rodar o laço em Python com ee.batch.Export.image.toAsset().\n\nPaliativo enquanto isso:\nNo app, trocar .mosaic().eq(1) por .gte(0.5) nas detecções 0/1.\n\nPronto quando:\nO app mostra as mesmas classes no zoom afastado e no próximo.",
    "titulo": "Reexportar assets categóricos do Monitor com pirâmide MODE",
    "codigo": "DEM-4",
    "status": "Backlog",
@@ -67,11 +70,12 @@
    ],
    "entregavel": "",
    "notas": "Política de pirâmide não muda depois; só reexportando",
-   "editado": "2026-11-07T18:43:00.000Z"
+   "editado": "2026-11-08T21:49:00.000Z"
   },
   {
    "id": "4117219ef9308147a21ce7c63accbe05",
    "url": "https://app.notion.com/p/Levar-filtro-temporal-moda-espacial-do-Pampa-para-os-seis-biomas-4117219ef9308147a21ce7c63accbe05",
+   "doc": "Contexto:\nNo piloto do Pampa, o filtro temporal + moda espacial por segmento limpou o mapa de corpos d'água da Coleção 5. Agora é escalar.\n\nPassos:\n1. Rodar o pipeline bioma a bioma, conferindo estatísticas intermediárias antes de cada exportação.\n2. Exportar os intermediários como asset (não encadear tudo numa execução só).\n3. Montar a composição nacional.\n\nCuidado:\nunmask(0) no mosaico faz a classe 0 dominar o segmento; reaplique a máscara original depois das operações lógicas.\n\nPronto quando:\nOs seis biomas processados e a composição nacional exportada.",
    "titulo": "Levar filtro temporal + moda espacial do Pampa para os seis biomas",
    "codigo": "DEM-6",
    "status": "Backlog",
@@ -87,11 +91,12 @@
    "scripts": [],
    "entregavel": "",
    "notas": "",
-   "editado": "2026-11-07T18:43:00.000Z"
+   "editado": "2026-11-08T21:49:00.000Z"
   },
   {
    "id": "4117219ef930814ebf52c591619d1ff1",
    "url": "https://app.notion.com/p/Exportar-exposi-o-popula-o-rea-urbana-e-favelas-sob-risco-4117219ef930814ebf52c591619d1ff1",
+   "doc": "Contexto:\nO factsheet hoje fala em hectares. A manchete que mais comunica é de pessoas: quantos moradores, quanta área urbana e quantas favelas estão em risco muito alto.\n\nPassos:\n1. Usar o snippet da seção 10 do notebook do pré-release (WorldPop 100 m + C11 classe 24 + risco).\n2. Exportar por município para mapbiomas_exports_col11_mun_exposicao.\n3. Repetir com os polígonos de favelas.\n4. Incorporar no notebook e gerar as frases de destaque.\n\nPronto quando:\nTabela de população e área urbana por classe de risco, por município e favela, com a ressalva \"exposição não é dano\" no texto principal.",
    "titulo": "Exportar exposição: população, área urbana e favelas sob risco",
    "codigo": "DEM-2",
    "status": "Backlog",
@@ -110,11 +115,12 @@
    ],
    "entregavel": "CSV em mapbiomas_exports_col11_mun_exposicao",
    "notas": "",
-   "editado": "2026-11-07T18:43:00.000Z"
+   "editado": "2026-11-08T21:49:00.000Z"
   },
   {
    "id": "4117219ef9308198be79cb010a931793",
    "url": "https://app.notion.com/p/Trocar-denominador-do-para-rea-urbana-4117219ef9308198be79cb010a931793",
+   "doc": "Contexto:\nOs assets de risco cobrem só área urbana, mas o % do território no pré-release usa a área total do município/bioma como denominador. Isso deixa os percentuais minúsculos e difíceis de comparar.\n\nPassos:\n1. Exportar a área urbana (C11, classe 24) por município e bioma, 1985–2025.\n2. Trocar o denominador em calcular_denominadores() do notebook do pré-release.\n3. Refazer os gráficos e mapas de % e conferir com os números do factsheet.\n\nPronto quando:\nTodas as tabelas e figuras de % usam \"% da área urbana\" e o rótulo dos eixos diz isso.",
    "titulo": "Trocar denominador do % para área urbana",
    "codigo": "DEM-1",
    "status": "Backlog",
@@ -132,13 +138,14 @@
    ],
    "entregavel": "",
    "notas": "Assets de risco são só urbanos; hoje o % usa o território inteiro",
-   "editado": "2026-11-07T18:43:00.000Z"
+   "editado": "2026-11-08T21:49:00.000Z"
   }
  ],
  "frentes": [
   {
    "id": "4117219ef9308114b1efeb6f2e4e3cd0",
    "url": "https://app.notion.com/p/Desertifica-o-ESAI-4117219ef9308114b1efeb6f2e4e3cd0",
+   "doc": "Objetivo:\nMapa de suscetibilidade à desertificação do Brasil com dados da plataforma MapBiomas, pelo índice ESAI (MEDALUS).\n\nMétodo:\nESAI = (CQI × SQI × VQI × MQI)^(1/4); classes de Kosmas (N, P, F1–F3, C1–C3).\n\nEtapas:\n- v1: São Paulo com SoilGrids\n- v2: São Paulo com MapBiomas Solo, Atmosfera e Água\n- v3: recorte configurável, teste no núcleo de Gilbués-PI\n- Próximo: Brasil inteiro com a máscara de terras secas (IA ≤ 0,65, recorte UNCCD)\n\nOutros núcleos para validar:\nIrauçuba-CE, Seridó (Caicó-RN), Cabrobó-PE.",
    "nome": "Desertificação (ESAI)",
    "teamspace": "Risco Climático",
    "descricao": "Mapa de suscetibilidade à desertificação (ESAI) com dados MapBiomas — teste SP, escopo Brasil",
@@ -148,6 +155,7 @@
   {
    "id": "4117219ef930811aa62efb1b4049fb7d",
    "url": "https://app.notion.com/p/Botos-4117219ef930811aa62efb1b4049fb7d",
+   "doc": "Objetivo:\nAlerta precoce de temperatura da água para botos (WWF / MapBiomas Água), depois das mortandades por calor nos lagos amazônicos.\n\nRecortes:\n- Lagos amazônicos (buffers pré-calculados)\n- Tocantins-Araguaia (buffer dinâmico sobre Areas_Susceptiveis_Botos)\n\nDados:\nMODIS LST 8 dias (MOD11A2); no ano corrente, até o último mês com dado.\n\nLimiares (Fleischmann et al., Science 2025):\nalerta > 32 °C, pré-crítico > 35 °C, crítico > 37 °C, letal > 40 °C.\n\nFerramentas:\nApp de alerta e exportacao_estatisticas_lagos.js; webgis-botos no GitHub.\n\nPessoas:\nWallace Silva.",
    "nome": "Botos",
    "teamspace": "Água",
    "descricao": "Alerta precoce de temperatura da água para botos (WWF/MapBiomas Água): lagos amazônicos e Tocantins-Araguaia",
@@ -157,6 +165,7 @@
   {
    "id": "4117219ef9308186a7facaa6fdda583d",
    "url": "https://app.notion.com/p/Risco-Clim-tico-Pr-release-Factsheet-4117219ef9308186a7facaa6fdda583d",
+   "doc": "Objetivo:\nFactsheet de pré-release da Coleção 11 de Riscos Climáticos: suscetibilidade a inundação e a deslizamento em área urbana, 1985–2025, e o painel online para jornalistas.\n\nRegras:\n- Sempre comparar 2025 × 2024 × média histórica\n- Inundação em tons de azul; deslizamento em vermelho/laranja\n- Classes na ordem Médio → Alto → Muito alto\n- Tabelas 1985–2025 por bioma, estado e município para os dois temas (6 tabelas)\n- Manchetes com números citáveis, não só gráficos padrão\n\nDados:\nColeção 2 interna (flood_step2_v3_c11, landslide_step4_c11) exportada para as pastas mapbiomas_exports_col11_*.\n\nEntregas:\nNotebook do pré-release, painel Risco Climático e Urbano (com Módulo Urbano e Luz Noturna).\n\nPendências:\nDenominador urbano, export de exposição, confirmação da inversão de classes.",
    "nome": "Risco Climático – Pré-release / Factsheet",
    "teamspace": "Risco Climático",
    "descricao": "Factsheet de pré-release C11: inundação e deslizamento urbano, comparação 2025 × 2024 × média histórica",
@@ -166,6 +175,7 @@
   {
    "id": "4117219ef93081bdac84c875fdf1a7fc",
    "url": "https://app.notion.com/p/Risco-Clim-tico-Favelas-4117219ef93081bdac84c875fdf1a7fc",
+   "doc": "Objetivo:\nRisco de inundação e deslizamento nas Favelas e Comunidades Urbanas (IBGE 2022), 1985–2025.\n\nDados:\n- Polígonos fcu_mb_v3_2025 (cd_fcu, nm_fcu, cd_mun, sigla_uf)\n- Exports por favela, uma tarefa por ano: mapbiomas_exports_col11_favelas_flood_risks e _landslides\n\nEntregas:\nColab de favelas (rankings, séries, base completa) e o recorte de favelas no painel de jornalistas.\n\nCuidados:\n- Polígonos de 2022 fixos na série toda\n- Risco = exposição, não dano; dado sensível, escrever isso no texto principal",
    "nome": "Risco Climático – Favelas",
    "teamspace": "Risco Climático",
    "descricao": "Estatísticas de risco (inundação/deslizamento) em favelas e comunidades urbanas, Coleção 11",
@@ -175,6 +185,7 @@
   {
    "id": "4117219ef93081c1bfeeeb46d61e58f7",
    "url": "https://app.notion.com/p/gua-Cole-o-5-4117219ef93081c1bfeeeb46d61e58f7",
+   "doc": "Objetivo:\nMapeamento de corpos d'água da Coleção 5 do MapBiomas Água.\n\nPipeline GT-Água (17 etapas):\nfrequência anual de água, segmentação SNIC, classificação Random Forest, filtro temporal, moda espacial por segmento e composição nacional.\n\nSituação:\nO filtro temporal + moda espacial foi validado no piloto do Pampa. Próximo passo: levar para os seis biomas.\n\nAssets:\nwater_bodies_v4 (e a versão filtered_corr_v4), water_annual_v4.\n\nPessoas:\nJuliano Schirmbeck.",
    "nome": "Água – Coleção 5",
    "teamspace": "Água",
    "descricao": "Corpos d'água C5: filtro temporal, moda espacial por segmento, escala do Pampa para os seis biomas",
@@ -184,6 +195,7 @@
   {
    "id": "4117219ef93081d4bcc6c954a1cf2640",
    "url": "https://app.notion.com/p/gua-Monitor-4117219ef93081d4bcc6c954a1cf2640",
+   "doc": "Objetivo:\nValidar e comparar as versões do Monitor de Água (BETA1): detecções mensais de água com Sentinel-2 e HLS, combinações em cascata e as iterações interation2, contra a Coleção 5 mensal.\n\nComo o dado é montado:\n- Raw: detection (Sentinel) e detection_HLS, version 5, bandas w_1…w_12 por carta\n- Combinações: cascata detecção do mês → mês anterior → inclusão (combina1–7; Combina do Juliano em version 6)\n- interation2 / interation2_orig: segunda iteração (version_combination 6); v7 com classes 10/20/30/40/13/14\n\nO que acompanhamos:\n- Área de água mensal por ROI (23 ROIs), por carta, por bioma e Brasil\n- Datas suspeitas (saltos, meses fora do padrão, não observado alto)\n- Diferença % entre versões\n\nFerramentas:\napp_monitor_comparacao.js (visual), scripts de estatística por ROI e carta, Colabs de gráficos.\n\nPessoas:\nJuliano Schirmbeck (desenho da classificação e do pipeline).",
    "nome": "Água – Monitor",
    "teamspace": "Água",
    "descricao": "Monitor de Água (BETA1): app GEE de validação Sentinel/HLS, combinações/cascata, estatísticas por ROI e território",
@@ -193,6 +205,7 @@
   {
    "id": "4117219ef93081d9aa94d490ce1acd21",
    "url": "https://app.notion.com/p/Simulador-Lima-4117219ef93081d9aa94d490ce1acd21",
+   "doc": "Objetivo:\nSimulador de suscetibilidade a inundação para Lima (Peru), adaptado do método do Brasil (SCS-CN × HAND).\n\nComo funciona:\n- Curva Número a partir do MapBiomas Peru C3 (urbano = classe 24)\n- Mancha por HAND (users/gena/GlobalHAND/30m/hand-1000)\n- Profundidade classificada em baixa/média/alta com cortes calibrados automaticamente contra o JRC GloFAS a cada execução\n- Se a sobreposição com o JRC for < 0,05 km², volta para 0,5 m e 1,5 m e avisa\n\nConstantes:\nCOEF_LARGURA_PADRAO = 2.2; MAX_DIST_PADRAO = 30000 m; MIN_PIXELS_PADRAO = 3; buffer padrão 5.000 m.\n\nCuidados:\n- A legenda certa é a do PDF oficial do MapBiomas Peru\n- A fórmula de Kirpich dá Tc irreal em bacias grandes",
    "nome": "Simulador Lima",
    "teamspace": "Risco Climático",
    "descricao": "Simulador de suscetibilidade a inundação em Lima (Peru): SCS-CN × HAND, calibração automática com JRC GLOFAS",
@@ -204,6 +217,7 @@
   {
    "id": "4117219ef9308100bb35eeb1bef2a532",
    "url": "https://app.notion.com/p/exportacao_combinacoes_asset-js-4117219ef9308100bb35eeb1bef2a532",
+   "doc": "O que faz:\nGera o dado mensal de água de cada combinação por carta e ano e exporta como imagem para a coleção combination. Cada imagem tem 12 bandas (w_1…w_12).\n\nEntradas:\n- .../BETA1/detection e detection_HLS (version 5)\n\nSaída:\n- Imagens em projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/combination\n- Propriedades: combination_code, version, grid_name, year\n\nLegenda do pixel:\n- 1 Det. Sentinel (mês), 2 Det. HLS (mês), 3 Det. Sentinel (mês −1), 4 Det. HLS (mês −1)\n- 5–6 inclusão não observada (mês); 7–8 idem (mês −1)\n- 9–12 inclusão observada\n- 0 sem água; ÁGUA = pixel > 0\n\nComo rodar:\n1. Ajuste CARTAS, ANOS e COMBINACOES (uma tarefa por combinação × carta × ano).\n2. Rode e dê RUN nas tarefas.\n\nCuidados:\n- O combina7 (Mari) não usa a cascata padrão (seção 4b).\n- Exporte com pirâmide MODE; a política não muda depois.",
    "nome": "exportacao_combinacoes_asset.js",
    "tipo": "GEE JS",
    "status": "Ativo",
@@ -224,6 +238,7 @@
   {
    "id": "4117219ef930811e8fc6d5250856f79a",
    "url": "https://app.notion.com/p/monitor_agua_v7_brasil_biomas-ipynb-4117219ef930811e8fc6d5250856f79a",
+   "doc": "O que faz:\nCompara as duas versões do Monitor v7, combination e interation2_v7, em área de água mensal de 2019 a 2025, para o Brasil, cada bioma e cada carta. Não usa Earth Engine.\n\nEntradas (pasta Dados Monitor Novo):\n- stats_brasil_ e stats_bioma_ combination_v7 / interation2_v7_v7 .csv\n- stats_carta_combination_todas_v7.csv e stats_carta_interation2_v7_todas_v7.csv (célula 14)\n\nSaídas:\n- datas_suspeitas_brasil_biomas_v7.csv (meses suspeitos, tipo e severidade)\n- resumo_brasil_biomas_v7.csv (mediana; 2025 × 2024 × média 2019–2024)\n- Figuras PNG transparentes 300 dpi em Dados Monitor Novo/figuras\n\nComo rodar:\n1. Rode as células em ordem; a 2 pede o Drive e para se faltar arquivo, houver mês duplicado ou os biomas não somarem o Brasil.\n2. Para uma carta, use a célula 14 (bioma, carta, Gerar gráficos).\n\nParâmetros:\n- METRICA: ha_agua (10+20+30+40+13+14) ou uma classe\n- LIM: limiares das datas suspeitas, iguais aos do app\n- LIM_NAO_OBS: fração não observada que marca o mês\n\nTipos de data suspeita:\n- salto: muito diferente dos meses vizinhos\n- mes: fora do usual para o mês nos outros anos\n- obs: muita área não observada\n- m1: classes 30/40 zeradas (faltou o mês anterior)\n- dif: diferença entre versões fora do padrão\n\nCuidados:\n- Diferença % = (Int2 − Combina) / Combina.\n- Medianas por classe usam 2020–2025 (jan/2019 não tem mês anterior).",
    "nome": "monitor_agua_v7_brasil_biomas.ipynb",
    "tipo": "Colab",
    "status": "Ativo",
@@ -246,6 +261,7 @@
   {
    "id": "4117219ef930813784ebd84d5fc4e8e3",
    "url": "https://app.notion.com/p/exportacao_estatisticas_rois_int2-js-4117219ef930813784ebd84d5fc4e8e3",
+   "doc": "O que faz:\nCalcula a área de água mensal das duas versões do interation2 (int2_new e int2_ori) nas 23 ROIs e mostra num painel quais cartas têm cada ano. Exporta só tabela, no formato do Comb_Monitor.\n\nEntradas:\n- .../BETA1/interation2 (int2_new) e .../BETA1/interation2_orig (int2_ori), version_combination = 6\n\nSaídas:\n- monitor_stats_<serie><ano>.csv em monitor_agua_rois (Int2_new_roi, Int2_ori_roi)\n- agua_total_ha (classes 1, 2, 3, 4, 13, 14), area_coberta_ha, classe<cod>_ha\n\nComo rodar:\n1. Rode com SO_DIAGNOSTICO = true e confira o painel (cartas × anos presentes × faltando).\n2. Troque para false e dê RUN (1 tarefa por asset × ano).\n3. Leia no graficos_rois_comparacao.ipynb.\n\nParâmetros:\n- CLASSES_AGUA = [1, 2, 3, 4, 13, 14]\n- CAMPO_CARTA = 'grid_name' (troque se aparecer sem_nome)\n- SO_ANOS: vazio = todos\n\nCuidados:\n- area_coberta_ha = 0 é SEM DADO, não água zero.\n- O int2 só tem pixel onde há água; a cobertura vem da geometria da carta.",
    "nome": "exportacao_estatisticas_rois_int2.js",
    "tipo": "GEE JS",
    "status": "Ativo",
@@ -268,6 +284,7 @@
   {
    "id": "4117219ef930813aaaf6f3bfc29939ed",
    "url": "https://app.notion.com/p/exportacao_estatisticas_rois_comb_monitor-js-4117219ef930813aaaf6f3bfc29939ed",
+   "doc": "O que faz:\nLê o Combina do Juliano já exportado (combination, version 6) e calcula a área de água mensal nas mesmas 23 ROIs, com o nome de série Comb_Monitor.\n\nEntrada:\n- .../BETA1/combination, version 6, combina = combina7 (Amazônia, Cerrado, Pantanal) e combina8 (Mata Atlântica)\n\nSaída:\n- monitor_stats_Comb_Monitor_<ano>.csv em monitor_agua_rois (2019–2025)\n- area_1…area_12 = 0 (outra legenda); o total vai em agua_total_ha\n- area_coberta_ha: área da ROI com pixel válido no mês\n\nComo rodar:\n1. Na primeira vez, TESTAR_ANTES = true e confira o histograma; se água não for \"valor > 0\", preencha AGUA_VALORES.\n2. Dê RUN (1 tarefa por ano).\n\nParâmetros:\n- SO_PREFIXOS: filtra ROIs pelo prefixo; vazio = as 23\n- COMBINA = ['combina7', 'combina8']\n\nCuidado:\nPampa e Caatinga não estão no asset (cobertura 0 = sem dado); use o exportacao_estatisticas_combina7_rois_pam_caa.js.",
    "nome": "exportacao_estatisticas_rois_comb_monitor.js",
    "tipo": "GEE JS",
    "status": "Ativo",
@@ -289,6 +306,7 @@
   {
    "id": "4117219ef93081548ecec555fe76074f",
    "url": "https://app.notion.com/p/esai_desertificacao_sp_v1-ipynb-4117219ef93081548ecec555fe76074f",
+   "doc": "O que é:\nVersão em Python (Colab + geemap) do ESAI SP v1, com a mesma lógica do script JS. A célula 3 é diagnóstica: confira antes de seguir.\n\nSaída:\n- projects/pedrogalve/assets/desertificacao/esai_sp_v1\n\nCuidados:\n- Usa o fogo da Coleção 5 (fire/collection5); os scripts JS novos usam a 5.1.\n- Se o máximo da frequência de fogo passar de ~41, o valor está codificado.\n\nStatus:\nSubstituído pelos scripts JS v2 e v3.",
    "nome": "esai_desertificacao_sp_v1.ipynb",
    "tipo": "Colab",
    "status": "Substituído",
@@ -312,6 +330,7 @@
   {
    "id": "4117219ef9308155aca1f32f0392767c",
    "url": "https://app.notion.com/p/exportacao_estatisticas_raw_rois-js-4117219ef9308155aca1f32f0392767c",
+   "doc": "O que faz:\nCalcula a área de cada classe do dado bruto do Monitor (detecções Sentinel e HLS, version 5) nas 23 ROIs, mês a mês. Não fixa a legenda: todas as classes saem no CSV, para conferir qual é água detectada e qual é não observada.\n\nEntradas:\n- .../BETA1/detection e .../BETA1/detection_HLS (version 5)\n- 23 ROIs definidas no script (3 PAN, 3 MAT, 4 AMA, 5 CER, 5 CAA, 3 PAM)\n\nSaídas:\n- monitor_stats_raw_<sensor>_<ano>.csv em monitor_agua_rois\n- Colunas: sensor, territorio, bioma, ano, mes, classe, area_ha, area_valida_ha, area_territorio_ha\n\nComo rodar:\n1. Cole no Code Editor e rode com SO_DIAGNOSTICO = true.\n2. Confira no Console as versions, os anos e a área por classe da ROI de teste.\n3. Troque para false, rode de novo e dê RUN nas tarefas (1 por sensor × ano).\n\nParâmetros:\n- SO_ANOS: vazio = todos os anos do asset\n- ROI_TESTE, ANO_TESTE, MES_TESTE: teste do diagnóstico\n- TILESCALE = 8 (máximo aceito: 16)\n\nCuidados:\n- O raw não tem version 6 (HLS só tem 4 e 5); a 6 é do combination/int2.\n- ROI × mês sem linha = sem carta naquele mês.\n- area_valida_ha = soma de todas as classes = área com dado.",
    "nome": "exportacao_estatisticas_raw_rois.js",
    "tipo": "GEE JS",
    "status": "Ativo",
@@ -334,6 +353,7 @@
   {
    "id": "4117219ef930815ea1f5feb5a555c371",
    "url": "https://app.notion.com/p/exportacao_estatisticas_combina7_rois_pam_caa-js-4117219ef930815ea1f5feb5a555c371",
+   "doc": "O que faz:\nO Combina do Juliano (version 6) não tem Pampa nem Caatinga. Este script calcula o combina7 direto das detecções nas 8 ROIs desses biomas e exporta só a tabela, com o nome de série Comb_Monitor.\n\nEntradas:\n- .../BETA1/detection e detection_HLS (version 5)\n- ROIs: CAA_canhotinho, CAA_canada, CAA_jatoba, CAA_jaboticaba, CAA_passagem, PAM_jacui, PAM_pelotas, PAM_oeste\n\nSaídas:\n- monitor_stats_Comb_Monitor_PAM_CAA_<ano>.csv em monitor_agua_rois (2019–2025, 7 tarefas)\n- O graficos_rois_comparacao lê sem mudança e usa estes arquivos no lugar das linhas sem dado\n\nComo rodar:\n1. SO_DIAGNOSTICO = true e confira o teste em CAA_passagem.\n2. Troque para false e dê RUN nas 7 tarefas.\n\nParâmetros:\n- Inclusão igual ao rois_v2: CHECK_5 = true, CHECK_ANUAL = true, o resto false\n- Nível base do combina7 (5 anos + anual): 40, 43, 45, 46, 50, 53, 55, 56\n\nCuidado:\narea_coberta_ha = área inteira da ROI (cálculo direto das detecções).",
    "nome": "exportacao_estatisticas_combina7_rois_pam_caa.js",
    "tipo": "GEE JS",
    "status": "Ativo",
@@ -356,17 +376,21 @@
   {
    "id": "4117219ef9308164916bf92ed94ea2ba",
    "url": "https://app.notion.com/p/esai_desertificacao_v3-js-4117219ef9308164916bf92ed94ea2ba",
+   "doc": "O que faz:\nMapa de suscetibilidade à desertificação pelo ESAI (MEDALUS; Kosmas et al., 1999), quase todo com dados MapBiomas. Teste no núcleo de Gilbués-PI.\n\nComo o índice é feito:\nESAI = (CQI × SQI × VQI × MQI)^(1/4); cada índice vai de 1 (protege) a 2 (degrada).\n- CQI clima: aridez P/ETP (TerraClimate), dias sem chuva (Atmosfera), perda de água (Água C5)\n- SQI solo: argila, areia, carbono e pedregosidade (Solo C3), declividade (NASADEM)\n- VQI vegetação: cobertura (C11) e frequência de fogo (Fogo C5.1)\n- MQI manejo: anos de uso antrópico e mudanças (C11), vigor da pastagem\n\nClasses de Kosmas:\n1 N não ameaçada (< 1,17), 2 P potencial, 3 F1, 4 F2, 5 F3, 6 C1, 7 C2, 8 C3 crítica alta (> 1,53)\n\nSaída:\n- projects/pedrogalve/assets/esai_<recorte>_v3 (ESAI, CLASSE, CQI, SQI, VQI, MQI, IA, PERDA_AGUA)\n\nComo rodar:\n1. Defina UF_NOME e MUN_NOME (FAO GAUL, sem acento). Outros núcleos: Irauçuba-CE, Caicó-RN, Cabrobó-PE.\n2. Rode, confira camadas e legenda e exporte pela aba Tasks.\n\nCuidados:\n- Estado inteiro estoura a memória na visualização: teste por município.\n- Na versão Brasil, ligar APLICAR_MASCARA_TERRAS_SECAS (IA ≤ 0,65).\n- Limiares calibrados no Mediterrâneo: compare pelo ESAI contínuo.",
    "nome": "esai_desertificacao_v3.js",
    "tipo": "GEE JS",
    "status": "Em desenvolvimento",
    "versao": "v3",
-   "descricao": "ESAI com dados MapBiomas (solo C3, fogo, LULC), recorte configurável",
+   "descricao": "ESAI v3 só com dados MapBiomas (exceto aridez e declividade); teste no núcleo de desertificação de Gilbués-PI",
    "frentes": [
     "4117219ef9308114b1efeb6f2e4e3cd0"
    ],
    "assets": [
     "4117219ef930814080f5d342855632c3",
+    "4127219ef930812685a9c9966ed542ab",
     "4117219ef930819c8b07df3191e348be",
+    "4117219ef93081fbb405ff97bc658a06",
+    "4127219ef93081cd8c55c5108eb1dc7c",
     "4117219ef9308122873afe10c39352cf",
     "4117219ef9308167992de904f63caa60",
     "4117219ef9308111ac8ad14e4143e3cc",
@@ -382,6 +406,7 @@
   {
    "id": "4117219ef9308166af34ffa60dbff346",
    "url": "https://app.notion.com/p/exportacao_estatisticas_combinacoes-js-4117219ef9308166af34ffa60dbff346",
+   "doc": "O que faz:\nCalcula a área de água mensal de cada combinação por carta (e bioma), com a mesma cascata do app. Uma tarefa por combinação × ano.\n\nEntradas:\n- .../BETA1/detection e detection_HLS (version 5)\n- Grade de cartas com bioma\n\nSaída:\n- monitor_stats_<combinacao>_<ano>.csv em monitor_agua_estatisticas\n- Por carta × mês: area_1…area_8, agua_deteccao_ha (1–4), agua_inclusao_ha (5–8), agua_total_ha\n\nComo rodar:\n1. Rode com o teste ligado e confira a escala nativa e a linha de teste.\n2. Dê RUN nas tarefas.\n3. Plote com graficos_combinacoes.ipynb.\n\nCuidados:\n- A cascata não sobrepõe códigos: as áreas somam sem dupla contagem.\n- Tarefas por ano falham menos e são fáceis de refazer.",
    "nome": "exportacao_estatisticas_combinacoes.js",
    "tipo": "GEE JS",
    "status": "Ativo",
@@ -404,6 +429,7 @@
   {
    "id": "4117219ef9308189a86ff164bcfe445b",
    "url": "https://app.notion.com/p/app_monitor_v5_revisado-js-4117219ef9308189a86ff164bcfe445b",
+   "doc": "O que faz:\nApp do Monitor de Água BETA1 para validar a detecção por Sentinel e HLS, feito com o Juliano. Painel único com seções 1 a 4; a seção 2 é o seletor de inclusão.\n\nLógica:\n- Pixel = motivo × 10 + classe_base; classes base: 1 água, 2 e 4 não água, 6 excluído, 7 não observado\n- Famílias de inclusão: 20–27 (Obs=1, Anual=1), 30–37 (0, 0), 40–47 (1, 0), 50–57 (0, 1)\n- Seletor: 5, 3 e 1 ano exclusivos; lógica OU entre as classes da família\n- Combinações 1–6: cascata validada; cada camada é um checkbox\n- Data B espelha a Data A pelo botão Sincronizar\n- HLS RGB: HLSL30 + HLSS30, máscara Fmask, índice mês−1\n\nEntradas:\n- .../BETA1/detection e detection_HLS (version 5, filtrar year, .mosaic(), bandas w_1…w_12)\n\nStatus:\nSubstituído pelos scripts de estatística e pelo app_monitor_comparacao.js.\n\nCuidados:\n- Classes 2 e 4 são não água para o bloqueio da cascata.\n- Ver a nota monitor-v5-bug-classe6.md.",
    "nome": "app_monitor_v5_revisado.js",
    "tipo": "App GEE",
    "status": "Substituído",
@@ -425,6 +451,7 @@
   {
    "id": "4117219ef930818e8543e3329309fdc7",
    "url": "https://app.notion.com/p/painel_risco_climatico_dados-ipynb-4117219ef930818e8543e3329309fdc7",
+   "doc": "O que faz:\nGera os dados e o site do Painel Risco Climático e Urbano para jornalistas: busca por bioma, estado, município ou favela, gráficos 1985–2025, rankings de 2025 e download em Excel e PNG. Três modos: Risco Climático, Módulo Urbano e Luz Noturna.\n\nEntradas:\n- 6 pastas de CSV: mapbiomas_exports_col11_{mun,biome,favelas}_{flood_risks,landslides}\n- Módulo Urbano: urb_by_biomes / urb_by_mun / slums _mapbiomas_col11-vegurb.xlsx\n- Luz Noturna: nightlight_by_mun_mapbiomas_col11_v2.xlsx e nightlight_by_biome_mapbiomas_col11_2.xlsx\n- Nomes de municípios: kelvins/municipios-brasileiros (a API do IBGE falhou)\n\nSaída:\n- painel_risco_climatico.zip (index.html + data/*.json), publicado em PedroGalve00/painel-risco-climatico-urbano\n\nComo rodar:\n1. Confira CLASSES_ORDEM na célula 1 (decide o que é Muito alto).\n2. Rode em ordem; a célula 3 para se a legenda não reproduzir o factsheet (Pampa, inundação, 59% em Muito alto).\n3. Suba o conteúdo do zip para o repositório.\n\nConferências:\n- SC inundação Muito alto ≈ 14.451 ha; MG deslizamento ≈ 19.133 ha\n- Favelas PA inundação ≈ 2.059 ha; favelas RJ deslizamento ≈ 781 ha\n\nCuidados:\n- Ignora \"Cópia de…\" e \"(1).csv\" para não dobrar área.\n- Estados e Brasil = soma dos municípios.\n- Favelas: polígonos 2022 fixos na série.\n- Suscetibilidade da área urbana, não dano.",
    "nome": "painel_risco_climatico_dados.ipynb",
    "tipo": "Colab",
    "status": "Ativo",
@@ -454,6 +481,7 @@
   {
    "id": "4117219ef9308190bf5cc0d917d589b8",
    "url": "https://app.notion.com/p/graficos_combinacoes-ipynb-4117219ef9308190bf5cc0d917d589b8",
+   "doc": "O que faz:\nLê os CSVs do exportacao_estatisticas_combinacoes.js e plota a série mensal de água, uma linha por combinação, um gráfico por carta. Não usa Earth Engine.\n\nEntrada:\n- monitor_stats_*.csv em monitor_agua_estatisticas\n\nComo rodar:\n1. A.1: confira PASTA_DRIVE.\n2. A.2: autorize o Drive.\n3. A.3: 46 cartas = 46 gráficos; use SO_ESTAS para filtrar.\n\nParâmetros:\n- METRICA: agua_total_ha, agua_deteccao_ha (só 1–4) ou pct_unidade\n- Paleta fixa por combinação",
    "nome": "graficos_combinacoes.ipynb",
    "tipo": "Colab",
    "status": "Ativo",
@@ -473,6 +501,7 @@
   {
    "id": "4117219ef930819292dde84954838c88",
    "url": "https://app.notion.com/p/app_visualizador_combination_int2-js-4117219ef930819292dde84954838c88",
+   "doc": "O que é:\nVersão anterior do app de comparação do Monitor (Combination × int2 × C5). Substituída pelo app_monitor_comparacao.js, que acrescenta o modo Origem, os mosaicos crus e as correções de visualização.\n\nQuando usar:\nSó para consulta ou para comparar com resultados antigos.\n\nEntradas:\n- .../BETA1/combination, interation2, interation2_orig (version 6)\n- mapbiomas_brazil_collection5_water_monthly_v4",
    "nome": "app_visualizador_combination_int2.js",
    "tipo": "App GEE",
    "status": "Substituído",
@@ -494,6 +523,7 @@
   {
    "id": "4117219ef93081999e60ee370cc1d563",
    "url": "https://app.notion.com/p/monitor_agua_estatisticas_territorios-ipynb-4117219ef93081999e60ee370cc1d563",
+   "doc": "O que faz:\nVersão em Python das estatísticas de água por território, em duas partes:\n- Parte B: calcula no Earth Engine e exporta uma tarefa por combinação × ano\n- Parte A: lê os CSVs e plota, sem Earth Engine\n\nEntradas:\n- Parte B: .../BETA1/detection e detection_HLS (version 5) e os territórios\n- Parte A: monitor_stats_*.csv em monitor_agua_estatisticas\n\nSaídas:\n- monitor_stats_<combinacao>_<ano>.csv em monitor_agua_estatisticas\n- Gráficos de série mensal por território\n\nComo rodar:\n1. Para gerar dados: Parte B, confira o teste da B.5, dispare a B.6 e acompanhe na B.7.\n2. Para gráficos: só a Parte A.\n\nCuidados:\n- A Parte A lê os formatos carta (do .js) e territorio (da Parte B).\n- Se a B.5 estourar memória, exporte a combinação como asset e faça a estatística numa segunda passada.",
    "nome": "monitor_agua_estatisticas_territorios.ipynb",
    "tipo": "Colab",
    "status": "Ativo",
@@ -516,6 +546,7 @@
   {
    "id": "4117219ef93081a9b1a2e8f957e90d01",
    "url": "https://app.notion.com/p/graficos_rois_comparacao-ipynb-4117219ef93081a9b1a2e8f957e90d01",
+   "doc": "O que faz:\nCompara, por ROI, as séries de área de água mensal: Combina (Comb_Monitor), Int2 new, Int2 ori e Coleção 5. Gera gráficos interativos e tabelas de diferença.\n\nEntrada:\n- Todos os monitor_stats_*.csv de monitor_agua_rois\n\nSaída:\n- Gráficos no Colab; com SALVAR_HTML = True, um .html por ROI em monitor_agua_rois/graficos_html\n\nComo rodar:\n1. Na célula 2, escolha ROIs, séries (SO_ESTAS_SERIES), unidade e data inicial.\n2. Rode em ordem; a célula 3 lê os CSVs.\n\nParâmetros:\n- SO_ESTAS_SERIES: ex. [\"Combina_roi\", \"Int2_new_roi\", \"colecao5\"]\n- UNIDADE_AREA: mha (mil ha) ou ha\n- COBERTURA_MIN = 0.95\n\nCuidados:\n- Mesma ROI × mês em dois CSVs: fica a linha com maior cobertura; empate, a mais recente.\n- Cobertura abaixo do mínimo = sem dado, não água zero.",
    "nome": "graficos_rois_comparacao.ipynb",
    "tipo": "Colab",
    "status": "Ativo",
@@ -535,6 +566,7 @@
   {
    "id": "4117219ef93081c59e98f4596f91231e",
    "url": "https://app.notion.com/p/assets_mapbiomas_gee-md-4117219ef93081c59e98f4596f91231e",
+   "doc": "O que é:\nLista de referência dos assets públicos do MapBiomas Brasil no GEE, tirada da página oficial de downloads em 16/10/2026. Prefixo: projects/mapbiomas-public/assets/brazil/.\n\nO que tem:\n- Cobertura e uso C11 (1985–2025) e derivados: desmatamento, irrigação, ciclos agrícolas, mineração, idade e vigor da pastagem; cobertura 10 m\n- Água C5: anual, corpos d'água, mensal\n- Fogo C5.1: área queimada, severidade, frequência, ano do último fogo\n- Solo C3 beta: carbono, frações, textura, pedregosidade\n- Atmosfera C1 beta: temperatura, precipitação, anomalias, déficit de pressão de vapor, disponibilidade hídrica, dias sem chuva, chuva persistente, PM10 e PM2,5\n- Risco Climático C1 beta: deslizamento urbano, inundação urbana, Índice de Segurança Hídrica\n\nOnde ler:\nclaude/assets_mapbiomas_gee.md no projeto do Claude. Os assets do dia a dia estão no banco Assets GEE.",
    "nome": "assets_mapbiomas_gee.md",
    "tipo": "Doc/Nota",
    "status": "Ativo",
@@ -553,6 +585,7 @@
   {
    "id": "4117219ef93081c798d1edbc99b99130",
    "url": "https://app.notion.com/p/exportacao_estatisticas_rois-js-4117219ef93081c798d1edbc99b99130",
+   "doc": "O que é:\nPrimeira versão do script de estatísticas por ROI: combina1–6 e Coleção 5 mensal, 2016–2025. Substituída pela v2, que acrescenta o combina7 e separa melhor bloqueio e pintura.\n\nSaída:\n- monitor_stats_<serie>_<ano>.csv em monitor_agua_rois (mesmo formato da v2)\n\nQuando usar:\nSó para refazer resultados antigos. Para análises novas, use exportacao_estatisticas_rois_v2.js.",
    "nome": "exportacao_estatisticas_rois.js",
    "tipo": "GEE JS",
    "status": "Substituído",
@@ -576,6 +609,7 @@
   {
    "id": "4117219ef93081c89c0afd439f007525",
    "url": "https://app.notion.com/p/mapbiomas_prerelease_riscos_col11-ipynb-4117219ef93081c89c0afd439f007525",
+   "doc": "O que faz:\nNotebook do pré-release da Coleção 11 de Riscos Climáticos (inundação e deslizamento): lê os exports do GEE, faz QA e calcula estatísticas, gráficos, mapas, tendências e as 6 tabelas 1985–2025.\n\nEntradas:\n- mapbiomas_exports_col11_mun_flood_risks, _mun_landslides, _biome_flood_risks, _biome_landslides\n- projects/mapbiomas-workspace/AUXILIAR/bioma25_uf24_30m (mapa interativo)\n- Malhas IBGE (geobr ou API de Malhas) e nomes pela API do IBGE\n\nSaídas (mapbiomas_prerelease_riscos_2025/):\n- tabelas/mapbiomas_riscos_col11_2025_prerelease.xlsx\n- 6 CSVs da série completa + XLSX + ZIP\n- Figuras PNG 300 dpi e PDF\n\nSeções:\n1 leitura, 2 QA, 3 estatísticas, 4 gráficos, 5 mapas, 6 Earth Engine, 7 exportação, 8 seis tabelas, 9 manchetes (Sen + Mann-Kendall), 10 exposição\n\nComo rodar:\n1. Ajuste a seção 0.2 (projeto GEE, pastas, ANO_REF = 2025, ANO_COMP = 2024).\n2. Rode em ordem; só 0.1–0.3 pedem interação.\n\nRegras:\n- Sempre 2025 × 2024 × média histórica.\n- Inundação em azul, deslizamento em vermelho/laranja; ordem Médio → Alto → Muito alto.\n- Legendas invertidas: inundação 1 = Muito alto; deslizamento 3 = Muito alto.\n\nPendências:\n- Denominador do % deve ser a área urbana.\n- Falta o export de exposição.",
    "nome": "mapbiomas_prerelease_riscos_col11.ipynb",
    "tipo": "Colab",
    "status": "Ativo",
@@ -604,6 +638,7 @@
   {
    "id": "4117219ef93081cf9dbafed9cf0fc994",
    "url": "https://app.notion.com/p/mapbiomas_favelas_riscos_col11-ipynb-4117219ef93081cf9dbafed9cf0fc994",
+   "doc": "O que faz:\nEstatísticas de risco de inundação e deslizamento em favelas e comunidades urbanas, 1985–2025: séries, 2025 × 2024 × média, rankings de favelas e municípios e figuras.\n\nEntradas:\n- mapbiomas_exports_col11_favelas_flood_risks e _favelas_landslides (um CSV por ano)\n- Colunas: cd_fcu, nm_fcu, cd_mun, nm_mun, sigla_uf, theme, year, area_c1, area_c2, area_c3 (ha)\n- Polígonos: projects/ee-my-jpedrassoli/assets/RECORTES-GEOGRAFICOS/fcu_mb_v3_2025\n\nSaídas:\n- tabelas/mapbiomas_favelas_riscos_col11_2025.xlsx (com metadados e log de leitura)\n- CSVs das abas grandes e 00_base_favela_ano.csv.gz\n- Figuras PNG\n\nComo rodar:\nRode em ordem no Colab. O tema vem da pasta; as colunas area_c* são renomeadas pela legenda do tema.\n\nCuidados:\n- Inundação area_c1 = Muito alto; deslizamento area_c3 = Muito alto.\n- Critério \"em risco\" = área mínima na classe (LIMIAR_HA).\n- Polígonos de 2022 na série toda; risco = exposição, não dano.",
    "nome": "mapbiomas_favelas_riscos_col11.ipynb",
    "tipo": "Colab",
    "status": "Ativo",
@@ -628,6 +663,7 @@
   {
    "id": "4117219ef93081d1948bdc6aefa9b6cb",
    "url": "https://app.notion.com/p/exportacao_estatisticas_rois_v2-js-4117219ef93081d1948bdc6aefa9b6cb",
+   "doc": "O que faz:\nScript sem interface que reproduz a cascata do app (v11) e calcula a área de água mensal de cada combinação (combina1–7) e da Coleção 5 mensal nas 23 ROIs, de 2016 a 2025.\n\nEntradas:\n- .../BETA1/detection e detection_HLS (version 5)\n- mapbiomas_brazil_collection5_water_monthly_v4 (série colecao5)\n\nSaída:\n- monitor_stats_<serie>_<ano>.csv em monitor_agua_rois\n- Colunas: territorio, bioma, ano, mes, area_territorio_ha, area_1…area_12, agua_deteccao_ha, agua_inclusao_ha, agua_total_ha\n\nComo rodar:\n1. TESTAR_ANTES = true: o Console mostra o nível base do combina7 e um teste por ROI.\n2. Dê RUN nas tarefas (série × ano).\n\nParâmetros:\n- Inclusão: CHECK_5, CHECK_3, CHECK_1, CHECK_ANUAL, CHECK_OBS, CHECK_NAO_AGUA_PASSA\n- COMBINACOES: inclui combina7 (Mari) e colecao5\n\nCódigos da cascata:\n- 1–4 detecções (Sentinel/HLS, mês e mês −1)\n- 5–8 inclusão não observada\n- 9–12 inclusão observada (só quando CHECK_OBS pinta)\n\nCuidado:\nNa colecao5, area_1…area_12 ficam zeradas; a área vai em agua_total_ha.",
    "nome": "exportacao_estatisticas_rois_v2.js",
    "tipo": "GEE JS",
    "status": "Ativo",
@@ -651,18 +687,22 @@
   {
    "id": "4117219ef93081d4a140e81cfbde4a71",
    "url": "https://app.notion.com/p/esai_desertificacao_sp_v2-js-4117219ef93081d4a140e81cfbde4a71",
+   "doc": "O que faz:\nSegunda versão do ESAI em São Paulo (estado ou um município via MUN_NOME). Troca o SoilGrids pelo MapBiomas Solo e acrescenta dias sem chuva, perda de água e vigor da pastagem.\n\nDiferenças para a v1:\n- Solo: MapBiomas Solo C3 (argila, areia, carbono, pedregosidade)\n- Clima: + dias sem chuva (Atmosfera C1) e perda de superfície d'água (Água C5)\n- Manejo: + vigor da pastagem (C11)\n\nSaída:\n- Asset esai_sp_v2 ou esai_msp_v2 (bandas ESAI, CLASSE, CQI, SQI, VQI, MQI, IA, PERDA_AGUA)\n\nStatus:\nSubstituído pela v3, que generaliza o recorte e testa num núcleo de desertificação real.",
    "nome": "esai_desertificacao_sp_v2.js",
    "tipo": "GEE JS",
    "status": "Substituído",
    "versao": "v2",
-   "descricao": "ESAI São Paulo (estado ou município)",
+   "descricao": "ESAI v2 em São Paulo (estado ou município): troca o SoilGrids pelo MapBiomas Solo e acrescenta dias sem chuva, perda de água e vigor da pastagem",
    "frentes": [
     "4117219ef9308114b1efeb6f2e4e3cd0"
    ],
    "assets": [
     "4117219ef930814080f5d342855632c3",
+    "4127219ef930812685a9c9966ed542ab",
     "4117219ef930819c8b07df3191e348be",
-    "4117219ef93081ad812ede15d512bedf",
+    "4117219ef93081fbb405ff97bc658a06",
+    "4127219ef93081cd8c55c5108eb1dc7c",
+    "4117219ef9308122873afe10c39352cf",
     "4117219ef9308167992de904f63caa60",
     "4117219ef9308111ac8ad14e4143e3cc",
     "4117219ef9308197a638eae334049419"
@@ -677,6 +717,7 @@
   {
    "id": "4117219ef93081e1a255c0d585056af3",
    "url": "https://app.notion.com/p/esai_desertificacao_sp_v1-js-4117219ef93081e1a255c0d585056af3",
+   "doc": "O que é:\nPrimeiro teste do ESAI no estado de São Paulo, com solo provisório do SoilGrids 2.0 (areia, argila e carbono, média 0–30 cm).\n\nComponentes:\n- CQI: aridez P/ETP do TerraClimate, normal 1991–2020\n- SQI: textura e carbono (SoilGrids) + declividade (NASADEM)\n- VQI: cobertura C11 + frequência de fogo\n- MQI: uso antrópico e mudanças 1985–2025\n\nSaída:\n- projects/pedrogalve/assets/esai_sp_v1\n\nStatus:\nSubstituído pela v2 (MapBiomas Solo) e pela v3.\n\nCuidado:\nEm SP não há terras secas (IA > 0,65); a máscara UNCCD ficou desligada.",
    "nome": "esai_desertificacao_sp_v1.js",
    "tipo": "GEE JS",
    "status": "Substituído",
@@ -703,6 +744,7 @@
   {
    "id": "4117219ef93081e6a2ffdf64eed51361",
    "url": "https://app.notion.com/p/app_monitor_comparacao-js-4117219ef93081e6a2ffdf64eed51361",
+   "doc": "O que faz:\nApp do GEE, mantido com o Juliano, para visualizar e comparar as camadas do Monitor: Combination (version 6), int2_new, int2_ori e Coleção 5 mensal. Mapas antes × depois, gráfico de área por ROI e mosaicos RGB de Sentinel e HLS.\n\nEntradas:\n- .../BETA1/combination, interation2, interation2_orig (version 6)\n- mapbiomas_brazil_collection5_water_monthly_v4\n- .../BETA1/detection e detection_HLS (version 5), para o modo Origem\n- HLS L30/S30 e Sentinel-2 para os mosaicos\n\nModos:\n- Água: uma cor por camada, mantendo o código original (Inspector mostra v: 13)\n- Origem: 1 Sentinel e HLS, 2 só Sentinel, 3 só HLS, 4 mês anterior, 5 sem detecção\n- Comparações: 1 só no antes, 2 só no depois, 3 nos dois (a C5 é sempre o antes)\n\nComo rodar:\nCole no Code Editor, Run, e escolha ano, mês, camadas e ROI no painel.\n\nCuidados:\n- Classes falsas (laranja \"Sem detecção\") no zoom afastado vêm da pirâmide MEAN; confira com zoom próximo. Correção definitiva: reexportar com MODE.\n- visualizar() devolve {img, vis} sem .visualize(), para o Inspector mostrar o valor do asset.\n- TILESCALE = 16 no gráfico, para não estourar memória.",
    "nome": "app_monitor_comparacao.js",
    "tipo": "App GEE",
    "status": "Ativo",
@@ -727,6 +769,7 @@
   {
    "id": "4117219ef93081eab033d5b1c4b799d7",
    "url": "https://app.notion.com/p/monitor-v5-bug-classe6-md-4117219ef93081eab033d5b1c4b799d7",
+   "doc": "O que é:\nNota técnica sobre um erro no app do Monitor v5 envolvendo a classe 6 (excluído) na cascata de combinações. Fica arquivada como registro.\n\nOnde ler:\nArquivo claude/monitor-v5-bug-classe6.md no projeto do Claude.\n\nPor que importa:\nOs scripts de estatística e de exportação para asset reaproveitam a cascata do app; se a regra da classe 6 mudar, revise todos juntos.",
    "nome": "monitor-v5-bug-classe6.md",
    "tipo": "Doc/Nota",
    "status": "Arquivado",
@@ -744,6 +787,7 @@
   {
    "id": "4117219ef93081ef9f41febf21440280",
    "url": "https://app.notion.com/p/graficos_raw_agua_nao_observado-ipynb-4117219ef93081ef9f41febf21440280",
+   "doc": "O que faz:\nPlota, por ROI, a série mensal de água detectada e de área não observada no dado bruto do Monitor, comparando Sentinel-2 e HLS antigos com as versões novas (new_sentinel, new_hls).\n\nEntrada:\n- monitor_stats_raw_<sensor>_<ano>.csv em monitor_agua_rois\n\nSaídas:\n- Gráficos interativos; com SALVAR_HTML = True, um .html por ROI em monitor_agua_rois/graficos\n- O botão de câmera baixa PNG em alta resolução\n\nComo rodar:\n1. Na célula 1, escolha ROIs (SO_ESTAS), séries e DATA_INICIO.\n2. Rode em ordem; a célula 2 monta o Drive e soma as classes.\n\nCuidados:\n- Séries new só têm 2019–2025 e aparecem tracejadas.\n- Mês sem linha no CSV = sem dado, não água zero.",
    "nome": "graficos_raw_agua_nao_observado.ipynb",
    "tipo": "Colab",
    "status": "Ativo",
@@ -763,18 +807,42 @@
  ],
  "assets": [
   {
+   "id": "4127219ef930812685a9c9966ed542ab",
+   "url": "https://app.notion.com/p/Vigor-da-pastagem-4127219ef930812685a9c9966ed542ab",
+   "doc": "O que é:\nVigor da pastagem, MapBiomas Coleção 11, anual 1985–2025.\n\nLegenda:\n1 = baixo vigor, 2 = médio, 3 = alto\n\nComo carregar:\nvar vigor = ee.Image('projects/mapbiomas-public/assets/brazil/lulc/collection11/mapbiomas_brazil_collection11_pasture_vigor_v1'); var vigor2025 = vigor.select('.*2025.*');\n\nOnde usamos:\nESAI v2/v3, no MQI: vigor 1 → 2,0; 2 → 1,6; 3 → 1,3; fora de pastagem → 1.",
+   "nome": "Vigor da pastagem",
+   "path": "projects/mapbiomas-public/assets/brazil/lulc/collection11/mapbiomas_brazil_collection11_pasture_vigor_v1",
+   "origem": "MapBiomas público",
+   "tema": "Cobertura e uso",
+   "versao": "C11 v1 · 1985–2025",
+   "notas": "1 = baixo, 2 = médio, 3 = alto vigor; usado no MQI do ESAI"
+  },
+  {
+   "id": "4127219ef93081cd8c55c5108eb1dc7c",
+   "url": "https://app.notion.com/p/Atmosfera-dias-sem-chuva-anual-4127219ef93081cd8c55c5108eb1dc7c",
+   "doc": "O que é:\nDias sem chuva por ano, MapBiomas Atmosfera Coleção 1 beta.\n\nComo carregar:\nvar secos = ee.Image('projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_rain_free_days_annual_v2'); print(secos.bandNames());\n\nOnde usamos:\nESAI v2/v3, no CQI, junto com aridez e perda de água.",
+   "nome": "Atmosfera — dias sem chuva (anual)",
+   "path": "projects/mapbiomas-public/assets/brazil/atmosphere/collection1/mapbiomas_brazil_collection1_rain_free_days_annual_v2",
+   "origem": "MapBiomas público",
+   "tema": "Atmosfera",
+   "versao": "Atmosfera C1 beta · v2",
+   "notas": "Usado no CQI do ESAI v2/v3"
+  },
+  {
    "id": "4117219ef9308103ba7ef290df6d67c8",
    "url": "https://app.notion.com/p/Monitor-combination-4117219ef9308103ba7ef290df6d67c8",
+   "doc": "O que é:\nDado mensal de água das combinações do Monitor, por carta e ano: cada pixel diz qual camada da cascata respondeu água no mês.\n\nVersões:\n- version 5: nossas combina1 a combina7 (exportacao_combinacoes_asset.js)\n- version 6: Combina do Juliano, propriedade combina = combina7 (Amazônia, Cerrado, Pantanal) ou combina8 (Mata Atlântica). Sem Pampa e Caatinga; só 2019–2025.\n\nEstrutura:\n- Bandas w_1 … w_12; propriedades combination_code, version, grid_name, year\n- Na version 5: 1–4 detecção, 5–8 inclusão não observada, 9–12 inclusão observada, 0 sem água\n\nComo carregar:\nvar comb = ee.ImageCollection('projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/combination')   .filter(ee.Filter.inList('version', [6, '6']))   .filter(ee.Filter.inList('year', [2024, '2024'])); var agua = comb.select('w_6').mosaic().gt(0);\n\nCuidados:\n- Água = pixel > 0, salvo se o diagnóstico mostrar outra legenda.\n- Pirâmide MEAN gera classes falsas no zoom afastado; reexportar com MODE.",
    "nome": "Monitor — combination",
-   "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/ (combination)",
+   "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/combination",
    "origem": "MapBiomas interno",
    "tema": "Monitor Água",
    "versao": "version 6 / v7",
-   "notas": "Combina do Juliano; v6 sem Pampa e Caatinga. Confirmar caminho exato"
+   "notas": "ImageCollection por carta × ano, bandas w_1…w_12. version 5 = nossas combina1–7; version 6 = Combina do Juliano (propriedade combina: combina7 para Amazônia/Cerrado/Pantanal, combina8 para Mata Atlântica; sem Pampa e Caatinga). Água = pixel > 0."
   },
   {
    "id": "4117219ef9308111ac8ad14e4143e3cc",
    "url": "https://app.notion.com/p/NASADEM-4117219ef9308111ac8ad14e4143e3cc",
+   "doc": "O que é:\nNASADEM: modelo digital de elevação a 30 m (reprocessamento do SRTM).\n\nComo carregar:\nvar dem = ee.Image('NASA/NASADEM_HGT/001').select('elevation'); var declPct = ee.Terrain.slope(dem).multiply(Math.PI / 180).tan().multiply(100);\n\nOnde usamos:\nDeclividade (%) no SQI do ESAI: ≥ 6% → 1,2; ≥ 18% → 1,5; ≥ 35% → 2,0.",
    "nome": "NASADEM",
    "path": "NASA/NASADEM_HGT/001",
    "origem": "Externo",
@@ -785,6 +853,7 @@
   {
    "id": "4117219ef93081218efee0d0e53b8141",
    "url": "https://app.notion.com/p/Bioma-UF-30-m-4117219ef93081218efee0d0e53b8141",
+   "doc": "O que é:\nRaster auxiliar que combina bioma (2025) × UF (2024) a 30 m, para recortar estatísticas por bioma e estado de forma consistente.\n\nComo carregar:\nvar bioUf = ee.Image('projects/mapbiomas-workspace/AUXILIAR/bioma25_uf24_30m'); print(bioUf.bandNames());\n\nOnde usamos:\nMapa interativo (seção 6) do pré-release de Riscos.\n\nCuidado:\nConfira a codificação dos valores no histograma antes de usar.",
    "nome": "Bioma × UF 30 m",
    "path": "projects/mapbiomas-workspace/AUXILIAR/bioma25_uf24_30m",
    "origem": "MapBiomas interno",
@@ -795,6 +864,7 @@
   {
    "id": "4117219ef9308122873afe10c39352cf",
    "url": "https://app.notion.com/p/Solo-fra-es-argila-areia-silte-e-carbono-4117219ef9308122873afe10c39352cf",
+   "doc": "O que é:\nMapBiomas Solo, Coleção 3 beta: carbono orgânico, frações de argila, areia e silte, textura e pedregosidade.\n\nEstrutura:\n- Frações: 10 imagens em camadas de 10 cm de 0 a 100 cm (clay_fraction_000_010_v1 …)\n- Carbono: anual 1985–2024\n- Pedregosidade: soil_depth_stoniness_50_v1 e _90_v1\n\nComo carregar:\nvar MB = 'projects/mapbiomas-public/assets/brazil/soil/collection3/'; var argila = ee.ImageCollection(MB + 'mapbiomas_brazil_collection3_soil_clay_fraction_v1').toBands(); var carbono = ee.Image(MB + 'mapbiomas_brazil_collection3_soil_carbon_v1');\n\nOnde usamos:\nESAI v2/v3, no SQI.\n\nCuidado:\nAlguns são Image e outros ImageCollection; o ESAI v3 tem uma função que devolve sempre Image.",
    "nome": "Solo — frações (argila/areia/silte) e carbono",
    "path": "projects/mapbiomas-public/assets/brazil/soil/collection3/ (clay/sand/silt_fraction, soil_carbon)",
    "origem": "MapBiomas público",
@@ -805,6 +875,7 @@
   {
    "id": "4117219ef930814080f5d342855632c3",
    "url": "https://app.notion.com/p/LULC-Cole-o-11-cobertura-4117219ef930814080f5d342855632c3",
+   "doc": "O que é:\nMapa anual de cobertura e uso da terra do MapBiomas Brasil, Coleção 11, 1985–2025, 30 m.\n\nEstrutura:\n- ee.Image com uma banda por ano: classification_1985 … classification_2025\n- Valor = código da classe (ex.: 3 formação florestal, 15 pastagem, 24 área urbanizada, 33 rio/lago/oceano)\n\nComo carregar:\nvar lulc = ee.Image('projects/mapbiomas-public/assets/brazil/lulc/collection11/mapbiomas_brazil_collection11_coverage_v3'); var urbano = lulc.select('classification_2025').eq(24);\n\nOnde usamos:\n- ESAI: VQI (cobertura) e MQI (uso antrópico e mudanças)\n- Pré-release de Riscos: máscara urbana para a exposição\n\nCuidado:\nA classe 24 é a área urbanizada; a 22 é o grupo não vegetado inteiro.",
    "nome": "LULC Coleção 11 (cobertura)",
    "path": "projects/mapbiomas-public/assets/brazil/lulc/collection11/mapbiomas_brazil_collection11_coverage_v3",
    "origem": "MapBiomas público",
@@ -815,6 +886,7 @@
   {
    "id": "4117219ef9308144bdf5feb45ada7fa0",
    "url": "https://app.notion.com/p/HAND-30-m-4117219ef9308144bdf5feb45ada7fa0",
+   "doc": "O que é:\nHAND (Height Above Nearest Drainage) global a 30 m: altura de cada pixel acima da drenagem mais próxima. Indica onde a água acumula numa cheia.\n\nComo carregar:\nvar hand = ee.Image('users/gena/GlobalHAND/30m/hand-1000');\n\nOnde usamos:\nSimuladores de suscetibilidade a inundação (Brasil e Lima), com SCS-CN.\n\nCuidados:\n- Asset de comunidade: precisa do prefixo users/gena/.\n- A mancha por HAND ignora a conectividade hidráulica.",
    "nome": "HAND 30 m",
    "path": "users/gena/GlobalHAND/30m/hand-1000",
    "origem": "Externo",
@@ -825,6 +897,7 @@
   {
    "id": "4117219ef9308153a33dff0bfb60f95c",
    "url": "https://app.notion.com/p/WorldPop-100-m-4117219ef9308153a33dff0bfb60f95c",
+   "doc": "O que é:\nWorldPop: população estimada por pixel de 100 m.\n\nComo carregar:\nvar pop = ee.ImageCollection('WorldPop/GP/100m/pop').filter(ee.Filter.eq('year', 2020)).mosaic();\n\nOnde vamos usar:\nExport de exposição do pré-release: população total e urbana sob cada classe de risco, por município (demanda aberta).\n\nCuidado:\nExposição não é dano: deixe isso escrito no factsheet, não só na nota de rodapé.",
    "nome": "WorldPop 100 m",
    "path": "WorldPop/GP/100m/pop",
    "origem": "Externo",
@@ -835,6 +908,7 @@
   {
    "id": "4117219ef9308160b560e2b089524d59",
    "url": "https://app.notion.com/p/JRC-GLOFAS-Flood-Hazard-4117219ef9308160b560e2b089524d59",
+   "doc": "O que é:\nJRC GloFAS Flood Hazard v2.1: profundidade de inundação para vários tempos de retorno.\n\nComo carregar:\nvar glofas = ee.ImageCollection('JRC/CEMS_GLOFAS/FloodHazard/v2_1');\n\nOnde usamos:\nSimulador de Lima: calibra sozinho os cortes de profundidade (baixa, média, alta) testando pares de limiares contra o GloFAS.\n\nCuidado:\nCom sobreposição menor que 0,05 km², o simulador volta aos limiares da literatura (0,5 m e 1,5 m) e avisa no Console.",
    "nome": "JRC GLOFAS Flood Hazard",
    "path": "JRC/CEMS_GLOFAS/FloodHazard/v2_1",
    "origem": "Externo",
@@ -845,6 +919,7 @@
   {
    "id": "4117219ef9308167992de904f63caa60",
    "url": "https://app.notion.com/p/TerraClimate-4117219ef9308167992de904f63caa60",
+   "doc": "O que é:\nTerraClimate: clima mensal global a ~4 km (precipitação, evapotranspiração potencial e outros).\n\nComo carregar:\nvar tc = ee.ImageCollection('IDAHO_EPSCOR/TERRACLIMATE').filterDate('1991-01-01', '2021-01-01'); var p = tc.select('pr').sum().divide(30); var etp = tc.select('pet').sum().multiply(0.1).divide(30); var ia = p.divide(etp);\n\nOnde usamos:\nÍndice de aridez P/ETP no CQI do ESAI (o MapBiomas não tem ETP).\n\nCuidado:\npet vem em escala 0,1: multiplique por 0,1 para ter mm.",
    "nome": "TerraClimate",
    "path": "IDAHO_EPSCOR/TERRACLIMATE",
    "origem": "Externo",
@@ -855,6 +930,7 @@
   {
    "id": "4117219ef930816f8bb9c65785347a6b",
    "url": "https://app.notion.com/p/Risco-Clim-tico-C1-deslizamento-urbano-4117219ef930816f8bb9c65785347a6b",
+   "doc": "O que é:\nSuscetibilidade a deslizamento (movimento de massa) em área urbana, MapBiomas Risco Climático Coleção 1 (pública, até 2024).\n\nLegenda:\n1 = Médio, 2 = Alto, 3 = Muito alto, 0 = sem risco\n\nComo carregar:\nvar desliz = ee.Image('projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_urban_landslide_risk_v1');\n\nCuidados:\n- Escala oposta à da inundação.\n- Para 2025, use a Coleção 2 (landslide_step4_c11).",
    "nome": "Risco Climático C1 — deslizamento urbano",
    "path": "projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_urban_landslide_risk_v1",
    "origem": "MapBiomas público",
@@ -865,6 +941,7 @@
   {
    "id": "4117219ef9308176a8d8d1331d445d07",
    "url": "https://app.notion.com/p/reas-suscet-veis-botos-4117219ef9308176a8d8d1331d445d07",
+   "doc": "O que é:\nPolígonos das áreas suscetíveis para botos no Tocantins-Araguaia, usados no alerta de temperatura da água (WWF / MapBiomas Água).\n\nComo carregar:\nvar areas = ee.FeatureCollection('projects/pedrogalve/assets/Areas_Susceptiveis_Botos');\n\nCuidado:\nOs lagos amazônicos usam buffers pré-calculados; no Tocantins-Araguaia o buffer é feito na hora com .buffer().",
    "nome": "Áreas suscetíveis — botos",
    "path": "projects/pedrogalve/assets/Areas_Susceptiveis_Botos",
    "origem": "Pessoal (pedrogalve)",
@@ -875,6 +952,7 @@
   {
    "id": "4117219ef93081799477c52bfe7140a6",
    "url": "https://app.notion.com/p/Sentinel-2-Landsat-8-9-C2-L2-4117219ef93081799477c52bfe7140a6",
+   "doc": "O que é:\nReflectância de superfície do Sentinel-2 (harmonizado) e do Landsat 8/9 Collection 2 Level 2.\n\nComo carregar:\nvar s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED'); var l8 = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2'); var l9 = ee.ImageCollection('LANDSAT/LC09/C02/T1_L2');\n\nOnde usamos:\nMosaicos de referência e composições nos apps e no pipeline de corpos d'água.",
    "nome": "Sentinel-2 / Landsat 8-9 C2 L2",
    "path": "COPERNICUS/S2_SR_HARMONIZED · LANDSAT/LC08|LC09/C02/T1_L2",
    "origem": "Externo",
@@ -885,6 +963,7 @@
   {
    "id": "4117219ef930817d88b3c05c7ae0f12d",
    "url": "https://app.notion.com/p/gua-C5-mensal-4117219ef930817d88b3c05c7ae0f12d",
+   "doc": "O que é:\nSuperfície de água mensal do MapBiomas Água, Coleção 5, jan/1985 a dez/2025. Referência contra a qual as combinações do Monitor são comparadas.\n\nEstrutura:\n- ImageCollection com 492 imagens (water_monthly_1985_01 …)\n- Propriedades year e month (mês como texto: '06')\n- Banda water_monthly; água = valor > 0\n\nComo carregar:\nvar c5 = ee.ImageCollection('projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_monthly_v4'); var jun2024 = c5.filter(ee.Filter.eq('year', 2024)).filter(ee.Filter.eq('month', '06')).mosaic().select('water_monthly');\n\nOnde usamos:\nSérie colecao5 nas estatísticas por ROI e camada C5 no app de comparação.\n\nCuidados:\n- Não tem filtro de versão.\n- O mês é texto: '06', não 6.",
    "nome": "Água C5 — mensal",
    "path": "projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_monthly_v4",
    "origem": "MapBiomas público",
@@ -895,6 +974,7 @@
   {
    "id": "4117219ef930817fa1e3c23612ebc285",
    "url": "https://app.notion.com/p/Risco-Clim-tico-C2-deslizamento-c11-4117219ef930817fa1e3c23612ebc285",
+   "doc": "O que é:\nDeslizamento urbano, Coleção 2 (interna do GT de Risco Climático), com dado até 2025.\n\nComo carregar:\nvar desliz2 = ee.Image('projects/mapbiomas-brazil/assets/GT-CLIMATE-RISK/COLLECTION-2/landslide_step4_c11');\n\nOnde usamos:\nFonte dos exports mapbiomas_exports_col11_*_landslides.\n\nCuidado:\nAsset interno; confirme a legenda das classes.",
    "nome": "Risco Climático C2 — deslizamento (c11)",
    "path": "projects/mapbiomas-brazil/assets/GT-CLIMATE-RISK/COLLECTION-2/landslide_step4_c11",
    "origem": "MapBiomas interno",
@@ -905,6 +985,7 @@
   {
    "id": "4117219ef93081808c23c25af30f6887",
    "url": "https://app.notion.com/p/Risco-Clim-tico-C2-inunda-o-c11-4117219ef93081808c23c25af30f6887",
+   "doc": "O que é:\nInundação urbana, Coleção 2 (interna do GT de Risco Climático), alinhada à Coleção 11 e com dado até 2025. Base do pré-release.\n\nComo carregar:\nvar inund2 = ee.Image('projects/mapbiomas-brazil/assets/GT-CLIMATE-RISK/COLLECTION-2/flood_step2_v3_c11'); print(inund2.bandNames());\n\nOnde usamos:\nFonte dos exports mapbiomas_exports_col11_*_flood_risks (município, bioma, favelas).\n\nCuidados:\n- Asset interno: precisa de acesso ao projeto mapbiomas-brazil.\n- Confirme a ordem das classes antes de publicar (no painel, CLASSES_ORDEM = [1, 2, 3] reproduz o factsheet).",
    "nome": "Risco Climático C2 — inundação (c11)",
    "path": "projects/mapbiomas-brazil/assets/GT-CLIMATE-RISK/COLLECTION-2/flood_step2_v3_c11",
    "origem": "MapBiomas interno",
@@ -915,6 +996,7 @@
   {
    "id": "4117219ef9308191974fd29ac59a0966",
    "url": "https://app.notion.com/p/reas-protegidas-4117219ef9308191974fd29ac59a0966",
+   "doc": "O que é:\nÁreas protegidas (Terras Indígenas e Unidades de Conservação) do workspace MapBiomas.\n\nCampos:\nTipoUso, NomeTI, NomeUC\n\nComo carregar:\nvar ap = ee.FeatureCollection('projects/mapbiomas-workspace/AUXILIAR/areas-protegidas');",
    "nome": "Áreas protegidas",
    "path": "projects/mapbiomas-workspace/AUXILIAR/areas-protegidas",
    "origem": "MapBiomas interno",
@@ -925,6 +1007,7 @@
   {
    "id": "4117219ef9308197a638eae334049419",
    "url": "https://app.notion.com/p/FAO-GAUL-n-vel-1-4117219ef9308197a638eae334049419",
+   "doc": "O que é:\nLimites administrativos da FAO GAUL 2015: nível 1 (estados) e nível 2 (municípios). Recorta a área de estudo do ESAI.\n\nComo carregar:\nvar uf = ee.FeatureCollection('FAO/GAUL/2015/level1')   .filter(ee.Filter.eq('ADM0_NAME', 'Brazil'))   .filter(ee.Filter.eq('ADM1_NAME', 'Sao Paulo')); var mun = ee.FeatureCollection('FAO/GAUL/2015/level2').filter(ee.Filter.eq('ADM2_NAME', 'Gilbues'));\n\nCuidados:\n- Nomes sem acento (Sao Paulo, Piaui, Gilbues).\n- Alguns estados podem não casar pelo nome; busque no Brasil inteiro.\n- Simplifique a geometria (simplify 500) para evitar timeout.",
    "nome": "FAO GAUL nível 1",
    "path": "FAO/GAUL/2015/level1",
    "origem": "Externo",
@@ -935,6 +1018,7 @@
   {
    "id": "4117219ef9308198831cf436a7c00e8e",
    "url": "https://app.notion.com/p/Favelas-e-Comunidades-Urbanas-4117219ef9308198831cf436a7c00e8e",
+   "doc": "O que é:\nPolígonos de Favelas e Comunidades Urbanas (IBGE 2022) no formato do MapBiomas.\n\nCampos:\ncd_fcu, nm_fcu, cd_mun, nm_mun, cd_uf, nm_uf, sigla_uf, name\n\nComo carregar:\nvar favelas = ee.FeatureCollection('projects/ee-my-jpedrassoli/assets/RECORTES-GEOGRAFICOS/fcu_mb_v3_2025'); print(favelas.size(), favelas.first());\n\nOnde usamos:\nExports de risco por favela (uma tarefa por ano) e Colab de favelas.\n\nCuidado:\nPolígonos de 2022 aplicados à série 1985–2025: o número de 1985 mostra quanto do território das favelas de hoje estava em risco naquele ano.",
    "nome": "Favelas e Comunidades Urbanas",
    "path": "projects/ee-my-jpedrassoli/assets/RECORTES-GEOGRAFICOS/fcu_mb_v3_2025",
    "origem": "Externo",
@@ -945,6 +1029,7 @@
   {
    "id": "4117219ef930819c8b07df3191e348be",
    "url": "https://app.notion.com/p/Fogo-frequ-ncia-4117219ef930819c8b07df3191e348be",
+   "doc": "O que é:\nFrequência de fogo do MapBiomas Fogo, Coleção 5.1: quantas vezes cada pixel queimou no período.\n\nComo carregar:\nvar fogo = ee.Image('projects/mapbiomas-public/assets/brazil/fire/collection5_1/mapbiomas_fire_collection51_fire_frequency_v1'); var banda = ee.String(fogo.bandNames().get(-1));\n\nOnde usamos:\nESAI, no VQI (vegetação).\n\nCuidado:\nSe o máximo passar de ~41 (anos da série), o valor está codificado e precisa ser decodificado.",
    "nome": "Fogo — frequência",
    "path": "projects/mapbiomas-public/assets/brazil/fire/collection5_1/mapbiomas_fire_collection51_fire_frequency_v1",
    "origem": "MapBiomas público",
@@ -955,6 +1040,7 @@
   {
    "id": "4117219ef930819d8339f065d09c9b11",
    "url": "https://app.notion.com/p/Monitor-detection-Sentinel-4117219ef930819d8339f065d09c9b11",
+   "doc": "O que é:\nDado bruto (raw) de detecção de água do Monitor BETA1 com Sentinel-2, mensal, por carta. Entrada de todas as combinações.\n\nEstrutura:\n- ImageCollection, uma imagem por carta × ano; propriedades year, version (número ou texto) e carta\n- Bandas w_1 … w_12 = jan a dez\n- Classe base: 1 água, 2 e 4 não água, 6 excluído, 7 não observado; com motivo, valor = motivo × 10 + classe_base\n\nComo carregar:\nvar det = ee.ImageCollection('projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/detection')   .filter(ee.Filter.inList('version', [5, '5']))   .filter(ee.Filter.inList('year', [2024, '2024'])); var junho = det.select('w_6').mosaic();\n\nOnde usamos:\nScripts de estatística e de exportação de combinações; modo Origem do app de comparação.\n\nCuidados:\n- Sempre filtrar year e version e usar .mosaic().\n- Use a version 5; o raw não tem version 6.\n- Pirâmide MEAN: valores falsos no zoom afastado.",
    "nome": "Monitor — detection (Sentinel)",
    "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/detection",
    "origem": "MapBiomas interno",
@@ -965,6 +1051,7 @@
   {
    "id": "4117219ef93081a5b9c2ed7121682164",
    "url": "https://app.notion.com/p/MapBiomas-Peru-Cole-o-3-4117219ef93081a5b9c2ed7121682164",
+   "doc": "O que é:\nCobertura e uso da terra do MapBiomas Peru, Coleção 3 (1985–2024).\n\nComo carregar:\nvar peru = ee.Image('projects/mapbiomas-public/assets/peru/collection3/mapbiomas_peru_collection3_integration_v1'); var urbano = peru.select('classification_2024').eq(24);\n\nClasses mais usadas:\n- Urbano: 24 (infraestrutura urbana); a 22 é o grupo não vegetado inteiro\n- Água: 26, 33, 31, 34; 27 = não observado\n- Agropecuária: 14, 15, 18, 21, 35, 40, 72, 9\n\nOnde usamos:\nSimulador de inundação de Lima (Curva Número por classe).\n\nCuidado:\nA legenda certa é a do PDF oficial, não a tabela resumida.",
    "nome": "MapBiomas Peru Coleção 3",
    "path": "projects/mapbiomas-public/assets/peru/collection3/mapbiomas_peru_collection3_integration_v1",
    "origem": "MapBiomas público",
@@ -975,6 +1062,7 @@
   {
    "id": "4117219ef93081a69bf6e7bea11f19ef",
    "url": "https://app.notion.com/p/HLS-L30-S30-4117219ef93081a69bf6e7bea11f19ef",
+   "doc": "O que é:\nHLS v2.0 (Harmonized Landsat Sentinel-2) da NASA: reflectância de superfície harmonizada a 30 m. L30 vem do Landsat 8/9; S30 do Sentinel-2.\n\nComo carregar:\nvar hls = ee.ImageCollection('NASA/HLS/HLSL30/v002')   .merge(ee.ImageCollection('NASA/HLS/HLSS30/v002'))   .filterDate('2024-06-01', '2024-07-01');\n\nOnde usamos:\nMosaicos RGB do app do Monitor, para conferir a água detectada.\n\nCuidados:\n- Máscara de nuvem pela banda Fmask.\n- No app, o mês do mosaico usa índice mês − 1.",
    "nome": "HLS L30 + S30",
    "path": "NASA/HLS/HLSL30/v002 · NASA/HLS/HLSS30/v002",
    "origem": "Externo",
@@ -985,6 +1073,7 @@
   {
    "id": "4117219ef93081ad812ede15d512bedf",
    "url": "https://app.notion.com/p/SoilGrids-2-0-areia-argila-COS-4117219ef93081ad812ede15d512bedf",
+   "doc": "O que é:\nSoilGrids 2.0 (ISRIC): propriedades do solo a 250 m em camadas de profundidade.\n\nComo carregar (média ponderada 0–30 cm):\nfunction media0a30(asset, p) {   var img = ee.Image(asset);   return img.select(p + '_0-5cm_mean').multiply(5)     .add(img.select(p + '_5-15cm_mean').multiply(10))     .add(img.select(p + '_15-30cm_mean').multiply(15)).divide(30); } var areia = media0a30('projects/soilgrids-isric/sand_mean', 'sand').divide(10);\n\nOnde usamos:\nSolo provisório no ESAI v1; da v2 em diante, substituído pelo MapBiomas Solo.\n\nCuidado:\nAreia e argila em g/kg (÷10 para %); carbono em dg/kg (÷10 para g/kg).",
    "nome": "SoilGrids 2.0 (areia, argila, COS)",
    "path": "projects/soilgrids-isric/sand_mean · clay_mean · soc_mean",
    "origem": "Externo",
@@ -995,6 +1084,7 @@
   {
    "id": "4117219ef93081c3b01efbb086482b35",
    "url": "https://app.notion.com/p/ESAI-sa-das-4117219ef93081c3b01efbb086482b35",
+   "doc": "O que é:\nSaídas dos scripts de ESAI (suscetibilidade à desertificação) exportadas como asset.\n\nAssets:\n- projects/pedrogalve/assets/esai_sp_v1 (v1, SP)\n- esai_sp_v2 / esai_msp_v2 (v2, SP estado ou município)\n- esai_<recorte>_v3 (v3, ex.: esai_gilbues_v3)\n\nBandas:\nESAI (contínuo, ~1,0 a 1,6), CLASSE (1–8, Kosmas), CQI, SQI, VQI, MQI (1 a 2), IA (aridez) e, a partir da v2, PERDA_AGUA.\n\nComo carregar:\nvar esai = ee.Image('projects/pedrogalve/assets/esai_gilbues_v3'); Map.addLayer(esai.select('ESAI'), {min: 1, max: 1.6, palette: ['1a9850','d9ef8b','fee08b','d73027']}, 'ESAI');\n\nCuidado:\nPirâmide MEAN nos índices e MODE na CLASSE.",
    "nome": "ESAI — saídas",
    "path": "projects/pedrogalve/assets/esai_sp_v1 (e v2, v3)",
    "origem": "Pessoal (pedrogalve)",
@@ -1005,6 +1095,7 @@
   {
    "id": "4117219ef93081c4aa79d669be993499",
    "url": "https://app.notion.com/p/MODIS-LST-8-dias-4117219ef93081c4aa79d669be993499",
+   "doc": "O que é:\nMODIS Terra LST 8 dias (MOD11A2 v061): temperatura de superfície a 1 km.\n\nComo carregar:\nvar lst = ee.ImageCollection('MODIS/061/MOD11A2').select('LST_Day_1km'); var celsius = lst.map(function(i) { return i.multiply(0.02).subtract(273.15).copyProperties(i, ['system:time_start']); });\n\nOnde usamos:\nAlerta de temperatura da água para os botos.\n\nCuidados:\n- Limiares (Fleischmann et al., Science 2025): alerta > 32 °C, pré-crítico > 35 °C, crítico > 37 °C, letal > 40 °C.\n- No ano corrente, limitar ao último mês com dado.",
    "nome": "MODIS LST 8 dias",
    "path": "MODIS/061/MOD11A2",
    "origem": "Externo",
@@ -1015,6 +1106,7 @@
   {
    "id": "4117219ef93081da8babc1cb7e56cf55",
    "url": "https://app.notion.com/p/ERA5-Land-ERA5-HEAT-4117219ef93081da8babc1cb7e56cf55",
+   "doc": "O que é:\nERA5-Land (reanálise diária) e ERA5-HEAT (estresse térmico, incluindo temperatura radiante média).\n\nComo carregar:\nvar era5 = ee.ImageCollection('ECMWF/ERA5_LAND/DAILY_AGGR'); var heat = ee.ImageCollection('projects/climate-engine-pro/assets/ce-era5-heat');\n\nOnde usamos:\nConforto térmico (UTCI) em São Paulo e vulnerabilidade térmica de lagos amazônicos.\n\nCuidados:\n- Junte as coleções pela data formatada 'YYYY-MM-dd', não pelo system:time_start.\n- Use a banda mrt_mean do ERA5-HEAT; a aproximação por Stefan-Boltzmann dá valores absurdos.",
    "nome": "ERA5-Land / ERA5-HEAT",
    "path": "ECMWF/ERA5_LAND/DAILY_AGGR · projects/climate-engine-pro/assets/ce-era5-heat",
    "origem": "Externo",
@@ -1025,6 +1117,7 @@
   {
    "id": "4117219ef93081e48594e14e782798e8",
    "url": "https://app.notion.com/p/Risco-Clim-tico-C1-ndice-de-Seguran-a-H-drica-4117219ef93081e48594e14e782798e8",
+   "doc": "O que é:\nÍndice de Segurança Hídrica, MapBiomas Risco Climático Coleção 1 beta.\n\nComo carregar:\nvar ish = ee.Image('projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_water_security_index_v1'); print(ish);\n\nCuidado:\nAinda não usado em nenhum script; confira bandas e escala no Console antes do primeiro uso.",
    "nome": "Risco Climático C1 — Índice de Segurança Hídrica",
    "path": "projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_water_security_index_v1",
    "origem": "MapBiomas público",
@@ -1035,16 +1128,18 @@
   {
    "id": "4117219ef93081e58a92d93ae8e3799c",
    "url": "https://app.notion.com/p/Monitor-interation2-interation2_orig-4117219ef93081e58a92d93ae8e3799c",
+   "doc": "O que é:\nSegunda iteração do Monitor de Água, em duas variantes: int2_new (.../BETA1/interation2) e int2_ori (.../BETA1/interation2_orig, com a correção aplicada).\n\nEstrutura:\n- Filtrar version_combination = 6; carta em grid_name\n- Bandas w_1 … w_12\n- Classes de água: 1, 2, 3, 4, 13, 14. Na v7: 10 Sentinel mês, 20 HLS mês, 30 Sentinel mês −1, 40 HLS mês −1, 13 base Sentinel, 14 base HLS, 5 não observado\n- Só tem pixel onde há água\n\nComo carregar:\nvar int2 = ee.ImageCollection('projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/interation2')   .filter(ee.Filter.inList('version_combination', [6, '6'])); var agua = int2.filter(ee.Filter.inList('year', [2024, '2024'])).select('w_6').mosaic()   .remap([1, 2, 3, 4, 13, 14], [1, 1, 1, 1, 1, 1], 0);\n\nCuidado:\nMês sem banda numa carta = sem dado, não água zero.",
    "nome": "Monitor — interation2 / interation2_orig",
-   "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/ (interation2)",
+   "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/interation2 · .../interation2_orig",
    "origem": "MapBiomas interno",
    "tema": "Monitor Água",
    "versao": "version_combination 6 / v7",
-   "notas": "int2_new e int2_ori no app de comparação; só tem pixel onde há água. Confirmar caminho exato"
+   "notas": "int2_new = interation2; int2_ori = interation2_orig (correção aplicada). Filtrar version_combination = 6. Classes de água: 1, 2, 3, 4, 13, 14. Carta na propriedade grid_name; só tem pixel onde há água."
   },
   {
    "id": "4117219ef93081e8b1c0f24943680bde",
    "url": "https://app.notion.com/p/Monitor-detection_HLS-4117219ef93081e8b1c0f24943680bde",
+   "doc": "O que é:\nDado bruto de detecção de água do Monitor BETA1 com HLS (Harmonized Landsat Sentinel), mensal, por carta. Mesma estrutura do detection (Sentinel).\n\nComo carregar:\nvar detHls = ee.ImageCollection('projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/detection_HLS')   .filter(ee.Filter.inList('version', [5, '5']));\n\nCuidados:\n- Só existem as versions 4 e 5.\n- Bandas w_1 … w_12; filtrar year e usar .mosaic().",
    "nome": "Monitor — detection_HLS",
    "path": "projects/mapbiomas-brazil/assets/WATER/MONITOR/BETA1/detection_HLS",
    "origem": "MapBiomas interno",
@@ -1055,6 +1150,7 @@
   {
    "id": "4117219ef93081efa112fc1d9c09d00e",
    "url": "https://app.notion.com/p/gua-C5-corpos-d-gua-4117219ef93081efa112fc1d9c09d00e",
+   "doc": "O que é:\nClassificação de corpos d'água do MapBiomas Água, Coleção 5 (tipos de corpo hídrico por ano).\n\nEstrutura:\n- Versão filtrada e corrigida: ...water_bodies_filtered_corr_v4, ee.Image multibanda classification_1985 … classification_2025\n- Identificador de corpo d'água (water_bodie_id): water_id{ano}, banda b1 int32, nodata = -2147483648\n\nComo carregar:\nvar corpos = ee.Image('projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_bodies_v4');\n\nCuidados:\n- É ee.Image, não ImageCollection.\n- No water_bodie_id, mascare com .neq(-2147483648), não .gt(0).",
    "nome": "Água C5 — corpos d'água",
    "path": "projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_bodies_v4",
    "origem": "MapBiomas público",
@@ -1065,6 +1161,7 @@
   {
    "id": "4117219ef93081efaec7d30838687449",
    "url": "https://app.notion.com/p/Risco-Clim-tico-C1-inunda-o-urbana-4117219ef93081efaec7d30838687449",
+   "doc": "O que é:\nSuscetibilidade a inundação em área urbana, MapBiomas Risco Climático Coleção 1 (pública, até 2024).\n\nLegenda (invertida em relação ao deslizamento):\n1 = Muito alto, 2 = Alto, 3 = Médio, 0 = sem risco\n\nComo carregar:\nvar inund = ee.Image('projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_urban_flood_risk_v1');\n\nCuidados:\n- Vai só até 2024; para 2025, use a Coleção 2 (flood_step2_v3_c11).\n- Confirme a inversão de classes antes de publicar.\n- Cobre só área urbana.",
    "nome": "Risco Climático C1 — inundação urbana",
    "path": "projects/mapbiomas-public/assets/brazil/climate_risk/collection1/mapbiomas_brazil_collection1_urban_flood_risk_v1",
    "origem": "MapBiomas público",
@@ -1075,6 +1172,7 @@
   {
    "id": "4117219ef93081fbb405ff97bc658a06",
    "url": "https://app.notion.com/p/gua-C5-anual-4117219ef93081fbb405ff97bc658a06",
+   "doc": "O que é:\nSuperfície de água anual do MapBiomas Água, Coleção 5 (1985–2025).\n\nComo carregar:\nvar aguaAnual = ee.Image('projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_annual_v4'); print(aguaAnual.bandNames());\n\nOnde usamos:\nESAI v2/v3: perda regional de superfície d'água no CQI.\n\nCuidado:\nConfira os nomes das bandas no Console antes de selecionar o ano.",
    "nome": "Água C5 — anual",
    "path": "projects/mapbiomas-public/assets/brazil/water/collection5/mapbiomas_brazil_collection5_water_annual_v4",
    "origem": "MapBiomas público",
@@ -1085,6 +1183,7 @@
   {
    "id": "4117219ef93081fc826aceb3baec612d",
    "url": "https://app.notion.com/p/Biomas-MapBiomas-gua-4117219ef93081fc826aceb3baec612d",
+   "doc": "O que é:\nLimites dos biomas usados no MapBiomas Água.\n\nComo carregar:\nvar biomas = ee.FeatureCollection('projects/mapbiomas-agua/assets/territories/biome'); var cerrado = biomas.filter(ee.Filter.eq('Bioma', 'Cerrado'));\n\nCuidado:\nCampo Bioma com B maiúsculo; valores sem acento.",
    "nome": "Biomas (MapBiomas Água)",
    "path": "projects/mapbiomas-agua/assets/territories/biome",
    "origem": "MapBiomas interno",
@@ -1097,6 +1196,7 @@
   {
    "id": "4117219ef93081059c29f47aa094901c",
    "url": "https://app.notion.com/p/mapbiomas_exports_col11_mun_landslides-4117219ef93081059c29f47aa094901c",
+   "doc": "O que tem:\nÁrea urbana suscetível a deslizamento por município × classe × ano, 1985–2025.\n\nColunas:\nterritory (código IBGE), year, class, area (ha)\n\nLegenda:\n1 = Médio, 2 = Alto, 3 = Muito alto (oposta à inundação)\n\nComo ler:\nNormalmente exportado só sobre a máscara de risco (sem classe 0); os percentuais usam o denominador da inundação.\n\nUso:\nPré-release, painel de jornalistas.",
    "nome": "mapbiomas_exports_col11_mun_landslides",
    "formato": "CSV",
    "pasta": "mapbiomas_exports_col11_mun_landslides",
@@ -1110,6 +1210,7 @@
   {
    "id": "4117219ef930810ea50fd7ae631ae6e9",
    "url": "https://app.notion.com/p/stats_brasil-bioma_combination_v7-interation2_v7-csv-4117219ef930810ea50fd7ae631ae6e9",
+   "doc": "O que tem:\nÁrea de água mensal (2019–2025) da v7 do Monitor para o Brasil e cada bioma, nas versões combination e interation2_v7. São 4 arquivos.\n\nColunas:\ncolecao, bioma, ano, mes, ha_agua, ha_c10, ha_c20, ha_c30, ha_c40, ha_c13, ha_c14, ha_c5, ha_total\n\nClasses:\n10 Sentinel mês, 20 HLS mês, 30 Sentinel mês −1, 40 HLS mês −1, 13 base Sentinel, 14 base HLS, 5 não observado. ha_agua = 10+20+30+40+13+14.\n\nConferências:\nSem meses duplicados; 84 meses por unidade; biomas somam o Brasil.\n\nUso:\nLido por monitor_agua_v7_brasil_biomas.ipynb.",
    "nome": "stats_brasil/bioma_combination_v7 + interation2_v7 .csv",
    "formato": "CSV",
    "pasta": "Dados Monitor Novo",
@@ -1124,6 +1225,7 @@
   {
    "id": "4117219ef9308118bd37f8f49dc852c0",
    "url": "https://app.notion.com/p/Luz-Noturna-mun-bioma-xlsx-4117219ef9308118bd37f8f49dc852c0",
+   "doc": "O que tem:\nLuz Noturna da Coleção 11: área por classe de emissão luminosa, 2013–2025, por município e por bioma. Não tem dado por favela.\n\nArquivos:\nnightlight_by_mun_mapbiomas_col11_v2.xlsx, nightlight_by_biome_mapbiomas_col11_2.xlsx\n\nClasses:\n13 classes, da menor emissão (sinal abaixo do limite confiável) à maior (emissão extraordinária).\n\nConferência:\nBiomas e municípios precisam fechar o mesmo total.\n\nUso:\nModo Luz Noturna do painel de jornalistas.",
    "nome": "Luz Noturna (mun, bioma).xlsx",
    "formato": "XLSX",
    "pasta": "Drive (qualquer pasta)",
@@ -1138,6 +1240,7 @@
   {
    "id": "4117219ef930811ca310f31110a9e3e7",
    "url": "https://app.notion.com/p/mapbiomas_prerelease_riscos_2025-tabelas-figuras-4117219ef930811ca310f31110a9e3e7",
+   "doc": "O que tem:\nTudo o que o notebook do pré-release gera, na pasta mapbiomas_prerelease_riscos_2025:\n- tabelas/mapbiomas_riscos_col11_2025_prerelease.xlsx: metadados, log de leitura, base longa, síntese Brasil, bioma, UF, município, rankings, descritivas, tendências\n- 6 CSVs da série 1985–2025 (inundação e deslizamento × bioma, estado, município) + XLSX só dos agregados + ZIP\n- figuras/: g01…g17 (gráficos) e m01…m14 (mapas), PNG 300 dpi e PDF\n\nFormato:\nCSVs com ponto e vírgula, vírgula decimal, UTF-8 com BOM.\n\nCuidado:\nAs abas municipais passam de 100 mil linhas; por isso o XLSX completo leva só bioma e estado.",
    "nome": "mapbiomas_prerelease_riscos_2025 (tabelas + figuras)",
    "formato": "XLSX",
    "pasta": "mapbiomas_prerelease_riscos_2025",
@@ -1154,6 +1257,7 @@
   {
    "id": "4117219ef9308137aed6cb3ebbd125c9",
    "url": "https://app.notion.com/p/M-dulo-Urbano-vegurb-biomas-mun-slums-xlsx-4117219ef9308137aed6cb3ebbd125c9",
+   "doc": "O que tem:\nMódulo Urbano da Coleção 11: área de cada camada urbana por ano (1985–2025), em três planilhas: por bioma, por município (aba vegurb) e por favela.\n\nArquivos:\nurb_by_biomes_mapbiomas_col11-vegurb.xlsx, urb_by_mun_mapbiomas_col11-vegurb.xlsx, slums_mapbiomas_col11-vegurb.xlsx\n\nCamadas (classNM):\n- Non-vegetaded urbanized area (área urbanizada não vegetada)\n- Urban green spaces and peri-urban vegetation\n- Intra-urban vegetation\n\nConferência:\nBiomas e municípios precisam fechar o mesmo total (diferença < 1%).\n\nUso:\nModo Módulo Urbano do painel de jornalistas.",
    "nome": "Módulo Urbano vegurb (biomas, mun, slums).xlsx",
    "formato": "XLSX",
    "pasta": "Drive (qualquer pasta)",
@@ -1169,6 +1273,7 @@
   {
    "id": "4117219ef9308149b5f5dc0d38d48fd5",
    "url": "https://app.notion.com/p/mapbiomas_exports_col11_biome_landslides-4117219ef9308149b5f5dc0d38d48fd5",
+   "doc": "O que tem:\nÁrea urbana suscetível a deslizamento por bioma × classe × ano, 1985–2025.\n\nColunas:\nbioma (código), biomeName, year, class, area (ha)\n\nLegenda:\n1 = Médio, 2 = Alto, 3 = Muito alto\n\nUso:\nPré-release, painel de jornalistas.",
    "nome": "mapbiomas_exports_col11_biome_landslides",
    "formato": "CSV",
    "pasta": "mapbiomas_exports_col11_biome_landslides",
@@ -1182,6 +1287,7 @@
   {
    "id": "4117219ef9308151a80af1b414620b72",
    "url": "https://app.notion.com/p/mapbiomas_exports_col11_favelas_landslides-4117219ef9308151a80af1b414620b72",
+   "doc": "O que tem:\nÁrea suscetível a deslizamento em cada favela, um CSV por ano (1985–2025).\n\nColunas:\ncd_fcu, nm_fcu, cd_mun, nm_mun, sigla_uf, theme, year, area_c1, area_c2, area_c3 (ha)\n\nLegenda:\narea_c1 = Médio, area_c2 = Alto, area_c3 = Muito alto (oposta à inundação)\n\nUso:\nColab de favelas e painel de jornalistas.",
    "nome": "mapbiomas_exports_col11_favelas_landslides",
    "formato": "CSV",
    "pasta": "mapbiomas_exports_col11_favelas_landslides",
@@ -1195,6 +1301,7 @@
   {
    "id": "4117219ef9308159a03ad53e6e5ac7c8",
    "url": "https://app.notion.com/p/stats_carta_-combination-interation2_v7-_todas_v7-csv-4117219ef9308159a03ad53e6e5ac7c8",
+   "doc": "O que tem:\nMesma métrica da v7, por carta × bioma (uma carta pode cair em mais de um bioma). Dois arquivos: combination e interation2_v7.\n\nUso:\nCélula 14 do monitor_agua_v7_brasil_biomas.ipynb. Os limiares de mês suspeito de carta são mais frouxos (salto 50%, mínimo 100 ha).",
    "nome": "stats_carta_<combination|interation2_v7>_todas_v7.csv",
    "formato": "CSV",
    "pasta": "Dados Monitor Novo",
@@ -1208,6 +1315,7 @@
   {
    "id": "4117219ef930817a900ee18cf4121b13",
    "url": "https://app.notion.com/p/mapbiomas_exports_col11_biome_flood_risks-4117219ef930817a900ee18cf4121b13",
+   "doc": "O que tem:\nÁrea urbana suscetível a inundação por bioma × classe × ano, 1985–2025.\n\nColunas:\nbioma (código), biomeName, year, class, area (ha)\n\nConferência:\nPampa, Muito alto em 2025 = 59% da área suscetível (número do factsheet).\n\nUso:\nPré-release, painel de jornalistas.",
    "nome": "mapbiomas_exports_col11_biome_flood_risks",
    "formato": "CSV",
    "pasta": "mapbiomas_exports_col11_biome_flood_risks",
@@ -1221,6 +1329,7 @@
   {
    "id": "4117219ef9308188a803e3b715f59ce6",
    "url": "https://app.notion.com/p/mapbiomas_exports_col11_favelas_flood_risks-4117219ef9308188a803e3b715f59ce6",
+   "doc": "O que tem:\nÁrea suscetível a inundação em cada favela, um CSV por ano (1985–2025), uma linha por favela.\n\nColunas:\ncd_fcu, nm_fcu, cd_mun, nm_mun, sigla_uf, theme, year, area_c1, area_c2, area_c3 (ha)\n\nLegenda:\narea_c1 = Muito alto, area_c2 = Alto, area_c3 = Médio\n\nUso:\nColab de favelas e painel de jornalistas.",
    "nome": "mapbiomas_exports_col11_favelas_flood_risks",
    "formato": "CSV",
    "pasta": "mapbiomas_exports_col11_favelas_flood_risks",
@@ -1234,6 +1343,7 @@
   {
    "id": "4117219ef930818eb847c950b34e1bf0",
    "url": "https://app.notion.com/p/monitor_stats_-s-rie-_-ano-csv-ROIs-4117219ef930818eb847c950b34e1bf0",
+   "doc": "O que tem:\nÁrea de água mensal por ROI de cada série: combina1–7, colecao5, Comb_Monitor (inclusive PAM_CAA), Int2_new_roi e Int2_ori_roi. Um arquivo por série × ano.\n\nColunas:\ncombinacao, territorio, bioma, ano, mes, area_territorio_ha, area_1…area_12, agua_deteccao_ha, agua_inclusao_ha, agua_total_ha; nas séries novas, area_coberta_ha e classe<cod>_ha.\n\nComo ler:\n- area_coberta_ha = 0 ou abaixo de 95% da ROI = sem dado, não água zero\n- Mesma ROI × mês em dois arquivos: vale a linha com maior cobertura\n\nOrigem e uso:\nGerado pelos scripts exportacao_estatisticas_rois*.js; lido por graficos_rois_comparacao.ipynb.",
    "nome": "monitor_stats_<série>_<ano>.csv (ROIs)",
    "formato": "CSV",
    "pasta": "monitor_agua_rois",
@@ -1247,6 +1357,7 @@
   {
    "id": "4117219ef93081948ed8e0a54e1546dd",
    "url": "https://app.notion.com/p/datas_suspeitas-resumo_brasil_biomas_v7-csv-figuras-4117219ef93081948ed8e0a54e1546dd",
+   "doc": "O que tem:\nSaídas do Colab da v7:\n- datas_suspeitas_brasil_biomas_v7.csv: um mês por linha, com severidade (0–10), tipos (salto, mes, obs, m1, dif) e motivos\n- resumo_brasil_biomas_v7.csv: mediana e médias de 2025, 2024 e 2019–2024 por unidade e versão\n- figuras/: PNG transparentes 300 dpi\n\nFormato:\nCSV com ponto e vírgula e vírgula decimal, UTF-8 com BOM (abre direto no Excel em português).",
    "nome": "datas_suspeitas / resumo_brasil_biomas_v7.csv + figuras",
    "formato": "CSV",
    "pasta": "Dados Monitor Novo (/figuras)",
@@ -1261,6 +1372,7 @@
   {
    "id": "4117219ef93081ab84c0fa9e068f787d",
    "url": "https://app.notion.com/p/monitor_stats_-combina-o-_-ano-csv-cartas-4117219ef93081ab84c0fa9e068f787d",
+   "doc": "O que tem:\nÁrea de água mensal por carta (ou território) de cada combinação. Um arquivo por combinação × ano.\n\nColunas:\ncombinacao, carta (ou territorio), bioma, ano, mes, area_carta_ha, area_1…area_8, agua_deteccao_ha (1–4), agua_inclusao_ha (5–8), agua_total_ha\n\nComo ler:\nA cascata não sobrepõe códigos: as áreas por código somam sem dupla contagem.\n\nOrigem e uso:\nGerado por exportacao_estatisticas_combinacoes.js ou pela Parte B do monitor_agua_estatisticas_territorios.ipynb; lido por graficos_combinacoes.ipynb e pela Parte A do Colab de territórios.",
    "nome": "monitor_stats_<combinação>_<ano>.csv (cartas)",
    "formato": "CSV",
    "pasta": "monitor_agua_estatisticas",
@@ -1274,6 +1386,7 @@
   {
    "id": "4117219ef93081c8ac9ad5231aab5cc3",
    "url": "https://app.notion.com/p/monitor_stats_raw_-sensor-_-ano-csv-4117219ef93081c8ac9ad5231aab5cc3",
+   "doc": "O que tem:\nÁrea de cada classe do dado bruto do Monitor (Sentinel e HLS) nas 23 ROIs, mês a mês. Um arquivo por sensor × ano.\n\nColunas:\nsensor, territorio, bioma, ano, mes, classe, area_ha, area_valida_ha, area_territorio_ha\n\nComo ler:\n- Formato longo: uma linha por ROI × mês × classe\n- area_valida_ha = soma de todas as classes = área com dado\n- ROI × mês sem linha = sem carta naquele mês\n\nOrigem e uso:\nGerado por exportacao_estatisticas_raw_rois.js; lido por graficos_raw_agua_nao_observado.ipynb.",
    "nome": "monitor_stats_raw_<sensor>_<ano>.csv",
    "formato": "CSV",
    "pasta": "monitor_agua_rois",
@@ -1287,6 +1400,7 @@
   {
    "id": "4117219ef93081d7b4d3fea8c03d0c3a",
    "url": "https://app.notion.com/p/mapbiomas_favelas_riscos_col11_2025-xlsx-base-csv-gz-4117219ef93081d7b4d3fea8c03d0c3a",
+   "doc": "O que tem:\nSaídas do Colab de favelas:\n- tabelas/mapbiomas_favelas_riscos_col11_2025.xlsx com metadados, log de leitura e todas as tabelas\n- CSVs das abas grandes (série por município, comparação municipal, favelas em Muito alto)\n- 00_base_favela_ano.csv.gz: base completa favela × ano × tema (~1 milhão de linhas)\n- Figuras PNG\n\nCuidado:\nPolígonos de 2022 na série inteira; risco = exposição, não dano.",
    "nome": "mapbiomas_favelas_riscos_col11_2025.xlsx + base csv.gz",
    "formato": "XLSX",
    "pasta": "saída do Colab de favelas",
@@ -1301,6 +1415,7 @@
   {
    "id": "4117219ef93081ed94a9d940cebbfa95",
    "url": "https://app.notion.com/p/mapbiomas_exports_col11_mun_flood_risks-4117219ef93081ed94a9d940cebbfa95",
+   "doc": "O que tem:\nÁrea urbana suscetível a inundação por município × classe × ano, 1985–2025 (export do GEE, um ou mais CSVs por ano).\n\nColunas:\nterritory (código IBGE do município), year, class, area (ha)\n\nLegenda:\n1 = Muito alto, 2 = Alto, 3 = Médio, 0 = restante do território (quando exportado)\n\nComo ler:\n- O código pode vir com aspas ou como 1.1E6: normalize para 7 dígitos\n- Ignore arquivos \"Cópia de…\" e \"(1).csv\"\n\nUso:\nPré-release, painel de jornalistas.",
    "nome": "mapbiomas_exports_col11_mun_flood_risks",
    "formato": "CSV",
    "pasta": "mapbiomas_exports_col11_mun_flood_risks",
@@ -1314,6 +1429,7 @@
   {
    "id": "4117219ef93081ef9356ceac2316dcff",
    "url": "https://app.notion.com/p/Asset-ESAI-esai_sp_v1-v2-v3-4117219ef93081ef9356ceac2316dcff",
+   "doc": "O que tem:\nOs mapas de ESAI exportados como asset (ver a ficha \"ESAI — saídas\" em Assets GEE).\n\nAssets:\nesai_sp_v1, esai_sp_v2 / esai_msp_v2, esai_<recorte>_v3, em projects/pedrogalve/assets/\n\nBandas:\nESAI, CLASSE (1–8), CQI, SQI, VQI, MQI, IA e PERDA_AGUA (v2 em diante).",
    "nome": "Asset ESAI (esai_sp_v1/v2/v3)",
    "formato": "Asset GEE",
    "pasta": "projects/pedrogalve/assets/",
@@ -1328,6 +1444,7 @@
   {
    "id": "4117219ef93081f2b318cc7708b20f55",
    "url": "https://app.notion.com/p/painel_risco_climatico-zip-index-html-data-json-4117219ef93081f2b318cc7708b20f55",
+   "doc": "O que tem:\nO site pronto do Painel Risco Climático e Urbano: index.html + data/*.json.\n\nArquivos de dados:\n- index.json: lista de territórios com os resumos (2025, 2024, média)\n- agregados.json: Brasil, biomas e estados\n- mun_<UF>.json e fav_<UF>.json: séries por município e favela\n\nComo publicar:\nSuba o conteúdo do zip para o repositório PedroGalve00/painel-risco-climatico-urbano.\n\nOrigem:\nGerado por painel_risco_climatico_dados.ipynb.",
    "nome": "painel_risco_climatico.zip (index.html + data/*.json)",
    "formato": "Outro",
    "pasta": "download do Colab",
