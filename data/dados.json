@@ -1,29 +1,54 @@
 {
- "atualizado": "2026-11-09T00:40:02+00:00",
+ "atualizado": "2026-11-11T18:29:29+00:00",
  "notion": "https://www.notion.so/4117219ef930815dac67eb445b03dce4",
  "demandas": [
   {
+   "id": "4157219ef93081048109de52d718b252",
+   "url": "https://app.notion.com/p/S-rie-anual-do-mapa-de-suscetibilidade-desertifica-o-4157219ef93081048109de52d718b252",
+   "doc": "Contexto:\nTransformar o mapa (hoje clima 1991–2020 + cobertura 2025) numa série anual.\n\nPontos a decidir com o prof. Julio:\n- Clima fixo (normal 1991–2020) + uso da terra anual, ou janelas climáticas móveis de 30 anos (CHIRPS começa em 1981, então janelas completas só a partir de 2010). IA ano a ano mostra seca, não clima.\n- Recorte: só terras secas (IA ≤ 0,65) ou incluir o entorno do PAN-Brasil (~0,75).\n- Vigor da pastagem só existe a partir de 2000.\n\nPronto quando:\nAbordagem definida e desenho da série aprovado.",
+   "titulo": "Série anual do mapa de suscetibilidade à desertificação",
+   "codigo": "DEM-8",
+   "status": "Backlog",
+   "prioridade": "Média",
+   "inicio": null,
+   "prazo": null,
+   "avanco": 0,
+   "responsavel": [],
+   "solicitante": "Prof. Julio",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "scripts": [],
+   "entregavel": "",
+   "notas": "Resumo preparado para o prof. Julio em 10/11/2026; aguardando retorno.",
+   "editado": "2026-11-11T13:04:00.000Z"
+  },
+  {
    "id": "4117219ef9308133a596f9af82a05aa1",
    "url": "https://app.notion.com/p/Escalar-ESAI-de-S-o-Paulo-para-o-Brasil-4117219ef9308133a596f9af82a05aa1",
-   "doc": "Contexto:\nO ESAI v3 já roda por município (teste em Gilbués-PI) quase só com dados MapBiomas. Falta a versão Brasil.\n\nPassos:\n1. Validar a v3 em mais núcleos conhecidos (Irauçuba-CE, Caicó-RN, Cabrobó-PE).\n2. Ligar APLICAR_MASCARA_TERRAS_SECAS (IA ≤ 0,65, recorte UNCCD).\n3. Rodar o Brasil por tiles ou por estado, exportando direto para asset (sem visualização interativa).\n4. Estatísticas de área por classe, por estado e bioma.\n\nPronto quando:\nAsset esai_brasil_v3 exportado e tabela de área por classe conferida.",
+   "doc": "Contexto:\nMetodologia climática validada (v4–v6) e pipeline Brasil em duas etapas pronto. Etapa 1 (assets de clima) exportada; Etapa 2 (ESAI por UF) testada na visualização (SP) e conferida.\n\nPassos:\n1. ✅ Validar o IA contra estações (8 do artigo + 109 Normais INMET 1991–2020)\n2. ✅ Máscara de terras secas (IA ≤ 0,65) e máscara de limpeza (água, urbano, aquicultura) só no ESAI\n3. ✅ Exportar clima base (clima_tc_1991_2020, chirps_p_1991_2020)\n4. ⏳ Exportar Sergipe (teste) e depois as 27 UFs + 'sem_nome_gaul' para esai_brasil_v1\n5. ⏳ Estatísticas de área por classe (Matallo e Kosmas), por UF e bioma\n6. ⏳ Comparar com núcleos conhecidos e com a delimitação ASD do MMA\n\nPronto quando:\nImageCollection esai_brasil_v1 completa e tabela de área por classe conferida.",
    "titulo": "Escalar ESAI de São Paulo para o Brasil",
    "codigo": "DEM-5",
    "status": "Em andamento",
    "prioridade": "Média",
    "inicio": null,
    "prazo": null,
-   "avanco": 0.4,
+   "avanco": 0.7,
    "responsavel": [],
    "solicitante": "",
    "frentes": [
     "4117219ef9308114b1efeb6f2e4e3cd0"
    ],
    "scripts": [
-    "4117219ef9308164916bf92ed94ea2ba"
+    "4117219ef9308164916bf92ed94ea2ba",
+    "4157219ef9308155856ace9523b716fc",
+    "4157219ef93081b389cfef91b44c4c35",
+    "4157219ef9308182998dc95757891f4e",
+    "4157219ef9308182a9bdf88a3e4defa7"
    ],
    "entregavel": "",
-   "notas": "Na versão Brasil, ligar a máscara de terras secas (IA < 0,65)",
-   "editado": "2026-11-08T21:49:00.000Z"
+   "notas": "Rodar Etapa 2 com IA_LIMITE_ESAI = 0,65. Cancelar tarefas antigas 'name_unknown' (nomes repetidos) antes de exportar.",
+   "editado": "2026-11-11T13:03:00.000Z"
   },
   {
    "id": "4117219ef9308142b728c560087f97cc",
@@ -31,8 +56,8 @@
    "doc": "Contexto:\nAssumimos que a inundação tem escala invertida (1 = Muito alto) e o deslizamento não (3 = Muito alto). O painel de jornalistas usa CLASSES_ORDEM = [1, 2, 3], que reproduz o factsheet (Pampa com 59% em Muito alto). Falta confirmar na fonte.\n\nPassos:\n1. Abrir o código do GEE que gerou flood_step2_v3_c11 e landslide_step4_c11.\n2. Ver como cada classe é atribuída.\n3. Ajustar CLASSES no notebook e CLASSES_ORDEM no painel, se preciso.\n\nPronto quando:\nA legenda dos dois temas está confirmada e anotada nos assets e nas planilhas.",
    "titulo": "Confirmar inversão das classes inundação × deslizamento no código GEE de origem",
    "codigo": "DEM-3",
-   "status": "A fazer",
-   "prioridade": "Alta",
+   "status": "Concluída",
+   "prioridade": "Baixa",
    "inicio": null,
    "prazo": null,
    "avanco": 0,
@@ -47,7 +72,7 @@
    ],
    "entregavel": "",
    "notas": "",
-   "editado": "2026-11-08T21:49:00.000Z"
+   "editado": "2026-11-11T13:57:00.000Z"
   },
   {
    "id": "4117219ef93081449ebdeaa18ca9c804",
@@ -145,10 +170,10 @@
   {
    "id": "4117219ef9308114b1efeb6f2e4e3cd0",
    "url": "https://app.notion.com/p/Desertifica-o-ESAI-4117219ef9308114b1efeb6f2e4e3cd0",
-   "doc": "Objetivo:\nMapa de suscetibilidade à desertificação do Brasil com dados da plataforma MapBiomas, pelo índice ESAI (MEDALUS).\n\nMétodo:\nESAI = (CQI × SQI × VQI × MQI)^(1/4); classes de Kosmas (N, P, F1–F3, C1–C3).\n\nEtapas:\n- v1: São Paulo com SoilGrids\n- v2: São Paulo com MapBiomas Solo, Atmosfera e Água\n- v3: recorte configurável, teste no núcleo de Gilbués-PI\n- Próximo: Brasil inteiro com a máscara de terras secas (IA ≤ 0,65, recorte UNCCD)\n\nOutros núcleos para validar:\nIrauçuba-CE, Seridó (Caicó-RN), Cabrobó-PE.",
+   "doc": "Objetivo:\nMapa de suscetibilidade à desertificação do Brasil com dados da plataforma MapBiomas: suscetibilidade climática (IA = P/ETP, Thornthwaite, classes de Matallo/PAN-Brasil) + índice integrado ESAI (MEDALUS).\n\nMétodo:\n- Clima: P do CHIRPS + T do TerraClimate corrigida pelo relevo (−6,5 °C/km, NASADEM) + ETP de Thornthwaite (correção acima de 26,5 °C, fotoperíodo). Normal 1991–2020.\n- ESAI = (CQI × SQI × VQI × MQI)^(1/4); classes de Kosmas (N, P, F1–F3, C1–C3). Só em terras secas (IA ≤ 0,65, recorte UNCCD).\n- Base: Santos, Leal & Taura (2016), Revista OKARA 10(1):171–184.\n\nEtapas concluídas:\n- v1/v2: São Paulo (SoilGrids → MapBiomas Solo, Atmosfera e Água)\n- v3: recorte configurável, teste em Gilbués-PI\n- v4: Thornthwaite + Matallo; validação com as 8 estações do artigo (IA sem viés, RMSE 0,049)\n- v5: CHIRPS + correção pelo relevo (RMSE 0,047, 7 de 8 classes)\n- v6: validação com Normais INMET 1991–2020 (109 estações). Referência certa é a temperatura média compensada; viés do TerraClimate só −0,29 °C; correção de viés de T desligada (não melhora o IA)\n- Brasil Etapa 1: assets de clima exportados (clima_tc_1991_2020, chirps_p_1991_2020)\n- Brasil Etapa 2: script por UF pronto (Int16, banda EXCLUSAO, UFV no ESAI com peso 2,0); conferidos banda de fogo e códigos de vigor; SP testado (todo não suscetível, IA 1,4–1,6, coerente com o PAN-Brasil)\n\nPróximas etapas:\n1. Exportar Sergipe (teste) e depois as 27 UFs + 'sem_nome_gaul' para esai_brasil_v1\n2. Estatísticas de área por classe (Matallo e Kosmas) por UF e bioma\n3. Comparar com núcleos de desertificação (Gilbués, Irauçuba, Seridó, Cabrobó) e com a delimitação ASD do MMA\n4. Análise de sensibilidade dos pesos do ESAI (±20%)\n5. Definir com o prof. Julio a série anual (clima fixo + uso anual, ou janelas climáticas móveis) e o recorte (terras secas ou + entorno PAN-Brasil)\n6. Nota metodológica (fontes, validação, limitações: Senhor do Bonfim/relevo, poucas estações em terras secas)",
    "nome": "Desertificação (ESAI)",
    "teamspace": "Risco Climático",
-   "descricao": "Mapa de suscetibilidade à desertificação (ESAI) com dados MapBiomas — teste SP, escopo Brasil",
+   "descricao": "Mapa de suscetibilidade à desertificação do Brasil: IA de Thornthwaite + classes de Matallo (PAN-Brasil) e ESAI (MEDALUS) com dados MapBiomas — pipeline Brasil em execução",
    "colaboradores": "",
    "ativa": true
   },
@@ -214,6 +239,114 @@
   }
  ],
  "scripts": [
+  {
+   "id": "4157219ef930812f80d0d8a9641ba31a",
+   "url": "https://app.notion.com/p/esai_desertificacao_v5-js-4157219ef930812f80d0d8a9641ba31a",
+   "doc": "O que mudou:\n- P do CHIRPS (pentadal, desde 1981) no lugar do TerraClimate.\n- T corrigida pelo relevo: T + (−6,5 °C/km) × (z NASADEM − z média da célula TerraClimate), mês a mês antes de Thornthwaite.\n- Cenários: A = TerraClimate ; B = +CHIRPS ; C = +CHIRPS +relevo.\n\nResultado (8 estações, 1981–2013):\nRMSE do IA 0,049 (A) → 0,048 (B) → 0,047 (C); classes 6 → 7 de 8. As estações são em terreno plano, então a correção do relevo quase não atua nelas.",
+   "nome": "esai_desertificacao_v5.js",
+   "tipo": "GEE JS",
+   "status": "Substituído",
+   "versao": "v5",
+   "descricao": "Precipitação CHIRPS + temperatura TerraClimate corrigida pelo relevo (lapse rate); validação em 3 cenários (A/B/C)",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/esai_desertificacao_v5.js",
+   "link": null
+  },
+  {
+   "id": "4157219ef9308155856ace9523b716fc",
+   "url": "https://app.notion.com/p/esai_brasil_01_clima_base-js-4157219ef9308155856ace9523b716fc",
+   "doc": "O que faz:\nPré-calcula a parte pesada do clima uma vez, na grade nativa de cada fonte.\n\nSaídas (exportadas):\n- projects/pedrogalve/assets/esai_brasil/clima_tc_1991_2020 — T01..T12 (°C, TerraClimate (tmmx+tmmn)/2) + ZCEL (altitude média NASADEM por célula)\n- projects/pedrogalve/assets/esai_brasil/chirps_p_1991_2020 — P anual (mm)\n\nCuidado: o TerraClimate descreve a projeção em WKT; o script usa EPSG:4326 + a grade nativa.",
+   "nome": "esai_brasil_01_clima_base.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "v1",
+   "descricao": "Etapa 1 do ESAI Brasil: exporta as normais climáticas 1991–2020 como assets (já exportados)",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/esai_brasil_01_clima_base.js",
+   "link": null
+  },
+  {
+   "id": "4157219ef9308182998dc95757891f4e",
+   "url": "https://app.notion.com/p/esai_desertificacao_v6-js-4157219ef9308182998dc95757891f4e",
+   "doc": "O que mudou:\n- Altitude média da célula em duas etapas (30 m → 480 m → ~4,6 km), dentro do limite do reduceResolution.\n- Correção de viés de T (IDW de 8 vizinhos, Normais INMET) como opção APLICAR_CORRECAO_VIES_T, DESLIGADA: contra a média compensada o viés do TerraClimate é só −0,29 °C e a correção não melhora o IA (RMSE terras secas 0,066 → 0,064; classes iguais 66,7% nos dois).\n- Propriedades no asset: versão, período, fontes, ETP, lapse rate.\n\nMetodologia climática fechada: CHIRPS + TerraClimate corrigido pelo relevo + Thornthwaite.",
+   "nome": "esai_desertificacao_v6.js",
+   "tipo": "GEE JS",
+   "status": "Ativo",
+   "versao": "v6",
+   "descricao": "Versão de referência por município (cenário C); correção opcional de viés de T desligada; parâmetros gravados no asset",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/esai_desertificacao_v6.js",
+   "link": null
+  },
+  {
+   "id": "4157219ef9308182a9bdf88a3e4defa7",
+   "url": "https://app.notion.com/p/validacao_ia_inmet_normais_1991_2020_v2-ipynb-4157219ef9308182a9bdf88a3e4defa7",
+   "doc": "O que faz:\nLê 6 planilhas do INMET (ESTAÇÕES, PREC, TMAX, TMIN, TMEDSECA, EVAPOTM) em Meu Drive/desertificacao, calcula o IA das estações por Thornthwaite e compara com os cenários do GEE.\n\nAchados:\n- Referência certa é a temperatura média compensada; (máx+mín)/2 fica ~0,76 °C acima (0,62 °C no Nordeste).\n- Contra a compensada, o viés do TerraClimate é −0,29 °C; correção IDW não melhora o IA.\n- A ETP publicada pelo INMET não é Thornthwaite (~22% acima).\n- 109 estações com série completa, só 12 em terras secas.\n\nSaídas: figuras e CSVs em desertificacao/figuras_validacao_ia.",
+   "nome": "validacao_ia_inmet_normais_1991_2020_v2.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "v2",
+   "descricao": "Validação do IA com as Normais Climatológicas INMET 1991–2020 (média compensada), cenários A/B/C e teste de correção de viés de T",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "(local) validacao_ia_inmet_normais_1991_2020_v2.ipynb",
+   "link": null
+  },
+  {
+   "id": "4157219ef93081b389cfef91b44c4c35",
+   "url": "https://app.notion.com/p/esai_brasil_02_esai_por_uf-js-4157219ef93081b389cfef91b44c4c35",
+   "doc": "O que faz:\nLê os assets da Etapa 1 e calcula por pixel de 30 m: correção pelo relevo, Thornthwaite, IA, classes de Matallo e ESAI (MEDALUS).\n\nSaída: ImageCollection projects/pedrogalve/assets/esai_brasil/esai_brasil_v1, uma imagem por UF + 'sem_nome_gaul'. Bandas Int16: ESAI, CQI, SQI, VQI, MQI, IA, PERDA_AGUA, FREQ_AGUA ×1000; CLASSE (Kosmas 1–8); SUSC_CLIMA (0–3); ETP, P (mm); EXCLUSAO (0 calculado, 1 água, 2 urbano, 3 aquicultura).\n\nRegras:\n- Clima (IA, SUSC_CLIMA, ETP, P) cobre tudo; ESAI só em terras secas (IA ≤ 0,65) e fora de água/urbano/aquicultura.\n- Usina fotovoltaica (classe 75) entra no ESAI com peso 2,0 no VQI.\n- Pirâmide MODE em CLASSE, SUSC_CLIMA e EXCLUSAO.\n\nComo rodar:\nUFS_EXPORTAR = ['Sergipe'] para teste; [] = todas (28 tarefas). Nomes aceitam acento.\n\nConferido: banda fire_frequency_1985_2025 existe; vigor 1 = baixo, 3 = alto (ordem da legenda e proporções no sertão).",
+   "nome": "esai_brasil_02_esai_por_uf.js",
+   "tipo": "GEE JS",
+   "status": "Em desenvolvimento",
+   "versao": "v1",
+   "descricao": "Etapa 2 do ESAI Brasil: IA, Matallo e ESAI a 30 m, uma tarefa por UF (Int16)",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/esai_brasil_02_esai_por_uf.js",
+   "link": null
+  },
+  {
+   "id": "4157219ef93081b780afdbfe0780c246",
+   "url": "https://app.notion.com/p/esai_desertificacao_v4-js-4157219ef93081b780afdbfe0780c246",
+   "doc": "O que mudou:\n- ETP de Thornthwaite mês a mês (TerraClimate), com correção acima de 26,5 °C (Willmott/Camargo) e fotoperíodo; substitui a ETP Penman-Monteith da v3.\n- Camada SUSC_CLIMA: classes de Matallo (0 não suscetível, 1 moderada, 2 alta, 3 muito alta).\n- Validação com as 8 estações do artigo (1973–2013).\n- Máscara de água por frequência 1985–2025 (pega Sobradinho), urbano, aquicultura, UFV.\n\nResultado:\nIA sem viés (−0,001), RMSE 0,049, 6 de 8 classes iguais (divergências em Senhor do Bonfim e Monte Santo, perto dos limiares).",
+   "nome": "esai_desertificacao_v4.js",
+   "tipo": "GEE JS",
+   "status": "Substituído",
+   "versao": "v4",
+   "descricao": "IA de Thornthwaite + classes de Matallo (PAN-Brasil), validação contra as 8 estações de Santos, Leal & Taura (2016); teste Juazeiro-BA",
+   "frentes": [
+    "4117219ef9308114b1efeb6f2e4e3cd0"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/esai_desertificacao_v4.js",
+   "link": null
+  },
   {
    "id": "4117219ef9308100bb35eeb1bef2a532",
    "url": "https://app.notion.com/p/exportacao_combinacoes_asset-js-4117219ef9308100bb35eeb1bef2a532",
@@ -379,7 +512,7 @@
    "doc": "O que faz:\nMapa de suscetibilidade à desertificação pelo ESAI (MEDALUS; Kosmas et al., 1999), quase todo com dados MapBiomas. Teste no núcleo de Gilbués-PI.\n\nComo o índice é feito:\nESAI = (CQI × SQI × VQI × MQI)^(1/4); cada índice vai de 1 (protege) a 2 (degrada).\n- CQI clima: aridez P/ETP (TerraClimate), dias sem chuva (Atmosfera), perda de água (Água C5)\n- SQI solo: argila, areia, carbono e pedregosidade (Solo C3), declividade (NASADEM)\n- VQI vegetação: cobertura (C11) e frequência de fogo (Fogo C5.1)\n- MQI manejo: anos de uso antrópico e mudanças (C11), vigor da pastagem\n\nClasses de Kosmas:\n1 N não ameaçada (< 1,17), 2 P potencial, 3 F1, 4 F2, 5 F3, 6 C1, 7 C2, 8 C3 crítica alta (> 1,53)\n\nSaída:\n- projects/pedrogalve/assets/esai_<recorte>_v3 (ESAI, CLASSE, CQI, SQI, VQI, MQI, IA, PERDA_AGUA)\n\nComo rodar:\n1. Defina UF_NOME e MUN_NOME (FAO GAUL, sem acento). Outros núcleos: Irauçuba-CE, Caicó-RN, Cabrobó-PE.\n2. Rode, confira camadas e legenda e exporte pela aba Tasks.\n\nCuidados:\n- Estado inteiro estoura a memória na visualização: teste por município.\n- Na versão Brasil, ligar APLICAR_MASCARA_TERRAS_SECAS (IA ≤ 0,65).\n- Limiares calibrados no Mediterrâneo: compare pelo ESAI contínuo.",
    "nome": "esai_desertificacao_v3.js",
    "tipo": "GEE JS",
-   "status": "Em desenvolvimento",
+   "status": "Substituído",
    "versao": "v3",
    "descricao": "ESAI v3 só com dados MapBiomas (exceto aridez e declividade); teste no núcleo de desertificação de Gilbués-PI",
    "frentes": [
@@ -1084,12 +1217,12 @@
   {
    "id": "4117219ef93081c3b01efbb086482b35",
    "url": "https://app.notion.com/p/ESAI-sa-das-4117219ef93081c3b01efbb086482b35",
-   "doc": "O que é:\nSaídas dos scripts de ESAI (suscetibilidade à desertificação) exportadas como asset.\n\nAssets:\n- projects/pedrogalve/assets/esai_sp_v1 (v1, SP)\n- esai_sp_v2 / esai_msp_v2 (v2, SP estado ou município)\n- esai_<recorte>_v3 (v3, ex.: esai_gilbues_v3)\n\nBandas:\nESAI (contínuo, ~1,0 a 1,6), CLASSE (1–8, Kosmas), CQI, SQI, VQI, MQI (1 a 2), IA (aridez) e, a partir da v2, PERDA_AGUA.\n\nComo carregar:\nvar esai = ee.Image('projects/pedrogalve/assets/esai_gilbues_v3'); Map.addLayer(esai.select('ESAI'), {min: 1, max: 1.6, palette: ['1a9850','d9ef8b','fee08b','d73027']}, 'ESAI');\n\nCuidado:\nPirâmide MEAN nos índices e MODE na CLASSE.",
+   "doc": "O que é:\nSaídas dos scripts de ESAI (suscetibilidade à desertificação) exportadas como asset.\n\nAssets Brasil (atuais):\n- projects/pedrogalve/assets/esai_brasil/clima_tc_1991_2020 — T01..T12 (°C) + ZCEL (m), grade TerraClimate (exportado)\n- projects/pedrogalve/assets/esai_brasil/chirps_p_1991_2020 — P anual (mm), grade CHIRPS (exportado)\n- projects/pedrogalve/assets/esai_brasil/esai_brasil_v1 — ImageCollection, uma imagem por UF (em exportação)\n\nBandas do esai_brasil_v1 (Int16):\nESAI, CQI, SQI, VQI, MQI, IA, PERDA_AGUA, FREQ_AGUA ×1000; CLASSE (Kosmas 1–8); SUSC_CLIMA (Matallo 0–3); ETP, P (mm); EXCLUSAO (0 calculado, 1 água, 2 urbano, 3 aquicultura).\n\nAssets antigos (testes):\n- esai_sp_v1, esai_sp_v2 / esai_msp_v2, esai_<recorte>_v3 (ex.: esai_gilbues_v3)\n\nComo carregar:\nvar c = ee.ImageCollection('projects/pedrogalve/assets/esai_brasil/esai_brasil_v1').mosaic(); Map.addLayer(c.select('SUSC_CLIMA'), {min: 0, max: 3, palette: ['bdbdbd','fee08b','f46d43','a50026']}, 'Matallo');\n\nCuidado:\nPirâmide MEAN nos índices; MODE em CLASSE, SUSC_CLIMA e EXCLUSAO. Lembrar de dividir por 1000 os índices.",
    "nome": "ESAI — saídas",
-   "path": "projects/pedrogalve/assets/esai_sp_v1 (e v2, v3)",
+   "path": "projects/pedrogalve/assets/esai_brasil/ (clima_tc_1991_2020, chirps_p_1991_2020, esai_brasil_v1) ; antigos: esai_sp_v1, v2, v3",
    "origem": "Pessoal (pedrogalve)",
    "tema": "Risco Climático",
-   "versao": "",
+   "versao": "esai_brasil_v1",
    "notas": "Pirâmide mean, CLASSE mode"
   },
   {
