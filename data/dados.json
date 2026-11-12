@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-11T18:29:29+00:00",
+ "atualizado": "2026-11-12T17:00:00+00:00",
  "notion": "https://www.notion.so/4117219ef930815dac67eb445b03dce4",
  "demandas": [
   {
@@ -239,6 +239,24 @@
   }
  ],
  "scripts": [
+  {
+   "id": "4167219ef93081dfbee6e9e84c28511a",
+   "url": "https://app.notion.com/p/Teste-HAND-urbano-Int2-limpa-SH-22-V-2023-2025-4167219ef93081dfbee6e9e84c28511a",
+   "doc": "",
+   "nome": "Teste HAND urbano · Int2 limpa · SH-22-V (2023–2025)",
+   "tipo": "App GEE",
+   "status": "Em desenvolvimento",
+   "versao": "v1 (Int2 limpa) · 12/11/2026",
+   "descricao": "Testa trocar a máscara urbana da Int2 v7 por filtro HAND + conexão com a água da Int2 limpa (sem corpos < 256 px), para recuperar as cheias urbanas de 2023–2025 na carta SH-22-V sem trazer de volta os falsos positivos.",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [],
+   "le": [],
+   "gera": [],
+   "arquivo": "claude/teste_hand_urbano_SH22V_int2limpa.js",
+   "link": null
+  },
   {
    "id": "4157219ef930812f80d0d8a9641ba31a",
    "url": "https://app.notion.com/p/esai_desertificacao_v5-js-4157219ef930812f80d0d8a9641ba31a",
