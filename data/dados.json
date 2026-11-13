@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-12T17:00:00+00:00",
+ "atualizado": "2026-11-13T18:41:50+00:00",
  "notion": "https://www.notion.so/4117219ef930815dac67eb445b03dce4",
  "demandas": [
   {
@@ -239,6 +239,26 @@
   }
  ],
  "scripts": [
+  {
+   "id": "4177219ef930819185d9d9c4a1aa54bb",
+   "url": "https://app.notion.com/p/boletim_agua_mensal-ipynb-4177219ef930819185d9d9c4a1aa54bb",
+   "doc": "O que faz:\nRotina mensal: Executar tudo. Lê as tabelas mensais v3 de superfície de água, calcula para o último mês o desvio contra a média histórica do mesmo mês e a posição do mês no histórico de cada território, e gera o pacote do boletim no Drive.\n\nEntradas (Meu Drive > dados):\n- biome-water_surface_monthly_v3.csv\n- state-water_surface_monthly_v3.csv\n- hydrographicRegion-water_surface_monthly_v3.csv\n- subBasinPnrh1-water_surface_monthly_v3.csv\n- Assets: projects/mapbiomas-agua/assets/territories/{biome, state, hydrographicRegion, subBasinPnrh1}\n- Earth Engine: projeto pedrogalve\n\nSaídas (Meu Drive > relatorios > boletim_agua_AAAA_MM + .zip):\n- PDF de 8 páginas: Resumo Brasil · Biomas · Estados · Regiões Hidrográficas · Sub-bacias nível 1 (Brasil) · Sub-bacias na RH de maior ganho · Sub-bacias na RH de maior perda · Histórico Brasil\n- png/: 14 figuras (cada mapa e cada gráfico separado), fundo transparente, 300 dpi\n- planilhas/: 23 CSVs (um por figura, destaques por nível, histórico Brasil, posição histórica de todos os territórios)\n\nComo rodar:\n1. Ambiente de execução > Executar tudo.\n2. Conferir na célula 6 quantos territórios casaram com a planilha em cada nível (ex.: Estados 27/27).\n\nParâmetros (célula 2):\n- MES_REFERENCIA: None = último mês dos dados; \"2025-06\" para refazer um mês antigo\n- BASE_DIR: pasta dos CSVs\n- MAX_LINHAS_TABELA / MAX_LINHAS_TABELA_NACIONAL: linhas das tabelas do PDF (18 / 12)\n\nCálculos:\n- Desvio (%) = (água do mês − média do mesmo mês) / média × 100, histórico até o mês de referência\n- Rank histórico: desvio do mês entre todos os meses da série (1 = maior ganho)\n- Posição no mês: área do mês entre todos os meses de mesmo nome (ex.: 3º menor Outubro em 42 anos)\n- Brasil = soma dos biomas (aviso se diferir mais de 1% da soma das RH)\n- Caixas de destaque: território que mais ganhou e que mais perdeu em cada nível\n\nCuidados:\n- Fernando de Noronha é excluído.\n- Sub-bacia nível 1 entra na RH pelo centróide contido.\n- Célula 4 é um autoteste das contas; se falhar, a regra de cálculo foi alterada.",
+   "nome": "boletim_agua_mensal.ipynb",
+   "tipo": "Colab",
+   "status": "Ativo",
+   "versao": "v3 (13/11/2026)",
+   "descricao": "Boletim Técnico mensal do Monitor da Água: PDF de 8 páginas + PNGs transparentes + planilhas para o Canva, por Bioma, Estado, Região Hidrográfica e Sub-bacia nível 1",
+   "frentes": [
+    "4117219ef93081d4bcc6c954a1cf2640"
+   ],
+   "assets": [
+    "4117219ef93081fc826aceb3baec612d"
+   ],
+   "le": [],
+   "gera": [],
+   "arquivo": "",
+   "link": null
+  },
   {
    "id": "4167219ef93081dfbee6e9e84c28511a",
    "url": "https://app.notion.com/p/Teste-HAND-urbano-Int2-limpa-SH-22-V-2023-2025-4167219ef93081dfbee6e9e84c28511a",
